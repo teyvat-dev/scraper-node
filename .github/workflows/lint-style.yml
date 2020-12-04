@@ -1,0 +1,25 @@
+name: Style & Lint
+
+on: [push, pull_request]
+
+jobs:
+  lint-style:
+    name: Lint and Prettier code base
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Conform Checks
+        uses: talos-systems/conform@v0.1.0-alpha.20
+      - name: Use Node.js 12.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+      - uses: actions/cache@v2
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+      - name: Install deps
+        run: yarn --frozen-lockfile --ignore-scripts
+      - name: Run ESlint and Prettier Check
+        run: yarn lint

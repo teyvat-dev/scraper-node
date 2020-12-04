@@ -1,0 +1,27 @@
+policies:
+  - type: commit
+    spec:
+      header:
+        length: 89
+        imperative: true
+        case: lower
+        invalidLastCharacters: .
+      spellcheck:
+        locale: US
+      conventional:
+        types:
+          - 'ci'
+          - 'feat'
+          - 'fix'
+          - 'improvement'
+          - 'docs'
+          - 'chore'
+          - 'style'
+          - 'refactor'
+          - 'revert'
+          - 'perf'
+          - 'test'
+          - 'wip'
+        scopes:
+          - 'wiki'
+        descriptionLength: 240
