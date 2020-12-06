@@ -12,7 +12,7 @@ on:
       - 'src/wiki/character/**'
 jobs:
   deploy-wiki-characters:
-    name: Build and deploy Wiki Characters Scraper
+    name: Build and Deploy Wiki Characters Scraper
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -35,7 +35,7 @@ jobs:
       - name: Build Function
         run: yarn build
         env:
-          TARGET: wiki_characters
+          FUNCTION_TARGET: wiki_characters
       - name: Deploy Function
         uses: google-github-actions/deploy-cloud-functions@main
         with:

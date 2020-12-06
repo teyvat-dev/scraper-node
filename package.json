@@ -4,9 +4,9 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "functions-framework --source=build/src/ --target=$TARGET --expose-gc",
+    "start": "functions-framework",
     "dev": "concurrently \"tsc -w\" \"nodemon --watch ./build/ --exec npm run start\"",
-    "deploy": "yarn build && gcloud functions deploy $TARGET --runtime nodejs12 --trigger-http --allow-unauthenticated --source=./build/src",
+    "deploy": "yarn build && gcloud functions deploy $FUNCTION_TARGET --runtime nodejs12 --trigger-http --allow-unauthenticated",
     "build": "yarn run clean && yarn run compile && cp package.json yarn.lock ./build/src",
     "lint": "gts lint",
     "clean": "gts clean",

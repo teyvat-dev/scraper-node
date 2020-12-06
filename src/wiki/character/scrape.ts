@@ -41,7 +41,6 @@ const scrape = async (): Promise<CharactersOutput[]> => {
         weapon: char.weapon as EnumWeaponTypeFieldUpdateOperationsInput['set'],
       },
       characterProfile: {
-        name: char.name,
         affiliation: profile?.affiliation,
         birthday: profile?.birthday,
         constellation: profile?.constellation,

@@ -1,1 +1,2 @@
-export TARGET=wiki_characters
+export FUNCTION_TARGET=wiki_characters
+export FUNCTION_SOURCE=build/src
