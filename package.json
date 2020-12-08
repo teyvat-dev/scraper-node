@@ -1,6 +1,6 @@
 {
   "name": "teyvatdev-scraper-node",
-  "version": "0.3.1",
+  "version": "0.4.0",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
@@ -18,7 +18,10 @@
   },
   "dependencies": {
     "@google-cloud/functions-framework": "^1.7.1",
+    "@google-cloud/storage": "^5.6.0",
     "cheerio": "^1.0.0-rc.3",
+    "crypto-md5": "^1.0.0",
+    "fast-crc32c": "^2.0.0",
     "node-fetch": "^2.6.1",
     "tiny-async-pool": "^1.2.0"
   },
