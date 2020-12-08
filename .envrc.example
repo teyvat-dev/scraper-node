@@ -1,2 +1,5 @@
 export FUNCTION_TARGET=wiki_characters
 export FUNCTION_SOURCE=build/src
+export GOOGLE_APPLICATION_CREDENTIALS=
+export GOOGLE_COULD_PROJECT=
+export SCRAPER_BUCKET=
