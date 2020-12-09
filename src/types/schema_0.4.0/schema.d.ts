@@ -291,8 +291,8 @@ export declare function getLogLevel(
  * @example
  * ```
  * const prisma = new PrismaClient()
- * // Fetch zero or more Users
- * const users = await prisma.user.findMany()
+ * // Fetch zero or more Characters
+ * const characters = await prisma.character.findMany()
  * ```
  *
  *
@@ -346,8 +346,8 @@ export declare class PrismaClient<
    * @example
    * ```
    * const prisma = new PrismaClient()
-   * // Fetch zero or more Users
-   * const users = await prisma.user.findMany()
+   * // Fetch zero or more Characters
+   * const characters = await prisma.character.findMany()
    * ```
    *
    *
@@ -676,35 +676,6 @@ export declare class PrismaClient<
 // Based on
 // https://github.com/microsoft/TypeScript/issues/3192#issuecomment-261720275
 
-export declare const UserDistinctFieldEnum: {
-  id: 'id';
-  createdAt: 'createdAt';
-  updatedAt: 'updatedAt';
-  email: 'email';
-  username: 'username';
-  role: 'role';
-};
-
-export declare type UserDistinctFieldEnum = typeof UserDistinctFieldEnum[keyof typeof UserDistinctFieldEnum];
-
-export declare const UserSecretDistinctFieldEnum: {
-  id: 'id';
-  createdAt: 'createdAt';
-  updatedAt: 'updatedAt';
-  activated: 'activated';
-  activationToken: 'activationToken';
-  passwordAttempts: 'passwordAttempts';
-  password: 'password';
-  firstFailedPasswordAttempt: 'firstFailedPasswordAttempt';
-  resetPasswordToken: 'resetPasswordToken';
-  resetPasswordTokenGenerated: 'resetPasswordTokenGenerated';
-  resetPasswordAttempts: 'resetPasswordAttempts';
-  firstFailedResetPasswordAttempt: 'firstFailedResetPasswordAttempt';
-  userId: 'userId';
-};
-
-export declare type UserSecretDistinctFieldEnum = typeof UserSecretDistinctFieldEnum[keyof typeof UserSecretDistinctFieldEnum];
-
 export declare const CharacterDistinctFieldEnum: {
   id: 'id';
   createdAt: 'createdAt';
@@ -1028,15 +999,6 @@ export declare const SortOrder: {
 
 export declare type SortOrder = typeof SortOrder[keyof typeof SortOrder];
 
-export declare const Role: {
-  MEMBER: 'MEMBER';
-  ALPHAMEMBER: 'ALPHAMEMBER';
-  BETAMEMBER: 'BETAMEMBER';
-  ADMIN: 'ADMIN';
-};
-
-export declare type Role = typeof Role[keyof typeof Role];
-
 export declare const WeaponType: {
   Bow: 'Bow';
   Catalyst: 'Catalyst';
@@ -1133,7 +1095,7 @@ export declare type ArtifactType = typeof ArtifactType[keyof typeof ArtifactType
  */
 
 export type Character = {
-  id: number;
+  id: string;
   createdAt: Date;
   updatedAt: Date;
   name: string;
@@ -1153,42 +1115,34 @@ export type AggregateCharacter = {
 };
 
 export type CharacterAvgAggregateOutputType = {
-  id: number;
   rarity: number;
 };
 
 export type CharacterSumAggregateOutputType = {
-  id: number;
   rarity: number;
 };
 
 export type CharacterMinAggregateOutputType = {
-  id: number;
   rarity: number;
 };
 
 export type CharacterMaxAggregateOutputType = {
-  id: number;
   rarity: number;
 };
 
 export type CharacterAvgAggregateInputType = {
-  id?: true;
   rarity?: true;
 };
 
 export type CharacterSumAggregateInputType = {
-  id?: true;
   rarity?: true;
 };
 
 export type CharacterMinAggregateInputType = {
-  id?: true;
   rarity?: true;
 };
 
 export type CharacterMaxAggregateInputType = {
-  id?: true;
   rarity?: true;
 };
 
@@ -1726,14 +1680,14 @@ export type CharacterArgs = {
  */
 
 export type CharacterAscension = {
-  id: number;
+  id: string;
   createdAt: Date;
   updatedAt: Date;
   level: number;
   maxLevel: number;
   recipe: JsonValue | null;
-  characterId: number | null;
-  characterAscensionMaterialId: number | null;
+  characterId: string | null;
+  characterAscensionMaterialId: string | null;
 };
 
 export type AggregateCharacterAscension = {
@@ -1745,67 +1699,43 @@ export type AggregateCharacterAscension = {
 };
 
 export type CharacterAscensionAvgAggregateOutputType = {
-  id: number;
   level: number;
   maxLevel: number;
-  characterId: number;
-  characterAscensionMaterialId: number;
 };
 
 export type CharacterAscensionSumAggregateOutputType = {
-  id: number;
   level: number;
   maxLevel: number;
-  characterId: number | null;
-  characterAscensionMaterialId: number | null;
 };
 
 export type CharacterAscensionMinAggregateOutputType = {
-  id: number;
   level: number;
   maxLevel: number;
-  characterId: number | null;
-  characterAscensionMaterialId: number | null;
 };
 
 export type CharacterAscensionMaxAggregateOutputType = {
-  id: number;
   level: number;
   maxLevel: number;
-  characterId: number | null;
-  characterAscensionMaterialId: number | null;
 };
 
 export type CharacterAscensionAvgAggregateInputType = {
-  id?: true;
   level?: true;
   maxLevel?: true;
-  characterId?: true;
-  characterAscensionMaterialId?: true;
 };
 
 export type CharacterAscensionSumAggregateInputType = {
-  id?: true;
   level?: true;
   maxLevel?: true;
-  characterId?: true;
-  characterAscensionMaterialId?: true;
 };
 
 export type CharacterAscensionMinAggregateInputType = {
-  id?: true;
   level?: true;
   maxLevel?: true;
-  characterId?: true;
-  characterAscensionMaterialId?: true;
 };
 
 export type CharacterAscensionMaxAggregateInputType = {
-  id?: true;
   level?: true;
   maxLevel?: true;
-  characterId?: true;
-  characterAscensionMaterialId?: true;
 };
 
 export type AggregateCharacterAscensionArgs = {
@@ -2329,7 +2259,7 @@ export type CharacterAscensionArgs = {
  */
 
 export type CharacterProfile = {
-  id: number;
+  id: string;
   createdAt: Date;
   updatedAt: Date;
   affiliation: string | null;
@@ -2339,73 +2269,13 @@ export type CharacterProfile = {
   story: JsonValue | null;
   voiceActor: JsonValue | null;
   voiceLines: JsonValue | null;
-  characterId: number;
-  regionId: number | null;
-  elementId: number | null;
+  characterId: string;
+  regionId: string | null;
+  elementId: string | null;
 };
 
 export type AggregateCharacterProfile = {
   count: number;
-  avg: CharacterProfileAvgAggregateOutputType | null;
-  sum: CharacterProfileSumAggregateOutputType | null;
-  min: CharacterProfileMinAggregateOutputType | null;
-  max: CharacterProfileMaxAggregateOutputType | null;
-};
-
-export type CharacterProfileAvgAggregateOutputType = {
-  id: number;
-  characterId: number;
-  regionId: number;
-  elementId: number;
-};
-
-export type CharacterProfileSumAggregateOutputType = {
-  id: number;
-  characterId: number;
-  regionId: number | null;
-  elementId: number | null;
-};
-
-export type CharacterProfileMinAggregateOutputType = {
-  id: number;
-  characterId: number;
-  regionId: number | null;
-  elementId: number | null;
-};
-
-export type CharacterProfileMaxAggregateOutputType = {
-  id: number;
-  characterId: number;
-  regionId: number | null;
-  elementId: number | null;
-};
-
-export type CharacterProfileAvgAggregateInputType = {
-  id?: true;
-  characterId?: true;
-  regionId?: true;
-  elementId?: true;
-};
-
-export type CharacterProfileSumAggregateInputType = {
-  id?: true;
-  characterId?: true;
-  regionId?: true;
-  elementId?: true;
-};
-
-export type CharacterProfileMinAggregateInputType = {
-  id?: true;
-  characterId?: true;
-  regionId?: true;
-  elementId?: true;
-};
-
-export type CharacterProfileMaxAggregateInputType = {
-  id?: true;
-  characterId?: true;
-  regionId?: true;
-  elementId?: true;
 };
 
 export type AggregateCharacterProfileArgs = {
@@ -2416,24 +2286,12 @@ export type AggregateCharacterProfileArgs = {
   skip?: number;
   distinct?: Enumerable<CharacterProfileDistinctFieldEnum>;
   count?: true;
-  avg?: CharacterProfileAvgAggregateInputType;
-  sum?: CharacterProfileSumAggregateInputType;
-  min?: CharacterProfileMinAggregateInputType;
-  max?: CharacterProfileMaxAggregateInputType;
 };
 
 export type GetCharacterProfileAggregateType<
   T extends AggregateCharacterProfileArgs
 > = {
-  [P in keyof T]: P extends 'count'
-    ? number
-    : GetCharacterProfileAggregateScalarType<T[P]>;
-};
-
-export type GetCharacterProfileAggregateScalarType<T extends any> = {
-  [P in keyof T]: P extends keyof CharacterProfileAvgAggregateOutputType
-    ? CharacterProfileAvgAggregateOutputType[P]
-    : never;
+  [P in keyof T]: P extends 'count' ? number : never;
 };
 
 export type CharacterProfileSelect = {
@@ -2948,71 +2806,19 @@ export type CharacterProfileArgs = {
  */
 
 export type Talent = {
-  id: number;
+  id: string;
   createdAt: Date;
   updatedAt: Date;
   description: JsonValue | null;
   details: JsonValue | null;
   name: string | null;
   type: string | null;
-  characterId: number;
-  talentLevelUpMaterialId: number | null;
+  characterId: string;
+  talentLevelUpMaterialId: string | null;
 };
 
 export type AggregateTalent = {
   count: number;
-  avg: TalentAvgAggregateOutputType | null;
-  sum: TalentSumAggregateOutputType | null;
-  min: TalentMinAggregateOutputType | null;
-  max: TalentMaxAggregateOutputType | null;
-};
-
-export type TalentAvgAggregateOutputType = {
-  id: number;
-  characterId: number;
-  talentLevelUpMaterialId: number;
-};
-
-export type TalentSumAggregateOutputType = {
-  id: number;
-  characterId: number;
-  talentLevelUpMaterialId: number | null;
-};
-
-export type TalentMinAggregateOutputType = {
-  id: number;
-  characterId: number;
-  talentLevelUpMaterialId: number | null;
-};
-
-export type TalentMaxAggregateOutputType = {
-  id: number;
-  characterId: number;
-  talentLevelUpMaterialId: number | null;
-};
-
-export type TalentAvgAggregateInputType = {
-  id?: true;
-  characterId?: true;
-  talentLevelUpMaterialId?: true;
-};
-
-export type TalentSumAggregateInputType = {
-  id?: true;
-  characterId?: true;
-  talentLevelUpMaterialId?: true;
-};
-
-export type TalentMinAggregateInputType = {
-  id?: true;
-  characterId?: true;
-  talentLevelUpMaterialId?: true;
-};
-
-export type TalentMaxAggregateInputType = {
-  id?: true;
-  characterId?: true;
-  talentLevelUpMaterialId?: true;
 };
 
 export type AggregateTalentArgs = {
@@ -3023,22 +2829,10 @@ export type AggregateTalentArgs = {
   skip?: number;
   distinct?: Enumerable<TalentDistinctFieldEnum>;
   count?: true;
-  avg?: TalentAvgAggregateInputType;
-  sum?: TalentSumAggregateInputType;
-  min?: TalentMinAggregateInputType;
-  max?: TalentMaxAggregateInputType;
 };
 
 export type GetTalentAggregateType<T extends AggregateTalentArgs> = {
-  [P in keyof T]: P extends 'count'
-    ? number
-    : GetTalentAggregateScalarType<T[P]>;
-};
-
-export type GetTalentAggregateScalarType<T extends any> = {
-  [P in keyof T]: P extends keyof TalentAvgAggregateOutputType
-    ? TalentAvgAggregateOutputType[P]
-    : never;
+  [P in keyof T]: P extends 'count' ? number : never;
 };
 
 export type TalentSelect = {
@@ -3519,62 +3313,18 @@ export type TalentArgs = {
  */
 
 export type Element = {
-  id: number;
+  id: string;
   createdAt: Date;
   updatedAt: Date;
   name: string;
   archon: string | null;
   statusEffect: string | null;
   theme: string | null;
-  regionId: number | null;
+  regionId: string | null;
 };
 
 export type AggregateElement = {
   count: number;
-  avg: ElementAvgAggregateOutputType | null;
-  sum: ElementSumAggregateOutputType | null;
-  min: ElementMinAggregateOutputType | null;
-  max: ElementMaxAggregateOutputType | null;
-};
-
-export type ElementAvgAggregateOutputType = {
-  id: number;
-  regionId: number;
-};
-
-export type ElementSumAggregateOutputType = {
-  id: number;
-  regionId: number | null;
-};
-
-export type ElementMinAggregateOutputType = {
-  id: number;
-  regionId: number | null;
-};
-
-export type ElementMaxAggregateOutputType = {
-  id: number;
-  regionId: number | null;
-};
-
-export type ElementAvgAggregateInputType = {
-  id?: true;
-  regionId?: true;
-};
-
-export type ElementSumAggregateInputType = {
-  id?: true;
-  regionId?: true;
-};
-
-export type ElementMinAggregateInputType = {
-  id?: true;
-  regionId?: true;
-};
-
-export type ElementMaxAggregateInputType = {
-  id?: true;
-  regionId?: true;
 };
 
 export type AggregateElementArgs = {
@@ -3585,22 +3335,10 @@ export type AggregateElementArgs = {
   skip?: number;
   distinct?: Enumerable<ElementDistinctFieldEnum>;
   count?: true;
-  avg?: ElementAvgAggregateInputType;
-  sum?: ElementSumAggregateInputType;
-  min?: ElementMinAggregateInputType;
-  max?: ElementMaxAggregateInputType;
 };
 
 export type GetElementAggregateType<T extends AggregateElementArgs> = {
-  [P in keyof T]: P extends 'count'
-    ? number
-    : GetElementAggregateScalarType<T[P]>;
-};
-
-export type GetElementAggregateScalarType<T extends any> = {
-  [P in keyof T]: P extends keyof ElementAvgAggregateOutputType
-    ? ElementAvgAggregateOutputType[P]
-    : never;
+  [P in keyof T]: P extends 'count' ? number : never;
 };
 
 export type ElementSelect = {
@@ -4096,7 +3834,7 @@ export type ElementArgs = {
  */
 
 export type Region = {
-  id: number;
+  id: string;
   createdAt: Date;
   updatedAt: Date;
   name: string;
@@ -4104,42 +3842,6 @@ export type Region = {
 
 export type AggregateRegion = {
   count: number;
-  avg: RegionAvgAggregateOutputType | null;
-  sum: RegionSumAggregateOutputType | null;
-  min: RegionMinAggregateOutputType | null;
-  max: RegionMaxAggregateOutputType | null;
-};
-
-export type RegionAvgAggregateOutputType = {
-  id: number;
-};
-
-export type RegionSumAggregateOutputType = {
-  id: number;
-};
-
-export type RegionMinAggregateOutputType = {
-  id: number;
-};
-
-export type RegionMaxAggregateOutputType = {
-  id: number;
-};
-
-export type RegionAvgAggregateInputType = {
-  id?: true;
-};
-
-export type RegionSumAggregateInputType = {
-  id?: true;
-};
-
-export type RegionMinAggregateInputType = {
-  id?: true;
-};
-
-export type RegionMaxAggregateInputType = {
-  id?: true;
 };
 
 export type AggregateRegionArgs = {
@@ -4150,22 +3852,10 @@ export type AggregateRegionArgs = {
   skip?: number;
   distinct?: Enumerable<RegionDistinctFieldEnum>;
   count?: true;
-  avg?: RegionAvgAggregateInputType;
-  sum?: RegionSumAggregateInputType;
-  min?: RegionMinAggregateInputType;
-  max?: RegionMaxAggregateInputType;
 };
 
 export type GetRegionAggregateType<T extends AggregateRegionArgs> = {
-  [P in keyof T]: P extends 'count'
-    ? number
-    : GetRegionAggregateScalarType<T[P]>;
-};
-
-export type GetRegionAggregateScalarType<T extends any> = {
-  [P in keyof T]: P extends keyof RegionAvgAggregateOutputType
-    ? RegionAvgAggregateOutputType[P]
-    : never;
+  [P in keyof T]: P extends 'count' ? number : never;
 };
 
 export type RegionSelect = {
@@ -4655,7 +4345,7 @@ export type RegionArgs = {
  */
 
 export type Weapon = {
-  id: number;
+  id: string;
   createdAt: Date;
   updatedAt: Date;
   name: string;
@@ -4680,42 +4370,34 @@ export type AggregateWeapon = {
 };
 
 export type WeaponAvgAggregateOutputType = {
-  id: number;
   rarity: number;
 };
 
 export type WeaponSumAggregateOutputType = {
-  id: number;
   rarity: number | null;
 };
 
 export type WeaponMinAggregateOutputType = {
-  id: number;
   rarity: number | null;
 };
 
 export type WeaponMaxAggregateOutputType = {
-  id: number;
   rarity: number | null;
 };
 
 export type WeaponAvgAggregateInputType = {
-  id?: true;
   rarity?: true;
 };
 
 export type WeaponSumAggregateInputType = {
-  id?: true;
   rarity?: true;
 };
 
 export type WeaponMinAggregateInputType = {
-  id?: true;
   rarity?: true;
 };
 
 export type WeaponMaxAggregateInputType = {
-  id?: true;
   rarity?: true;
 };
 
@@ -5228,14 +4910,14 @@ export type WeaponArgs = {
  */
 
 export type WeaponAscension = {
-  id: number;
+  id: string;
   createdAt: Date;
   updatedAt: Date;
   level: number;
   maxLevel: number;
   recipe: JsonValue | null;
-  weaponAscensionMaterialId: number | null;
-  weaponId: number | null;
+  weaponAscensionMaterialId: string | null;
+  weaponId: string | null;
 };
 
 export type AggregateWeaponAscension = {
@@ -5247,67 +4929,43 @@ export type AggregateWeaponAscension = {
 };
 
 export type WeaponAscensionAvgAggregateOutputType = {
-  id: number;
   level: number;
   maxLevel: number;
-  weaponAscensionMaterialId: number;
-  weaponId: number;
 };
 
 export type WeaponAscensionSumAggregateOutputType = {
-  id: number;
   level: number;
   maxLevel: number;
-  weaponAscensionMaterialId: number | null;
-  weaponId: number | null;
 };
 
 export type WeaponAscensionMinAggregateOutputType = {
-  id: number;
   level: number;
   maxLevel: number;
-  weaponAscensionMaterialId: number | null;
-  weaponId: number | null;
 };
 
 export type WeaponAscensionMaxAggregateOutputType = {
-  id: number;
   level: number;
   maxLevel: number;
-  weaponAscensionMaterialId: number | null;
-  weaponId: number | null;
 };
 
 export type WeaponAscensionAvgAggregateInputType = {
-  id?: true;
   level?: true;
   maxLevel?: true;
-  weaponAscensionMaterialId?: true;
-  weaponId?: true;
 };
 
 export type WeaponAscensionSumAggregateInputType = {
-  id?: true;
   level?: true;
   maxLevel?: true;
-  weaponAscensionMaterialId?: true;
-  weaponId?: true;
 };
 
 export type WeaponAscensionMinAggregateInputType = {
-  id?: true;
   level?: true;
   maxLevel?: true;
-  weaponAscensionMaterialId?: true;
-  weaponId?: true;
 };
 
 export type WeaponAscensionMaxAggregateInputType = {
-  id?: true;
   level?: true;
   maxLevel?: true;
-  weaponAscensionMaterialId?: true;
-  weaponId?: true;
 };
 
 export type AggregateWeaponAscensionArgs = {
@@ -5831,7 +5489,7 @@ export type WeaponAscensionArgs = {
  */
 
 export type CommonAscensionMaterial = {
-  id: number;
+  id: string;
   createdAt: Date;
   updatedAt: Date;
   name: string;
@@ -5850,42 +5508,34 @@ export type AggregateCommonAscensionMaterial = {
 };
 
 export type CommonAscensionMaterialAvgAggregateOutputType = {
-  id: number;
   rarity: number;
 };
 
 export type CommonAscensionMaterialSumAggregateOutputType = {
-  id: number;
   rarity: number;
 };
 
 export type CommonAscensionMaterialMinAggregateOutputType = {
-  id: number;
   rarity: number;
 };
 
 export type CommonAscensionMaterialMaxAggregateOutputType = {
-  id: number;
   rarity: number;
 };
 
 export type CommonAscensionMaterialAvgAggregateInputType = {
-  id?: true;
   rarity?: true;
 };
 
 export type CommonAscensionMaterialSumAggregateInputType = {
-  id?: true;
   rarity?: true;
 };
 
 export type CommonAscensionMaterialMinAggregateInputType = {
-  id?: true;
   rarity?: true;
 };
 
 export type CommonAscensionMaterialMaxAggregateInputType = {
-  id?: true;
   rarity?: true;
 };
 
@@ -6397,7 +6047,7 @@ export type CommonAscensionMaterialArgs = {
  */
 
 export type WeaponAscensionMaterial = {
-  id: number;
+  id: string;
   createdAt: Date;
   updatedAt: Date;
   name: string;
@@ -6406,7 +6056,7 @@ export type WeaponAscensionMaterial = {
   image: string | null;
   rarity: number;
   group: WeaponAscensionMaterialGroup;
-  domainId: number | null;
+  domainId: string | null;
 };
 
 export type AggregateWeaponAscensionMaterial = {
@@ -6418,51 +6068,35 @@ export type AggregateWeaponAscensionMaterial = {
 };
 
 export type WeaponAscensionMaterialAvgAggregateOutputType = {
-  id: number;
   rarity: number;
-  domainId: number;
 };
 
 export type WeaponAscensionMaterialSumAggregateOutputType = {
-  id: number;
   rarity: number;
-  domainId: number | null;
 };
 
 export type WeaponAscensionMaterialMinAggregateOutputType = {
-  id: number;
   rarity: number;
-  domainId: number | null;
 };
 
 export type WeaponAscensionMaterialMaxAggregateOutputType = {
-  id: number;
   rarity: number;
-  domainId: number | null;
 };
 
 export type WeaponAscensionMaterialAvgAggregateInputType = {
-  id?: true;
   rarity?: true;
-  domainId?: true;
 };
 
 export type WeaponAscensionMaterialSumAggregateInputType = {
-  id?: true;
   rarity?: true;
-  domainId?: true;
 };
 
 export type WeaponAscensionMaterialMinAggregateInputType = {
-  id?: true;
   rarity?: true;
-  domainId?: true;
 };
 
 export type WeaponAscensionMaterialMaxAggregateInputType = {
-  id?: true;
   rarity?: true;
-  domainId?: true;
 };
 
 export type AggregateWeaponAscensionMaterialArgs = {
@@ -6975,7 +6609,7 @@ export type WeaponAscensionMaterialArgs = {
  */
 
 export type WeaponEnhancementMaterial = {
-  id: number;
+  id: string;
   createdAt: Date;
   updatedAt: Date;
   name: string;
@@ -6983,7 +6617,7 @@ export type WeaponEnhancementMaterial = {
   image: string | null;
   rarity: number;
   source: JsonValue | null;
-  recipeUseId: number | null;
+  recipeUseId: string | null;
 };
 
 export type AggregateWeaponEnhancementMaterial = {
@@ -6995,51 +6629,35 @@ export type AggregateWeaponEnhancementMaterial = {
 };
 
 export type WeaponEnhancementMaterialAvgAggregateOutputType = {
-  id: number;
   rarity: number;
-  recipeUseId: number;
 };
 
 export type WeaponEnhancementMaterialSumAggregateOutputType = {
-  id: number;
   rarity: number;
-  recipeUseId: number | null;
 };
 
 export type WeaponEnhancementMaterialMinAggregateOutputType = {
-  id: number;
   rarity: number;
-  recipeUseId: number | null;
 };
 
 export type WeaponEnhancementMaterialMaxAggregateOutputType = {
-  id: number;
   rarity: number;
-  recipeUseId: number | null;
 };
 
 export type WeaponEnhancementMaterialAvgAggregateInputType = {
-  id?: true;
   rarity?: true;
-  recipeUseId?: true;
 };
 
 export type WeaponEnhancementMaterialSumAggregateInputType = {
-  id?: true;
   rarity?: true;
-  recipeUseId?: true;
 };
 
 export type WeaponEnhancementMaterialMinAggregateInputType = {
-  id?: true;
   rarity?: true;
-  recipeUseId?: true;
 };
 
 export type WeaponEnhancementMaterialMaxAggregateInputType = {
-  id?: true;
   rarity?: true;
-  recipeUseId?: true;
 };
 
 export type AggregateWeaponEnhancementMaterialArgs = {
@@ -7561,7 +7179,7 @@ export type WeaponEnhancementMaterialArgs = {
  */
 
 export type CharacterAscensionMaterial = {
-  id: number;
+  id: string;
   createdAt: Date;
   updatedAt: Date;
   name: string;
@@ -7581,42 +7199,34 @@ export type AggregateCharacterAscensionMaterial = {
 };
 
 export type CharacterAscensionMaterialAvgAggregateOutputType = {
-  id: number;
   rarity: number;
 };
 
 export type CharacterAscensionMaterialSumAggregateOutputType = {
-  id: number;
   rarity: number;
 };
 
 export type CharacterAscensionMaterialMinAggregateOutputType = {
-  id: number;
   rarity: number;
 };
 
 export type CharacterAscensionMaterialMaxAggregateOutputType = {
-  id: number;
   rarity: number;
 };
 
 export type CharacterAscensionMaterialAvgAggregateInputType = {
-  id?: true;
   rarity?: true;
 };
 
 export type CharacterAscensionMaterialSumAggregateInputType = {
-  id?: true;
   rarity?: true;
 };
 
 export type CharacterAscensionMaterialMinAggregateInputType = {
-  id?: true;
   rarity?: true;
 };
 
 export type CharacterAscensionMaterialMaxAggregateInputType = {
-  id?: true;
   rarity?: true;
 };
 
@@ -8125,7 +7735,7 @@ export type CharacterAscensionMaterialArgs = {
  */
 
 export type TalentLevelUpMaterial = {
-  id: number;
+  id: string;
   createdAt: Date;
   updatedAt: Date;
   name: string;
@@ -8134,7 +7744,7 @@ export type TalentLevelUpMaterial = {
   image: string | null;
   rarity: number;
   group: TalentLevelUpMaterialGroup;
-  domainId: number | null;
+  domainId: string | null;
 };
 
 export type AggregateTalentLevelUpMaterial = {
@@ -8146,51 +7756,35 @@ export type AggregateTalentLevelUpMaterial = {
 };
 
 export type TalentLevelUpMaterialAvgAggregateOutputType = {
-  id: number;
   rarity: number;
-  domainId: number;
 };
 
 export type TalentLevelUpMaterialSumAggregateOutputType = {
-  id: number;
   rarity: number;
-  domainId: number | null;
 };
 
 export type TalentLevelUpMaterialMinAggregateOutputType = {
-  id: number;
   rarity: number;
-  domainId: number | null;
 };
 
 export type TalentLevelUpMaterialMaxAggregateOutputType = {
-  id: number;
   rarity: number;
-  domainId: number | null;
 };
 
 export type TalentLevelUpMaterialAvgAggregateInputType = {
-  id?: true;
   rarity?: true;
-  domainId?: true;
 };
 
 export type TalentLevelUpMaterialSumAggregateInputType = {
-  id?: true;
   rarity?: true;
-  domainId?: true;
 };
 
 export type TalentLevelUpMaterialMinAggregateInputType = {
-  id?: true;
   rarity?: true;
-  domainId?: true;
 };
 
 export type TalentLevelUpMaterialMaxAggregateInputType = {
-  id?: true;
   rarity?: true;
-  domainId?: true;
 };
 
 export type AggregateTalentLevelUpMaterialArgs = {
@@ -8703,7 +8297,7 @@ export type TalentLevelUpMaterialArgs = {
  */
 
 export type CraftingMaterial = {
-  id: number;
+  id: string;
   createdAt: Date;
   updatedAt: Date;
   name: string;
@@ -8722,42 +8316,34 @@ export type AggregateCraftingMaterial = {
 };
 
 export type CraftingMaterialAvgAggregateOutputType = {
-  id: number;
   rarity: number;
 };
 
 export type CraftingMaterialSumAggregateOutputType = {
-  id: number;
   rarity: number;
 };
 
 export type CraftingMaterialMinAggregateOutputType = {
-  id: number;
   rarity: number;
 };
 
 export type CraftingMaterialMaxAggregateOutputType = {
-  id: number;
   rarity: number;
 };
 
 export type CraftingMaterialAvgAggregateInputType = {
-  id?: true;
   rarity?: true;
 };
 
 export type CraftingMaterialSumAggregateInputType = {
-  id?: true;
   rarity?: true;
 };
 
 export type CraftingMaterialMinAggregateInputType = {
-  id?: true;
   rarity?: true;
 };
 
 export type CraftingMaterialMaxAggregateInputType = {
-  id?: true;
   rarity?: true;
 };
 
@@ -9254,7 +8840,7 @@ export type CraftingMaterialArgs = {
  */
 
 export type CookingMaterial = {
-  id: number;
+  id: string;
   createdAt: Date;
   updatedAt: Date;
   name: string;
@@ -9273,42 +8859,34 @@ export type AggregateCookingMaterial = {
 };
 
 export type CookingMaterialAvgAggregateOutputType = {
-  id: number;
   rarity: number;
 };
 
 export type CookingMaterialSumAggregateOutputType = {
-  id: number;
   rarity: number;
 };
 
 export type CookingMaterialMinAggregateOutputType = {
-  id: number;
   rarity: number;
 };
 
 export type CookingMaterialMaxAggregateOutputType = {
-  id: number;
   rarity: number;
 };
 
 export type CookingMaterialAvgAggregateInputType = {
-  id?: true;
   rarity?: true;
 };
 
 export type CookingMaterialSumAggregateInputType = {
-  id?: true;
   rarity?: true;
 };
 
 export type CookingMaterialMinAggregateInputType = {
-  id?: true;
   rarity?: true;
 };
 
 export type CookingMaterialMaxAggregateInputType = {
-  id?: true;
   rarity?: true;
 };
 
@@ -9819,7 +9397,7 @@ export type CookingMaterialArgs = {
  */
 
 export type CommonMaterial = {
-  id: number;
+  id: string;
   createdAt: Date;
   updatedAt: Date;
   name: string;
@@ -9838,42 +9416,34 @@ export type AggregateCommonMaterial = {
 };
 
 export type CommonMaterialAvgAggregateOutputType = {
-  id: number;
   rarity: number;
 };
 
 export type CommonMaterialSumAggregateOutputType = {
-  id: number;
   rarity: number;
 };
 
 export type CommonMaterialMinAggregateOutputType = {
-  id: number;
   rarity: number;
 };
 
 export type CommonMaterialMaxAggregateOutputType = {
-  id: number;
   rarity: number;
 };
 
 export type CommonMaterialAvgAggregateInputType = {
-  id?: true;
   rarity?: true;
 };
 
 export type CommonMaterialSumAggregateInputType = {
-  id?: true;
   rarity?: true;
 };
 
 export type CommonMaterialMinAggregateInputType = {
-  id?: true;
   rarity?: true;
 };
 
 export type CommonMaterialMaxAggregateInputType = {
-  id?: true;
   rarity?: true;
 };
 
@@ -10322,62 +9892,18 @@ export type CommonMaterialArgs = {
  */
 
 export type Domain = {
-  id: number;
+  id: string;
   createdAt: Date;
   updatedAt: Date;
   name: string;
   description: string | null;
   levels: JsonValue | null;
   type: string | null;
-  regionId: number | null;
+  regionId: string | null;
 };
 
 export type AggregateDomain = {
   count: number;
-  avg: DomainAvgAggregateOutputType | null;
-  sum: DomainSumAggregateOutputType | null;
-  min: DomainMinAggregateOutputType | null;
-  max: DomainMaxAggregateOutputType | null;
-};
-
-export type DomainAvgAggregateOutputType = {
-  id: number;
-  regionId: number;
-};
-
-export type DomainSumAggregateOutputType = {
-  id: number;
-  regionId: number | null;
-};
-
-export type DomainMinAggregateOutputType = {
-  id: number;
-  regionId: number | null;
-};
-
-export type DomainMaxAggregateOutputType = {
-  id: number;
-  regionId: number | null;
-};
-
-export type DomainAvgAggregateInputType = {
-  id?: true;
-  regionId?: true;
-};
-
-export type DomainSumAggregateInputType = {
-  id?: true;
-  regionId?: true;
-};
-
-export type DomainMinAggregateInputType = {
-  id?: true;
-  regionId?: true;
-};
-
-export type DomainMaxAggregateInputType = {
-  id?: true;
-  regionId?: true;
 };
 
 export type AggregateDomainArgs = {
@@ -10388,22 +9914,10 @@ export type AggregateDomainArgs = {
   skip?: number;
   distinct?: Enumerable<DomainDistinctFieldEnum>;
   count?: true;
-  avg?: DomainAvgAggregateInputType;
-  sum?: DomainSumAggregateInputType;
-  min?: DomainMinAggregateInputType;
-  max?: DomainMaxAggregateInputType;
 };
 
 export type GetDomainAggregateType<T extends AggregateDomainArgs> = {
-  [P in keyof T]: P extends 'count'
-    ? number
-    : GetDomainAggregateScalarType<T[P]>;
-};
-
-export type GetDomainAggregateScalarType<T extends any> = {
-  [P in keyof T]: P extends keyof DomainAvgAggregateOutputType
-    ? DomainAvgAggregateOutputType[P]
-    : never;
+  [P in keyof T]: P extends 'count' ? number : never;
 };
 
 export type DomainSelect = {
@@ -10911,7 +10425,7 @@ export type DomainArgs = {
  */
 
 export type Consumeable = {
-  id: number;
+  id: string;
   createdAt: Date;
   updatedAt: Date;
   name: string;
@@ -10921,7 +10435,7 @@ export type Consumeable = {
   rarity: number;
   consumeableType: ConsumableType;
   foodType: FoodType;
-  characterProfileId: number | null;
+  characterProfileId: string | null;
 };
 
 export type AggregateConsumeable = {
@@ -10933,51 +10447,35 @@ export type AggregateConsumeable = {
 };
 
 export type ConsumeableAvgAggregateOutputType = {
-  id: number;
   rarity: number;
-  characterProfileId: number;
 };
 
 export type ConsumeableSumAggregateOutputType = {
-  id: number;
   rarity: number;
-  characterProfileId: number | null;
 };
 
 export type ConsumeableMinAggregateOutputType = {
-  id: number;
   rarity: number;
-  characterProfileId: number | null;
 };
 
 export type ConsumeableMaxAggregateOutputType = {
-  id: number;
   rarity: number;
-  characterProfileId: number | null;
 };
 
 export type ConsumeableAvgAggregateInputType = {
-  id?: true;
   rarity?: true;
-  characterProfileId?: true;
 };
 
 export type ConsumeableSumAggregateInputType = {
-  id?: true;
   rarity?: true;
-  characterProfileId?: true;
 };
 
 export type ConsumeableMinAggregateInputType = {
-  id?: true;
   rarity?: true;
-  characterProfileId?: true;
 };
 
 export type ConsumeableMaxAggregateInputType = {
-  id?: true;
   rarity?: true;
-  characterProfileId?: true;
 };
 
 export type AggregateConsumeableArgs = {
@@ -11488,59 +10986,15 @@ export type ConsumeableArgs = {
  */
 
 export type ConsumeableRecipe = {
-  id: number;
+  id: string;
   createdAt: Date;
   updatedAt: Date;
   recipe: JsonValue | null;
-  consumeableId: number | null;
+  consumeableId: string | null;
 };
 
 export type AggregateConsumeableRecipe = {
   count: number;
-  avg: ConsumeableRecipeAvgAggregateOutputType | null;
-  sum: ConsumeableRecipeSumAggregateOutputType | null;
-  min: ConsumeableRecipeMinAggregateOutputType | null;
-  max: ConsumeableRecipeMaxAggregateOutputType | null;
-};
-
-export type ConsumeableRecipeAvgAggregateOutputType = {
-  id: number;
-  consumeableId: number;
-};
-
-export type ConsumeableRecipeSumAggregateOutputType = {
-  id: number;
-  consumeableId: number | null;
-};
-
-export type ConsumeableRecipeMinAggregateOutputType = {
-  id: number;
-  consumeableId: number | null;
-};
-
-export type ConsumeableRecipeMaxAggregateOutputType = {
-  id: number;
-  consumeableId: number | null;
-};
-
-export type ConsumeableRecipeAvgAggregateInputType = {
-  id?: true;
-  consumeableId?: true;
-};
-
-export type ConsumeableRecipeSumAggregateInputType = {
-  id?: true;
-  consumeableId?: true;
-};
-
-export type ConsumeableRecipeMinAggregateInputType = {
-  id?: true;
-  consumeableId?: true;
-};
-
-export type ConsumeableRecipeMaxAggregateInputType = {
-  id?: true;
-  consumeableId?: true;
 };
 
 export type AggregateConsumeableRecipeArgs = {
@@ -11551,24 +11005,12 @@ export type AggregateConsumeableRecipeArgs = {
   skip?: number;
   distinct?: Enumerable<ConsumeableRecipeDistinctFieldEnum>;
   count?: true;
-  avg?: ConsumeableRecipeAvgAggregateInputType;
-  sum?: ConsumeableRecipeSumAggregateInputType;
-  min?: ConsumeableRecipeMinAggregateInputType;
-  max?: ConsumeableRecipeMaxAggregateInputType;
 };
 
 export type GetConsumeableRecipeAggregateType<
   T extends AggregateConsumeableRecipeArgs
 > = {
-  [P in keyof T]: P extends 'count'
-    ? number
-    : GetConsumeableRecipeAggregateScalarType<T[P]>;
-};
-
-export type GetConsumeableRecipeAggregateScalarType<T extends any> = {
-  [P in keyof T]: P extends keyof ConsumeableRecipeAvgAggregateOutputType
-    ? ConsumeableRecipeAvgAggregateOutputType[P]
-    : never;
+  [P in keyof T]: P extends 'count' ? number : never;
 };
 
 export type ConsumeableRecipeSelect = {
@@ -12061,12 +11503,12 @@ export type ConsumeableRecipeArgs = {
  */
 
 export type ProcessRecipe = {
-  id: number;
+  id: string;
   createdAt: Date;
   updatedAt: Date;
   processingTime: number | null;
   recipe: JsonValue | null;
-  materialId: number | null;
+  materialId: string | null;
 };
 
 export type AggregateProcessRecipe = {
@@ -12078,51 +11520,35 @@ export type AggregateProcessRecipe = {
 };
 
 export type ProcessRecipeAvgAggregateOutputType = {
-  id: number;
   processingTime: number;
-  materialId: number;
 };
 
 export type ProcessRecipeSumAggregateOutputType = {
-  id: number;
   processingTime: number | null;
-  materialId: number | null;
 };
 
 export type ProcessRecipeMinAggregateOutputType = {
-  id: number;
   processingTime: number | null;
-  materialId: number | null;
 };
 
 export type ProcessRecipeMaxAggregateOutputType = {
-  id: number;
   processingTime: number | null;
-  materialId: number | null;
 };
 
 export type ProcessRecipeAvgAggregateInputType = {
-  id?: true;
   processingTime?: true;
-  materialId?: true;
 };
 
 export type ProcessRecipeSumAggregateInputType = {
-  id?: true;
   processingTime?: true;
-  materialId?: true;
 };
 
 export type ProcessRecipeMinAggregateInputType = {
-  id?: true;
   processingTime?: true;
-  materialId?: true;
 };
 
 export type ProcessRecipeMaxAggregateInputType = {
-  id?: true;
   processingTime?: true;
-  materialId?: true;
 };
 
 export type AggregateProcessRecipeArgs = {
@@ -12616,13 +12042,13 @@ export type ProcessRecipeArgs = {
  */
 
 export type ForgeRecipe = {
-  id: number;
+  id: string;
   createdAt: Date;
   updatedAt: Date;
   craftingTime: number | null;
   recipe: JsonValue | null;
-  weaponEnhancementMaterialId: number | null;
-  weaponId: number | null;
+  weaponEnhancementMaterialId: string | null;
+  weaponId: string | null;
 };
 
 export type AggregateForgeRecipe = {
@@ -12634,59 +12060,35 @@ export type AggregateForgeRecipe = {
 };
 
 export type ForgeRecipeAvgAggregateOutputType = {
-  id: number;
   craftingTime: number;
-  weaponEnhancementMaterialId: number;
-  weaponId: number;
 };
 
 export type ForgeRecipeSumAggregateOutputType = {
-  id: number;
   craftingTime: number | null;
-  weaponEnhancementMaterialId: number | null;
-  weaponId: number | null;
 };
 
 export type ForgeRecipeMinAggregateOutputType = {
-  id: number;
   craftingTime: number | null;
-  weaponEnhancementMaterialId: number | null;
-  weaponId: number | null;
 };
 
 export type ForgeRecipeMaxAggregateOutputType = {
-  id: number;
   craftingTime: number | null;
-  weaponEnhancementMaterialId: number | null;
-  weaponId: number | null;
 };
 
 export type ForgeRecipeAvgAggregateInputType = {
-  id?: true;
   craftingTime?: true;
-  weaponEnhancementMaterialId?: true;
-  weaponId?: true;
 };
 
 export type ForgeRecipeSumAggregateInputType = {
-  id?: true;
   craftingTime?: true;
-  weaponEnhancementMaterialId?: true;
-  weaponId?: true;
 };
 
 export type ForgeRecipeMinAggregateInputType = {
-  id?: true;
   craftingTime?: true;
-  weaponEnhancementMaterialId?: true;
-  weaponId?: true;
 };
 
 export type ForgeRecipeMaxAggregateInputType = {
-  id?: true;
   craftingTime?: true;
-  weaponEnhancementMaterialId?: true;
-  weaponId?: true;
 };
 
 export type AggregateForgeRecipeArgs = {
@@ -13209,7 +12611,7 @@ export type ForgeRecipeArgs = {
  */
 
 export type ArtifactSet = {
-  id: number;
+  id: string;
   createdAt: Date;
   updatedAt: Date;
   name: string;
@@ -13229,42 +12631,34 @@ export type AggregateArtifactSet = {
 };
 
 export type ArtifactSetAvgAggregateOutputType = {
-  id: number;
   maxRarity: number;
 };
 
 export type ArtifactSetSumAggregateOutputType = {
-  id: number;
   maxRarity: number | null;
 };
 
 export type ArtifactSetMinAggregateOutputType = {
-  id: number;
   maxRarity: number | null;
 };
 
 export type ArtifactSetMaxAggregateOutputType = {
-  id: number;
   maxRarity: number | null;
 };
 
 export type ArtifactSetAvgAggregateInputType = {
-  id?: true;
   maxRarity?: true;
 };
 
 export type ArtifactSetSumAggregateInputType = {
-  id?: true;
   maxRarity?: true;
 };
 
 export type ArtifactSetMinAggregateInputType = {
-  id?: true;
   maxRarity?: true;
 };
 
 export type ArtifactSetMaxAggregateInputType = {
-  id?: true;
   maxRarity?: true;
 };
 
@@ -13760,7 +13154,7 @@ export type ArtifactSetArgs = {
  */
 
 export type Artifact = {
-  id: number;
+  id: string;
   createdAt: Date;
   updatedAt: Date;
   name: string;
@@ -13770,8 +13164,8 @@ export type Artifact = {
   possibleSubStats: JsonValue | null;
   source: JsonValue | null;
   type: ArtifactType;
-  artifactSetId: number | null;
-  domainId: number | null;
+  artifactSetId: string | null;
+  domainId: string | null;
 };
 
 export type AggregateArtifact = {
@@ -13783,59 +13177,35 @@ export type AggregateArtifact = {
 };
 
 export type ArtifactAvgAggregateOutputType = {
-  id: number;
   minRarity: number;
-  artifactSetId: number;
-  domainId: number;
 };
 
 export type ArtifactSumAggregateOutputType = {
-  id: number;
   minRarity: number;
-  artifactSetId: number | null;
-  domainId: number | null;
 };
 
 export type ArtifactMinAggregateOutputType = {
-  id: number;
   minRarity: number;
-  artifactSetId: number | null;
-  domainId: number | null;
 };
 
 export type ArtifactMaxAggregateOutputType = {
-  id: number;
   minRarity: number;
-  artifactSetId: number | null;
-  domainId: number | null;
 };
 
 export type ArtifactAvgAggregateInputType = {
-  id?: true;
   minRarity?: true;
-  artifactSetId?: true;
-  domainId?: true;
 };
 
 export type ArtifactSumAggregateInputType = {
-  id?: true;
   minRarity?: true;
-  artifactSetId?: true;
-  domainId?: true;
 };
 
 export type ArtifactMinAggregateInputType = {
-  id?: true;
   minRarity?: true;
-  artifactSetId?: true;
-  domainId?: true;
 };
 
 export type ArtifactMaxAggregateInputType = {
-  id?: true;
   minRarity?: true;
-  artifactSetId?: true;
-  domainId?: true;
 };
 
 export type AggregateArtifactArgs = {
@@ -14346,83 +13716,11 @@ export type ArtifactArgs = {
  * Deep Input Types
  */
 
-export type UserWhereInput = {
-  AND?: Enumerable<UserWhereInput>;
-  OR?: Array<UserWhereInput>;
-  NOT?: Enumerable<UserWhereInput>;
-  id?: string | StringFilter;
-  createdAt?: Date | string | DateTimeFilter;
-  updatedAt?: Date | string | DateTimeFilter;
-  email?: string | StringFilter;
-  username?: string | StringNullableFilter | null;
-  role?: Role | EnumRoleFilter;
-  userSecret?: UserSecretWhereInput | null;
-};
-
-export type UserOrderByInput = {
-  id?: SortOrder;
-  createdAt?: SortOrder;
-  updatedAt?: SortOrder;
-  email?: SortOrder;
-  username?: SortOrder;
-  role?: SortOrder;
-};
-
-export type UserWhereUniqueInput = {
-  id?: string;
-  email?: string;
-};
-
-export type UserSecretWhereInput = {
-  AND?: Enumerable<UserSecretWhereInput>;
-  OR?: Array<UserSecretWhereInput>;
-  NOT?: Enumerable<UserSecretWhereInput>;
-  id?: string | StringFilter;
-  createdAt?: Date | string | DateTimeFilter;
-  updatedAt?: Date | string | DateTimeFilter;
-  activated?: boolean | BoolFilter;
-  activationToken?: string | StringNullableFilter | null;
-  passwordAttempts?: number | IntFilter;
-  password?: string | StringFilter;
-  firstFailedPasswordAttempt?: Date | string | DateTimeNullableFilter | null;
-  resetPasswordToken?: string | StringNullableFilter | null;
-  resetPasswordTokenGenerated?: Date | string | DateTimeNullableFilter | null;
-  resetPasswordAttempts?: number | IntFilter;
-  firstFailedResetPasswordAttempt?:
-    | Date
-    | string
-    | DateTimeNullableFilter
-    | null;
-  user?: UserWhereInput | null;
-  userId?: string | StringFilter;
-};
-
-export type UserSecretOrderByInput = {
-  id?: SortOrder;
-  createdAt?: SortOrder;
-  updatedAt?: SortOrder;
-  activated?: SortOrder;
-  activationToken?: SortOrder;
-  passwordAttempts?: SortOrder;
-  password?: SortOrder;
-  firstFailedPasswordAttempt?: SortOrder;
-  resetPasswordToken?: SortOrder;
-  resetPasswordTokenGenerated?: SortOrder;
-  resetPasswordAttempts?: SortOrder;
-  firstFailedResetPasswordAttempt?: SortOrder;
-  userId?: SortOrder;
-};
-
-export type UserSecretWhereUniqueInput = {
-  id?: string;
-  userId?: string;
-};
-
 export type CharacterWhereInput = {
   AND?: Enumerable<CharacterWhereInput>;
   OR?: Array<CharacterWhereInput>;
   NOT?: Enumerable<CharacterWhereInput>;
-  id?: number | IntFilter;
+  id?: string | StringFilter;
   createdAt?: Date | string | DateTimeFilter;
   updatedAt?: Date | string | DateTimeFilter;
   name?: string | StringFilter;
@@ -14450,7 +13748,7 @@ export type CharacterOrderByInput = {
 };
 
 export type CharacterWhereUniqueInput = {
-  id?: number;
+  id?: string;
   name?: string;
 };
 
@@ -14458,16 +13756,16 @@ export type CharacterAscensionWhereInput = {
   AND?: Enumerable<CharacterAscensionWhereInput>;
   OR?: Array<CharacterAscensionWhereInput>;
   NOT?: Enumerable<CharacterAscensionWhereInput>;
-  id?: number | IntFilter;
+  id?: string | StringFilter;
   createdAt?: Date | string | DateTimeFilter;
   updatedAt?: Date | string | DateTimeFilter;
   level?: number | IntFilter;
   maxLevel?: number | IntFilter;
   recipe?: JsonNullableFilter | null;
   character?: CharacterWhereInput | null;
-  characterId?: number | IntNullableFilter | null;
+  characterId?: string | StringNullableFilter | null;
   characterAscensionMaterial?: CharacterAscensionMaterialWhereInput | null;
-  characterAscensionMaterialId?: number | IntNullableFilter | null;
+  characterAscensionMaterialId?: string | StringNullableFilter | null;
   commonAscensionMaterials?: CommonAscensionMaterialListRelationFilter;
 };
 
@@ -14483,14 +13781,14 @@ export type CharacterAscensionOrderByInput = {
 };
 
 export type CharacterAscensionWhereUniqueInput = {
-  id?: number;
+  id?: string;
 };
 
 export type CharacterProfileWhereInput = {
   AND?: Enumerable<CharacterProfileWhereInput>;
   OR?: Array<CharacterProfileWhereInput>;
   NOT?: Enumerable<CharacterProfileWhereInput>;
-  id?: number | IntFilter;
+  id?: string | StringFilter;
   createdAt?: Date | string | DateTimeFilter;
   updatedAt?: Date | string | DateTimeFilter;
   affiliation?: string | StringNullableFilter | null;
@@ -14501,12 +13799,12 @@ export type CharacterProfileWhereInput = {
   voiceActor?: JsonNullableFilter | null;
   voiceLines?: JsonNullableFilter | null;
   character?: CharacterWhereInput | null;
-  characterId?: number | IntFilter;
+  characterId?: string | StringFilter;
   region?: RegionWhereInput | null;
-  regionId?: number | IntNullableFilter | null;
+  regionId?: string | StringNullableFilter | null;
   specialtyDish?: ConsumeableWhereInput | null;
   vision?: ElementWhereInput | null;
-  elementId?: number | IntNullableFilter | null;
+  elementId?: string | StringNullableFilter | null;
 };
 
 export type CharacterProfileOrderByInput = {
@@ -14526,14 +13824,14 @@ export type CharacterProfileOrderByInput = {
 };
 
 export type CharacterProfileWhereUniqueInput = {
-  id?: number;
+  id?: string;
 };
 
 export type TalentWhereInput = {
   AND?: Enumerable<TalentWhereInput>;
   OR?: Array<TalentWhereInput>;
   NOT?: Enumerable<TalentWhereInput>;
-  id?: number | IntFilter;
+  id?: string | StringFilter;
   createdAt?: Date | string | DateTimeFilter;
   updatedAt?: Date | string | DateTimeFilter;
   description?: JsonNullableFilter | null;
@@ -14541,9 +13839,9 @@ export type TalentWhereInput = {
   name?: string | StringNullableFilter | null;
   type?: string | StringNullableFilter | null;
   character?: CharacterWhereInput | null;
-  characterId?: number | IntFilter;
+  characterId?: string | StringFilter;
   talentLevelUpMaterial?: TalentLevelUpMaterialWhereInput | null;
-  talentLevelUpMaterialId?: number | IntNullableFilter | null;
+  talentLevelUpMaterialId?: string | StringNullableFilter | null;
 };
 
 export type TalentOrderByInput = {
@@ -14559,14 +13857,14 @@ export type TalentOrderByInput = {
 };
 
 export type TalentWhereUniqueInput = {
-  id?: number;
+  id?: string;
 };
 
 export type ElementWhereInput = {
   AND?: Enumerable<ElementWhereInput>;
   OR?: Array<ElementWhereInput>;
   NOT?: Enumerable<ElementWhereInput>;
-  id?: number | IntFilter;
+  id?: string | StringFilter;
   createdAt?: Date | string | DateTimeFilter;
   updatedAt?: Date | string | DateTimeFilter;
   name?: string | StringFilter;
@@ -14576,7 +13874,7 @@ export type ElementWhereInput = {
   characters?: CharacterListRelationFilter;
   characterProfiles?: CharacterProfileListRelationFilter;
   region?: RegionWhereInput | null;
-  regionId?: number | IntNullableFilter | null;
+  regionId?: string | StringNullableFilter | null;
 };
 
 export type ElementOrderByInput = {
@@ -14591,7 +13889,7 @@ export type ElementOrderByInput = {
 };
 
 export type ElementWhereUniqueInput = {
-  id?: number;
+  id?: string;
   name?: string;
 };
 
@@ -14599,7 +13897,7 @@ export type RegionWhereInput = {
   AND?: Enumerable<RegionWhereInput>;
   OR?: Array<RegionWhereInput>;
   NOT?: Enumerable<RegionWhereInput>;
-  id?: number | IntFilter;
+  id?: string | StringFilter;
   createdAt?: Date | string | DateTimeFilter;
   updatedAt?: Date | string | DateTimeFilter;
   name?: string | StringFilter;
@@ -14616,7 +13914,7 @@ export type RegionOrderByInput = {
 };
 
 export type RegionWhereUniqueInput = {
-  id?: number;
+  id?: string;
   name?: string;
 };
 
@@ -14624,7 +13922,7 @@ export type WeaponWhereInput = {
   AND?: Enumerable<WeaponWhereInput>;
   OR?: Array<WeaponWhereInput>;
   NOT?: Enumerable<WeaponWhereInput>;
-  id?: number | IntFilter;
+  id?: string | StringFilter;
   createdAt?: Date | string | DateTimeFilter;
   updatedAt?: Date | string | DateTimeFilter;
   name?: string | StringFilter;
@@ -14663,7 +13961,7 @@ export type WeaponOrderByInput = {
 };
 
 export type WeaponWhereUniqueInput = {
-  id?: number;
+  id?: string;
   name?: string;
 };
 
@@ -14671,7 +13969,7 @@ export type WeaponAscensionWhereInput = {
   AND?: Enumerable<WeaponAscensionWhereInput>;
   OR?: Array<WeaponAscensionWhereInput>;
   NOT?: Enumerable<WeaponAscensionWhereInput>;
-  id?: number | IntFilter;
+  id?: string | StringFilter;
   createdAt?: Date | string | DateTimeFilter;
   updatedAt?: Date | string | DateTimeFilter;
   level?: number | IntFilter;
@@ -14679,9 +13977,9 @@ export type WeaponAscensionWhereInput = {
   recipe?: JsonNullableFilter | null;
   commonAscensionMaterials?: CommonAscensionMaterialListRelationFilter;
   weaponAscensionMaterial?: WeaponAscensionMaterialWhereInput | null;
-  weaponAscensionMaterialId?: number | IntNullableFilter | null;
+  weaponAscensionMaterialId?: string | StringNullableFilter | null;
   weapon?: WeaponWhereInput | null;
-  weaponId?: number | IntNullableFilter | null;
+  weaponId?: string | StringNullableFilter | null;
 };
 
 export type WeaponAscensionOrderByInput = {
@@ -14696,14 +13994,14 @@ export type WeaponAscensionOrderByInput = {
 };
 
 export type WeaponAscensionWhereUniqueInput = {
-  id?: number;
+  id?: string;
 };
 
 export type CommonAscensionMaterialWhereInput = {
   AND?: Enumerable<CommonAscensionMaterialWhereInput>;
   OR?: Array<CommonAscensionMaterialWhereInput>;
   NOT?: Enumerable<CommonAscensionMaterialWhereInput>;
-  id?: number | IntFilter;
+  id?: string | StringFilter;
   createdAt?: Date | string | DateTimeFilter;
   updatedAt?: Date | string | DateTimeFilter;
   name?: string | StringFilter;
@@ -14727,7 +14025,7 @@ export type CommonAscensionMaterialOrderByInput = {
 };
 
 export type CommonAscensionMaterialWhereUniqueInput = {
-  id?: number;
+  id?: string;
   name?: string;
 };
 
@@ -14735,7 +14033,7 @@ export type WeaponAscensionMaterialWhereInput = {
   AND?: Enumerable<WeaponAscensionMaterialWhereInput>;
   OR?: Array<WeaponAscensionMaterialWhereInput>;
   NOT?: Enumerable<WeaponAscensionMaterialWhereInput>;
-  id?: number | IntFilter;
+  id?: string | StringFilter;
   createdAt?: Date | string | DateTimeFilter;
   updatedAt?: Date | string | DateTimeFilter;
   name?: string | StringFilter;
@@ -14745,7 +14043,7 @@ export type WeaponAscensionMaterialWhereInput = {
   rarity?: number | IntFilter;
   group?: WeaponAscensionMaterialGroup | EnumWeaponAscensionMaterialGroupFilter;
   domain?: DomainWhereInput | null;
-  domainId?: number | IntNullableFilter | null;
+  domainId?: string | StringNullableFilter | null;
   weaponAscensions?: WeaponAscensionListRelationFilter;
 };
 
@@ -14763,7 +14061,7 @@ export type WeaponAscensionMaterialOrderByInput = {
 };
 
 export type WeaponAscensionMaterialWhereUniqueInput = {
-  id?: number;
+  id?: string;
   name?: string;
 };
 
@@ -14771,7 +14069,7 @@ export type WeaponEnhancementMaterialWhereInput = {
   AND?: Enumerable<WeaponEnhancementMaterialWhereInput>;
   OR?: Array<WeaponEnhancementMaterialWhereInput>;
   NOT?: Enumerable<WeaponEnhancementMaterialWhereInput>;
-  id?: number | IntFilter;
+  id?: string | StringFilter;
   createdAt?: Date | string | DateTimeFilter;
   updatedAt?: Date | string | DateTimeFilter;
   name?: string | StringFilter;
@@ -14781,7 +14079,7 @@ export type WeaponEnhancementMaterialWhereInput = {
   source?: JsonNullableFilter | null;
   recipeCreate?: ForgeRecipeWhereInput | null;
   recipeUse?: ForgeRecipeWhereInput | null;
-  recipeUseId?: number | IntNullableFilter | null;
+  recipeUseId?: string | StringNullableFilter | null;
 };
 
 export type WeaponEnhancementMaterialOrderByInput = {
@@ -14797,7 +14095,7 @@ export type WeaponEnhancementMaterialOrderByInput = {
 };
 
 export type WeaponEnhancementMaterialWhereUniqueInput = {
-  id?: number;
+  id?: string;
   name?: string;
 };
 
@@ -14805,7 +14103,7 @@ export type CharacterAscensionMaterialWhereInput = {
   AND?: Enumerable<CharacterAscensionMaterialWhereInput>;
   OR?: Array<CharacterAscensionMaterialWhereInput>;
   NOT?: Enumerable<CharacterAscensionMaterialWhereInput>;
-  id?: number | IntFilter;
+  id?: string | StringFilter;
   createdAt?: Date | string | DateTimeFilter;
   updatedAt?: Date | string | DateTimeFilter;
   name?: string | StringFilter;
@@ -14830,7 +14128,7 @@ export type CharacterAscensionMaterialOrderByInput = {
 };
 
 export type CharacterAscensionMaterialWhereUniqueInput = {
-  id?: number;
+  id?: string;
   name?: string;
 };
 
@@ -14838,7 +14136,7 @@ export type TalentLevelUpMaterialWhereInput = {
   AND?: Enumerable<TalentLevelUpMaterialWhereInput>;
   OR?: Array<TalentLevelUpMaterialWhereInput>;
   NOT?: Enumerable<TalentLevelUpMaterialWhereInput>;
-  id?: number | IntFilter;
+  id?: string | StringFilter;
   createdAt?: Date | string | DateTimeFilter;
   updatedAt?: Date | string | DateTimeFilter;
   name?: string | StringFilter;
@@ -14848,7 +14146,7 @@ export type TalentLevelUpMaterialWhereInput = {
   rarity?: number | IntFilter;
   group?: TalentLevelUpMaterialGroup | EnumTalentLevelUpMaterialGroupFilter;
   domain?: DomainWhereInput | null;
-  domainId?: number | IntNullableFilter | null;
+  domainId?: string | StringNullableFilter | null;
   talents?: TalentListRelationFilter;
 };
 
@@ -14866,7 +14164,7 @@ export type TalentLevelUpMaterialOrderByInput = {
 };
 
 export type TalentLevelUpMaterialWhereUniqueInput = {
-  id?: number;
+  id?: string;
   name?: string;
 };
 
@@ -14874,7 +14172,7 @@ export type CraftingMaterialWhereInput = {
   AND?: Enumerable<CraftingMaterialWhereInput>;
   OR?: Array<CraftingMaterialWhereInput>;
   NOT?: Enumerable<CraftingMaterialWhereInput>;
-  id?: number | IntFilter;
+  id?: string | StringFilter;
   createdAt?: Date | string | DateTimeFilter;
   updatedAt?: Date | string | DateTimeFilter;
   name?: string | StringFilter;
@@ -14897,7 +14195,7 @@ export type CraftingMaterialOrderByInput = {
 };
 
 export type CraftingMaterialWhereUniqueInput = {
-  id?: number;
+  id?: string;
   name?: string;
 };
 
@@ -14905,7 +14203,7 @@ export type CookingMaterialWhereInput = {
   AND?: Enumerable<CookingMaterialWhereInput>;
   OR?: Array<CookingMaterialWhereInput>;
   NOT?: Enumerable<CookingMaterialWhereInput>;
-  id?: number | IntFilter;
+  id?: string | StringFilter;
   createdAt?: Date | string | DateTimeFilter;
   updatedAt?: Date | string | DateTimeFilter;
   name?: string | StringFilter;
@@ -14929,7 +14227,7 @@ export type CookingMaterialOrderByInput = {
 };
 
 export type CookingMaterialWhereUniqueInput = {
-  id?: number;
+  id?: string;
   name?: string;
 };
 
@@ -14937,7 +14235,7 @@ export type CommonMaterialWhereInput = {
   AND?: Enumerable<CommonMaterialWhereInput>;
   OR?: Array<CommonMaterialWhereInput>;
   NOT?: Enumerable<CommonMaterialWhereInput>;
-  id?: number | IntFilter;
+  id?: string | StringFilter;
   createdAt?: Date | string | DateTimeFilter;
   updatedAt?: Date | string | DateTimeFilter;
   name?: string | StringFilter;
@@ -14959,7 +14257,7 @@ export type CommonMaterialOrderByInput = {
 };
 
 export type CommonMaterialWhereUniqueInput = {
-  id?: number;
+  id?: string;
   name?: string;
 };
 
@@ -14967,7 +14265,7 @@ export type DomainWhereInput = {
   AND?: Enumerable<DomainWhereInput>;
   OR?: Array<DomainWhereInput>;
   NOT?: Enumerable<DomainWhereInput>;
-  id?: number | IntFilter;
+  id?: string | StringFilter;
   createdAt?: Date | string | DateTimeFilter;
   updatedAt?: Date | string | DateTimeFilter;
   name?: string | StringFilter;
@@ -14976,7 +14274,7 @@ export type DomainWhereInput = {
   type?: string | StringNullableFilter | null;
   artifacts?: ArtifactListRelationFilter;
   region?: RegionWhereInput | null;
-  regionId?: number | IntNullableFilter | null;
+  regionId?: string | StringNullableFilter | null;
   talentLevelUpMaterials?: TalentLevelUpMaterialListRelationFilter;
   weaponAscensionMaterials?: WeaponAscensionMaterialListRelationFilter;
 };
@@ -14993,7 +14291,7 @@ export type DomainOrderByInput = {
 };
 
 export type DomainWhereUniqueInput = {
-  id?: number;
+  id?: string;
   name?: string;
 };
 
@@ -15001,7 +14299,7 @@ export type ConsumeableWhereInput = {
   AND?: Enumerable<ConsumeableWhereInput>;
   OR?: Array<ConsumeableWhereInput>;
   NOT?: Enumerable<ConsumeableWhereInput>;
-  id?: number | IntFilter;
+  id?: string | StringFilter;
   createdAt?: Date | string | DateTimeFilter;
   updatedAt?: Date | string | DateTimeFilter;
   name?: string | StringFilter;
@@ -15012,7 +14310,7 @@ export type ConsumeableWhereInput = {
   consumeableType?: ConsumableType | EnumConsumableTypeFilter;
   foodType?: FoodType | EnumFoodTypeFilter;
   characterSpecialty?: CharacterProfileWhereInput | null;
-  characterProfileId?: number | IntNullableFilter | null;
+  characterProfileId?: string | StringNullableFilter | null;
   recipe?: ConsumeableRecipeWhereInput | null;
 };
 
@@ -15031,7 +14329,7 @@ export type ConsumeableOrderByInput = {
 };
 
 export type ConsumeableWhereUniqueInput = {
-  id?: number;
+  id?: string;
   name?: string;
 };
 
@@ -15039,12 +14337,12 @@ export type ConsumeableRecipeWhereInput = {
   AND?: Enumerable<ConsumeableRecipeWhereInput>;
   OR?: Array<ConsumeableRecipeWhereInput>;
   NOT?: Enumerable<ConsumeableRecipeWhereInput>;
-  id?: number | IntFilter;
+  id?: string | StringFilter;
   createdAt?: Date | string | DateTimeFilter;
   updatedAt?: Date | string | DateTimeFilter;
   recipe?: JsonNullableFilter | null;
   consumeable?: ConsumeableWhereInput | null;
-  consumeableId?: number | IntNullableFilter | null;
+  consumeableId?: string | StringNullableFilter | null;
   craftingMaterials?: CraftingMaterialListRelationFilter;
   cookingMaterials?: CookingMaterialListRelationFilter;
 };
@@ -15058,20 +14356,20 @@ export type ConsumeableRecipeOrderByInput = {
 };
 
 export type ConsumeableRecipeWhereUniqueInput = {
-  id?: number;
+  id?: string;
 };
 
 export type ProcessRecipeWhereInput = {
   AND?: Enumerable<ProcessRecipeWhereInput>;
   OR?: Array<ProcessRecipeWhereInput>;
   NOT?: Enumerable<ProcessRecipeWhereInput>;
-  id?: number | IntFilter;
+  id?: string | StringFilter;
   createdAt?: Date | string | DateTimeFilter;
   updatedAt?: Date | string | DateTimeFilter;
   processingTime?: number | IntNullableFilter | null;
   recipe?: JsonNullableFilter | null;
   material?: CookingMaterialWhereInput | null;
-  materialId?: number | IntNullableFilter | null;
+  materialId?: string | StringNullableFilter | null;
 };
 
 export type ProcessRecipeOrderByInput = {
@@ -15084,23 +14382,23 @@ export type ProcessRecipeOrderByInput = {
 };
 
 export type ProcessRecipeWhereUniqueInput = {
-  id?: number;
+  id?: string;
 };
 
 export type ForgeRecipeWhereInput = {
   AND?: Enumerable<ForgeRecipeWhereInput>;
   OR?: Array<ForgeRecipeWhereInput>;
   NOT?: Enumerable<ForgeRecipeWhereInput>;
-  id?: number | IntFilter;
+  id?: string | StringFilter;
   createdAt?: Date | string | DateTimeFilter;
   updatedAt?: Date | string | DateTimeFilter;
   craftingTime?: number | IntNullableFilter | null;
   recipe?: JsonNullableFilter | null;
   weaponEnhancementMaterials?: WeaponEnhancementMaterialListRelationFilter;
   weaponEnhancementMaterial?: WeaponEnhancementMaterialWhereInput | null;
-  weaponEnhancementMaterialId?: number | IntNullableFilter | null;
+  weaponEnhancementMaterialId?: string | StringNullableFilter | null;
   weapon?: WeaponWhereInput | null;
-  weaponId?: number | IntNullableFilter | null;
+  weaponId?: string | StringNullableFilter | null;
 };
 
 export type ForgeRecipeOrderByInput = {
@@ -15114,14 +14412,14 @@ export type ForgeRecipeOrderByInput = {
 };
 
 export type ForgeRecipeWhereUniqueInput = {
-  id?: number;
+  id?: string;
 };
 
 export type ArtifactSetWhereInput = {
   AND?: Enumerable<ArtifactSetWhereInput>;
   OR?: Array<ArtifactSetWhereInput>;
   NOT?: Enumerable<ArtifactSetWhereInput>;
-  id?: number | IntFilter;
+  id?: string | StringFilter;
   createdAt?: Date | string | DateTimeFilter;
   updatedAt?: Date | string | DateTimeFilter;
   name?: string | StringFilter;
@@ -15146,7 +14444,7 @@ export type ArtifactSetOrderByInput = {
 };
 
 export type ArtifactSetWhereUniqueInput = {
-  id?: number;
+  id?: string;
   name?: string;
 };
 
@@ -15154,7 +14452,7 @@ export type ArtifactWhereInput = {
   AND?: Enumerable<ArtifactWhereInput>;
   OR?: Array<ArtifactWhereInput>;
   NOT?: Enumerable<ArtifactWhereInput>;
-  id?: number | IntFilter;
+  id?: string | StringFilter;
   createdAt?: Date | string | DateTimeFilter;
   updatedAt?: Date | string | DateTimeFilter;
   name?: string | StringFilter;
@@ -15165,9 +14463,9 @@ export type ArtifactWhereInput = {
   source?: JsonNullableFilter | null;
   type?: ArtifactType | EnumArtifactTypeFilter;
   set?: ArtifactSetWhereInput | null;
-  artifactSetId?: number | IntNullableFilter | null;
+  artifactSetId?: string | StringNullableFilter | null;
   domain?: DomainWhereInput | null;
-  domainId?: number | IntNullableFilter | null;
+  domainId?: string | StringNullableFilter | null;
 };
 
 export type ArtifactOrderByInput = {
@@ -15186,112 +14484,12 @@ export type ArtifactOrderByInput = {
 };
 
 export type ArtifactWhereUniqueInput = {
-  id?: number;
+  id?: string;
   name?: string;
 };
 
-export type UserCreateInput = {
-  id?: string;
-  createdAt?: Date | string;
-  updatedAt?: Date | string;
-  email: string;
-  username?: string | null;
-  role?: Role;
-  userSecret?: UserSecretCreateOneWithoutUserInput;
-};
-
-export type UserUpdateInput = {
-  id?: string | StringFieldUpdateOperationsInput;
-  createdAt?: Date | string | DateTimeFieldUpdateOperationsInput;
-  updatedAt?: Date | string | DateTimeFieldUpdateOperationsInput;
-  email?: string | StringFieldUpdateOperationsInput;
-  username?: string | NullableStringFieldUpdateOperationsInput | null;
-  role?: Role | EnumRoleFieldUpdateOperationsInput;
-  userSecret?: UserSecretUpdateOneWithoutUserInput;
-};
-
-export type UserUpdateManyMutationInput = {
-  id?: string | StringFieldUpdateOperationsInput;
-  createdAt?: Date | string | DateTimeFieldUpdateOperationsInput;
-  updatedAt?: Date | string | DateTimeFieldUpdateOperationsInput;
-  email?: string | StringFieldUpdateOperationsInput;
-  username?: string | NullableStringFieldUpdateOperationsInput | null;
-  role?: Role | EnumRoleFieldUpdateOperationsInput;
-};
-
-export type UserSecretCreateInput = {
-  id?: string;
-  createdAt?: Date | string;
-  updatedAt?: Date | string;
-  activated?: boolean;
-  activationToken?: string | null;
-  passwordAttempts?: number;
-  password: string;
-  firstFailedPasswordAttempt?: Date | string | null;
-  resetPasswordToken?: string | null;
-  resetPasswordTokenGenerated?: Date | string | null;
-  resetPasswordAttempts?: number;
-  firstFailedResetPasswordAttempt?: Date | string | null;
-  user: UserCreateOneWithoutUserSecretInput;
-};
-
-export type UserSecretUpdateInput = {
-  id?: string | StringFieldUpdateOperationsInput;
-  createdAt?: Date | string | DateTimeFieldUpdateOperationsInput;
-  updatedAt?: Date | string | DateTimeFieldUpdateOperationsInput;
-  activated?: boolean | BoolFieldUpdateOperationsInput;
-  activationToken?: string | NullableStringFieldUpdateOperationsInput | null;
-  passwordAttempts?: number | IntFieldUpdateOperationsInput;
-  password?: string | StringFieldUpdateOperationsInput;
-  firstFailedPasswordAttempt?:
-    | Date
-    | string
-    | NullableDateTimeFieldUpdateOperationsInput
-    | null;
-  resetPasswordToken?: string | NullableStringFieldUpdateOperationsInput | null;
-  resetPasswordTokenGenerated?:
-    | Date
-    | string
-    | NullableDateTimeFieldUpdateOperationsInput
-    | null;
-  resetPasswordAttempts?: number | IntFieldUpdateOperationsInput;
-  firstFailedResetPasswordAttempt?:
-    | Date
-    | string
-    | NullableDateTimeFieldUpdateOperationsInput
-    | null;
-  user?: UserUpdateOneRequiredWithoutUserSecretInput;
-};
-
-export type UserSecretUpdateManyMutationInput = {
-  id?: string | StringFieldUpdateOperationsInput;
-  createdAt?: Date | string | DateTimeFieldUpdateOperationsInput;
-  updatedAt?: Date | string | DateTimeFieldUpdateOperationsInput;
-  activated?: boolean | BoolFieldUpdateOperationsInput;
-  activationToken?: string | NullableStringFieldUpdateOperationsInput | null;
-  passwordAttempts?: number | IntFieldUpdateOperationsInput;
-  password?: string | StringFieldUpdateOperationsInput;
-  firstFailedPasswordAttempt?:
-    | Date
-    | string
-    | NullableDateTimeFieldUpdateOperationsInput
-    | null;
-  resetPasswordToken?: string | NullableStringFieldUpdateOperationsInput | null;
-  resetPasswordTokenGenerated?:
-    | Date
-    | string
-    | NullableDateTimeFieldUpdateOperationsInput
-    | null;
-  resetPasswordAttempts?: number | IntFieldUpdateOperationsInput;
-  firstFailedResetPasswordAttempt?:
-    | Date
-    | string
-    | NullableDateTimeFieldUpdateOperationsInput
-    | null;
-};
-
 export type CharacterCreateInput = {
-  id: number;
+  id?: string;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   name: string;
@@ -15307,7 +14505,7 @@ export type CharacterCreateInput = {
 };
 
 export type CharacterUpdateInput = {
-  id?: number | IntFieldUpdateOperationsInput;
+  id?: string | StringFieldUpdateOperationsInput;
   createdAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   updatedAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   name?: string | StringFieldUpdateOperationsInput;
@@ -15323,7 +14521,7 @@ export type CharacterUpdateInput = {
 };
 
 export type CharacterUpdateManyMutationInput = {
-  id?: number | IntFieldUpdateOperationsInput;
+  id?: string | StringFieldUpdateOperationsInput;
   createdAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   updatedAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   name?: string | StringFieldUpdateOperationsInput;
@@ -15335,7 +14533,7 @@ export type CharacterUpdateManyMutationInput = {
 };
 
 export type CharacterAscensionCreateInput = {
-  id: number;
+  id?: string;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   level: number;
@@ -15347,7 +14545,7 @@ export type CharacterAscensionCreateInput = {
 };
 
 export type CharacterAscensionUpdateInput = {
-  id?: number | IntFieldUpdateOperationsInput;
+  id?: string | StringFieldUpdateOperationsInput;
   createdAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   updatedAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   level?: number | IntFieldUpdateOperationsInput;
@@ -15359,7 +14557,7 @@ export type CharacterAscensionUpdateInput = {
 };
 
 export type CharacterAscensionUpdateManyMutationInput = {
-  id?: number | IntFieldUpdateOperationsInput;
+  id?: string | StringFieldUpdateOperationsInput;
   createdAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   updatedAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   level?: number | IntFieldUpdateOperationsInput;
@@ -15368,7 +14566,7 @@ export type CharacterAscensionUpdateManyMutationInput = {
 };
 
 export type CharacterProfileCreateInput = {
-  id: number;
+  id?: string;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   affiliation?: string | null;
@@ -15385,7 +14583,7 @@ export type CharacterProfileCreateInput = {
 };
 
 export type CharacterProfileUpdateInput = {
-  id?: number | IntFieldUpdateOperationsInput;
+  id?: string | StringFieldUpdateOperationsInput;
   createdAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   updatedAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   affiliation?: string | NullableStringFieldUpdateOperationsInput | null;
@@ -15402,7 +14600,7 @@ export type CharacterProfileUpdateInput = {
 };
 
 export type CharacterProfileUpdateManyMutationInput = {
-  id?: number | IntFieldUpdateOperationsInput;
+  id?: string | StringFieldUpdateOperationsInput;
   createdAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   updatedAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   affiliation?: string | NullableStringFieldUpdateOperationsInput | null;
@@ -15415,7 +14613,7 @@ export type CharacterProfileUpdateManyMutationInput = {
 };
 
 export type TalentCreateInput = {
-  id: number;
+  id?: string;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   description?: InputJsonValue | null;
@@ -15427,7 +14625,7 @@ export type TalentCreateInput = {
 };
 
 export type TalentUpdateInput = {
-  id?: number | IntFieldUpdateOperationsInput;
+  id?: string | StringFieldUpdateOperationsInput;
   createdAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   updatedAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   description?: InputJsonValue | null;
@@ -15439,7 +14637,7 @@ export type TalentUpdateInput = {
 };
 
 export type TalentUpdateManyMutationInput = {
-  id?: number | IntFieldUpdateOperationsInput;
+  id?: string | StringFieldUpdateOperationsInput;
   createdAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   updatedAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   description?: InputJsonValue | null;
@@ -15449,7 +14647,7 @@ export type TalentUpdateManyMutationInput = {
 };
 
 export type ElementCreateInput = {
-  id: number;
+  id?: string;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   name: string;
@@ -15462,7 +14660,7 @@ export type ElementCreateInput = {
 };
 
 export type ElementUpdateInput = {
-  id?: number | IntFieldUpdateOperationsInput;
+  id?: string | StringFieldUpdateOperationsInput;
   createdAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   updatedAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   name?: string | StringFieldUpdateOperationsInput;
@@ -15475,7 +14673,7 @@ export type ElementUpdateInput = {
 };
 
 export type ElementUpdateManyMutationInput = {
-  id?: number | IntFieldUpdateOperationsInput;
+  id?: string | StringFieldUpdateOperationsInput;
   createdAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   updatedAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   name?: string | StringFieldUpdateOperationsInput;
@@ -15485,7 +14683,7 @@ export type ElementUpdateManyMutationInput = {
 };
 
 export type RegionCreateInput = {
-  id: number;
+  id?: string;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   name: string;
@@ -15495,7 +14693,7 @@ export type RegionCreateInput = {
 };
 
 export type RegionUpdateInput = {
-  id?: number | IntFieldUpdateOperationsInput;
+  id?: string | StringFieldUpdateOperationsInput;
   createdAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   updatedAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   name?: string | StringFieldUpdateOperationsInput;
@@ -15505,14 +14703,14 @@ export type RegionUpdateInput = {
 };
 
 export type RegionUpdateManyMutationInput = {
-  id?: number | IntFieldUpdateOperationsInput;
+  id?: string | StringFieldUpdateOperationsInput;
   createdAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   updatedAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   name?: string | StringFieldUpdateOperationsInput;
 };
 
 export type WeaponCreateInput = {
-  id: number;
+  id?: string;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   name: string;
@@ -15531,7 +14729,7 @@ export type WeaponCreateInput = {
 };
 
 export type WeaponUpdateInput = {
-  id?: number | IntFieldUpdateOperationsInput;
+  id?: string | StringFieldUpdateOperationsInput;
   createdAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   updatedAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   name?: string | StringFieldUpdateOperationsInput;
@@ -15553,7 +14751,7 @@ export type WeaponUpdateInput = {
 };
 
 export type WeaponUpdateManyMutationInput = {
-  id?: number | IntFieldUpdateOperationsInput;
+  id?: string | StringFieldUpdateOperationsInput;
   createdAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   updatedAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   name?: string | StringFieldUpdateOperationsInput;
@@ -15573,7 +14771,7 @@ export type WeaponUpdateManyMutationInput = {
 };
 
 export type WeaponAscensionCreateInput = {
-  id: number;
+  id?: string;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   level: number;
@@ -15585,7 +14783,7 @@ export type WeaponAscensionCreateInput = {
 };
 
 export type WeaponAscensionUpdateInput = {
-  id?: number | IntFieldUpdateOperationsInput;
+  id?: string | StringFieldUpdateOperationsInput;
   createdAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   updatedAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   level?: number | IntFieldUpdateOperationsInput;
@@ -15597,7 +14795,7 @@ export type WeaponAscensionUpdateInput = {
 };
 
 export type WeaponAscensionUpdateManyMutationInput = {
-  id?: number | IntFieldUpdateOperationsInput;
+  id?: string | StringFieldUpdateOperationsInput;
   createdAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   updatedAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   level?: number | IntFieldUpdateOperationsInput;
@@ -15606,7 +14804,7 @@ export type WeaponAscensionUpdateManyMutationInput = {
 };
 
 export type CommonAscensionMaterialCreateInput = {
-  id: number;
+  id?: string;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   name: string;
@@ -15619,7 +14817,7 @@ export type CommonAscensionMaterialCreateInput = {
 };
 
 export type CommonAscensionMaterialUpdateInput = {
-  id?: number | IntFieldUpdateOperationsInput;
+  id?: string | StringFieldUpdateOperationsInput;
   createdAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   updatedAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   name?: string | StringFieldUpdateOperationsInput;
@@ -15634,7 +14832,7 @@ export type CommonAscensionMaterialUpdateInput = {
 };
 
 export type CommonAscensionMaterialUpdateManyMutationInput = {
-  id?: number | IntFieldUpdateOperationsInput;
+  id?: string | StringFieldUpdateOperationsInput;
   createdAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   updatedAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   name?: string | StringFieldUpdateOperationsInput;
@@ -15647,7 +14845,7 @@ export type CommonAscensionMaterialUpdateManyMutationInput = {
 };
 
 export type WeaponAscensionMaterialCreateInput = {
-  id: number;
+  id?: string;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   name: string;
@@ -15661,7 +14859,7 @@ export type WeaponAscensionMaterialCreateInput = {
 };
 
 export type WeaponAscensionMaterialUpdateInput = {
-  id?: number | IntFieldUpdateOperationsInput;
+  id?: string | StringFieldUpdateOperationsInput;
   createdAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   updatedAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   name?: string | StringFieldUpdateOperationsInput;
@@ -15677,7 +14875,7 @@ export type WeaponAscensionMaterialUpdateInput = {
 };
 
 export type WeaponAscensionMaterialUpdateManyMutationInput = {
-  id?: number | IntFieldUpdateOperationsInput;
+  id?: string | StringFieldUpdateOperationsInput;
   createdAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   updatedAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   name?: string | StringFieldUpdateOperationsInput;
@@ -15691,7 +14889,7 @@ export type WeaponAscensionMaterialUpdateManyMutationInput = {
 };
 
 export type WeaponEnhancementMaterialCreateInput = {
-  id: number;
+  id?: string;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   name: string;
@@ -15704,7 +14902,7 @@ export type WeaponEnhancementMaterialCreateInput = {
 };
 
 export type WeaponEnhancementMaterialUpdateInput = {
-  id?: number | IntFieldUpdateOperationsInput;
+  id?: string | StringFieldUpdateOperationsInput;
   createdAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   updatedAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   name?: string | StringFieldUpdateOperationsInput;
@@ -15717,7 +14915,7 @@ export type WeaponEnhancementMaterialUpdateInput = {
 };
 
 export type WeaponEnhancementMaterialUpdateManyMutationInput = {
-  id?: number | IntFieldUpdateOperationsInput;
+  id?: string | StringFieldUpdateOperationsInput;
   createdAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   updatedAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   name?: string | StringFieldUpdateOperationsInput;
@@ -15728,7 +14926,7 @@ export type WeaponEnhancementMaterialUpdateManyMutationInput = {
 };
 
 export type CharacterAscensionMaterialCreateInput = {
-  id: number;
+  id?: string;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   name: string;
@@ -15741,7 +14939,7 @@ export type CharacterAscensionMaterialCreateInput = {
 };
 
 export type CharacterAscensionMaterialUpdateInput = {
-  id?: number | IntFieldUpdateOperationsInput;
+  id?: string | StringFieldUpdateOperationsInput;
   createdAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   updatedAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   name?: string | StringFieldUpdateOperationsInput;
@@ -15756,7 +14954,7 @@ export type CharacterAscensionMaterialUpdateInput = {
 };
 
 export type CharacterAscensionMaterialUpdateManyMutationInput = {
-  id?: number | IntFieldUpdateOperationsInput;
+  id?: string | StringFieldUpdateOperationsInput;
   createdAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   updatedAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   name?: string | StringFieldUpdateOperationsInput;
@@ -15770,7 +14968,7 @@ export type CharacterAscensionMaterialUpdateManyMutationInput = {
 };
 
 export type TalentLevelUpMaterialCreateInput = {
-  id: number;
+  id?: string;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   name: string;
@@ -15784,7 +14982,7 @@ export type TalentLevelUpMaterialCreateInput = {
 };
 
 export type TalentLevelUpMaterialUpdateInput = {
-  id?: number | IntFieldUpdateOperationsInput;
+  id?: string | StringFieldUpdateOperationsInput;
   createdAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   updatedAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   name?: string | StringFieldUpdateOperationsInput;
@@ -15800,7 +14998,7 @@ export type TalentLevelUpMaterialUpdateInput = {
 };
 
 export type TalentLevelUpMaterialUpdateManyMutationInput = {
-  id?: number | IntFieldUpdateOperationsInput;
+  id?: string | StringFieldUpdateOperationsInput;
   createdAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   updatedAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   name?: string | StringFieldUpdateOperationsInput;
@@ -15814,7 +15012,7 @@ export type TalentLevelUpMaterialUpdateManyMutationInput = {
 };
 
 export type CraftingMaterialCreateInput = {
-  id: number;
+  id?: string;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   name: string;
@@ -15826,7 +15024,7 @@ export type CraftingMaterialCreateInput = {
 };
 
 export type CraftingMaterialUpdateInput = {
-  id?: number | IntFieldUpdateOperationsInput;
+  id?: string | StringFieldUpdateOperationsInput;
   createdAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   updatedAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   name?: string | StringFieldUpdateOperationsInput;
@@ -15838,7 +15036,7 @@ export type CraftingMaterialUpdateInput = {
 };
 
 export type CraftingMaterialUpdateManyMutationInput = {
-  id?: number | IntFieldUpdateOperationsInput;
+  id?: string | StringFieldUpdateOperationsInput;
   createdAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   updatedAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   name?: string | StringFieldUpdateOperationsInput;
@@ -15849,7 +15047,7 @@ export type CraftingMaterialUpdateManyMutationInput = {
 };
 
 export type CookingMaterialCreateInput = {
-  id: number;
+  id?: string;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   name: string;
@@ -15862,7 +15060,7 @@ export type CookingMaterialCreateInput = {
 };
 
 export type CookingMaterialUpdateInput = {
-  id?: number | IntFieldUpdateOperationsInput;
+  id?: string | StringFieldUpdateOperationsInput;
   createdAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   updatedAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   name?: string | StringFieldUpdateOperationsInput;
@@ -15875,7 +15073,7 @@ export type CookingMaterialUpdateInput = {
 };
 
 export type CookingMaterialUpdateManyMutationInput = {
-  id?: number | IntFieldUpdateOperationsInput;
+  id?: string | StringFieldUpdateOperationsInput;
   createdAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   updatedAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   name?: string | StringFieldUpdateOperationsInput;
@@ -15886,7 +15084,7 @@ export type CookingMaterialUpdateManyMutationInput = {
 };
 
 export type CommonMaterialCreateInput = {
-  id: number;
+  id?: string;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   name: string;
@@ -15897,7 +15095,7 @@ export type CommonMaterialCreateInput = {
 };
 
 export type CommonMaterialUpdateInput = {
-  id?: number | IntFieldUpdateOperationsInput;
+  id?: string | StringFieldUpdateOperationsInput;
   createdAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   updatedAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   name?: string | StringFieldUpdateOperationsInput;
@@ -15908,7 +15106,7 @@ export type CommonMaterialUpdateInput = {
 };
 
 export type CommonMaterialUpdateManyMutationInput = {
-  id?: number | IntFieldUpdateOperationsInput;
+  id?: string | StringFieldUpdateOperationsInput;
   createdAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   updatedAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   name?: string | StringFieldUpdateOperationsInput;
@@ -15919,7 +15117,7 @@ export type CommonMaterialUpdateManyMutationInput = {
 };
 
 export type DomainCreateInput = {
-  id: number;
+  id?: string;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   name: string;
@@ -15933,7 +15131,7 @@ export type DomainCreateInput = {
 };
 
 export type DomainUpdateInput = {
-  id?: number | IntFieldUpdateOperationsInput;
+  id?: string | StringFieldUpdateOperationsInput;
   createdAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   updatedAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   name?: string | StringFieldUpdateOperationsInput;
@@ -15947,7 +15145,7 @@ export type DomainUpdateInput = {
 };
 
 export type DomainUpdateManyMutationInput = {
-  id?: number | IntFieldUpdateOperationsInput;
+  id?: string | StringFieldUpdateOperationsInput;
   createdAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   updatedAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   name?: string | StringFieldUpdateOperationsInput;
@@ -15957,7 +15155,7 @@ export type DomainUpdateManyMutationInput = {
 };
 
 export type ConsumeableCreateInput = {
-  id: number;
+  id?: string;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   name: string;
@@ -15972,7 +15170,7 @@ export type ConsumeableCreateInput = {
 };
 
 export type ConsumeableUpdateInput = {
-  id?: number | IntFieldUpdateOperationsInput;
+  id?: string | StringFieldUpdateOperationsInput;
   createdAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   updatedAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   name?: string | StringFieldUpdateOperationsInput;
@@ -15989,7 +15187,7 @@ export type ConsumeableUpdateInput = {
 };
 
 export type ConsumeableUpdateManyMutationInput = {
-  id?: number | IntFieldUpdateOperationsInput;
+  id?: string | StringFieldUpdateOperationsInput;
   createdAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   updatedAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   name?: string | StringFieldUpdateOperationsInput;
@@ -16004,7 +15202,7 @@ export type ConsumeableUpdateManyMutationInput = {
 };
 
 export type ConsumeableRecipeCreateInput = {
-  id: number;
+  id?: string;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   recipe?: InputJsonValue | null;
@@ -16014,7 +15212,7 @@ export type ConsumeableRecipeCreateInput = {
 };
 
 export type ConsumeableRecipeUpdateInput = {
-  id?: number | IntFieldUpdateOperationsInput;
+  id?: string | StringFieldUpdateOperationsInput;
   createdAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   updatedAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   recipe?: InputJsonValue | null;
@@ -16024,14 +15222,14 @@ export type ConsumeableRecipeUpdateInput = {
 };
 
 export type ConsumeableRecipeUpdateManyMutationInput = {
-  id?: number | IntFieldUpdateOperationsInput;
+  id?: string | StringFieldUpdateOperationsInput;
   createdAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   updatedAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   recipe?: InputJsonValue | null;
 };
 
 export type ProcessRecipeCreateInput = {
-  id: number;
+  id?: string;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   processingTime?: number | null;
@@ -16040,7 +15238,7 @@ export type ProcessRecipeCreateInput = {
 };
 
 export type ProcessRecipeUpdateInput = {
-  id?: number | IntFieldUpdateOperationsInput;
+  id?: string | StringFieldUpdateOperationsInput;
   createdAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   updatedAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   processingTime?: number | NullableIntFieldUpdateOperationsInput | null;
@@ -16049,7 +15247,7 @@ export type ProcessRecipeUpdateInput = {
 };
 
 export type ProcessRecipeUpdateManyMutationInput = {
-  id?: number | IntFieldUpdateOperationsInput;
+  id?: string | StringFieldUpdateOperationsInput;
   createdAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   updatedAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   processingTime?: number | NullableIntFieldUpdateOperationsInput | null;
@@ -16057,7 +15255,7 @@ export type ProcessRecipeUpdateManyMutationInput = {
 };
 
 export type ForgeRecipeCreateInput = {
-  id: number;
+  id?: string;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   craftingTime?: number | null;
@@ -16068,7 +15266,7 @@ export type ForgeRecipeCreateInput = {
 };
 
 export type ForgeRecipeUpdateInput = {
-  id?: number | IntFieldUpdateOperationsInput;
+  id?: string | StringFieldUpdateOperationsInput;
   createdAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   updatedAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   craftingTime?: number | NullableIntFieldUpdateOperationsInput | null;
@@ -16079,7 +15277,7 @@ export type ForgeRecipeUpdateInput = {
 };
 
 export type ForgeRecipeUpdateManyMutationInput = {
-  id?: number | IntFieldUpdateOperationsInput;
+  id?: string | StringFieldUpdateOperationsInput;
   createdAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   updatedAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   craftingTime?: number | NullableIntFieldUpdateOperationsInput | null;
@@ -16087,7 +15285,7 @@ export type ForgeRecipeUpdateManyMutationInput = {
 };
 
 export type ArtifactSetCreateInput = {
-  id: number;
+  id?: string;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   name: string;
@@ -16100,7 +15298,7 @@ export type ArtifactSetCreateInput = {
 };
 
 export type ArtifactSetUpdateInput = {
-  id?: number | IntFieldUpdateOperationsInput;
+  id?: string | StringFieldUpdateOperationsInput;
   createdAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   updatedAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   name?: string | StringFieldUpdateOperationsInput;
@@ -16113,7 +15311,7 @@ export type ArtifactSetUpdateInput = {
 };
 
 export type ArtifactSetUpdateManyMutationInput = {
-  id?: number | IntFieldUpdateOperationsInput;
+  id?: string | StringFieldUpdateOperationsInput;
   createdAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   updatedAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   name?: string | StringFieldUpdateOperationsInput;
@@ -16125,7 +15323,7 @@ export type ArtifactSetUpdateManyMutationInput = {
 };
 
 export type ArtifactCreateInput = {
-  id: number;
+  id?: string;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   name: string;
@@ -16140,7 +15338,7 @@ export type ArtifactCreateInput = {
 };
 
 export type ArtifactUpdateInput = {
-  id?: number | IntFieldUpdateOperationsInput;
+  id?: string | StringFieldUpdateOperationsInput;
   createdAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   updatedAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   name?: string | StringFieldUpdateOperationsInput;
@@ -16155,7 +15353,7 @@ export type ArtifactUpdateInput = {
 };
 
 export type ArtifactUpdateManyMutationInput = {
-  id?: number | IntFieldUpdateOperationsInput;
+  id?: string | StringFieldUpdateOperationsInput;
   createdAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   updatedAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   name?: string | StringFieldUpdateOperationsInput;
@@ -16192,6 +15390,11 @@ export type DateTimeFilter = {
   not?: Date | string | NestedDateTimeFilter;
 };
 
+export type JsonNullableFilter = {
+  equals?: InputJsonValue | null;
+  not?: InputJsonValue | null;
+};
+
 export type StringNullableFilter = {
   equals?: string | null;
   in?: Enumerable<string> | null;
@@ -16206,23 +15409,6 @@ export type StringNullableFilter = {
   not?: string | NestedStringNullableFilter | null;
 };
 
-export type EnumRoleFilter = {
-  equals?: Role;
-  in?: Enumerable<Role>;
-  notIn?: Enumerable<Role>;
-  not?: Role | NestedEnumRoleFilter;
-};
-
-export type UserSecretRelationFilter = {
-  is?: UserSecretWhereInput | null;
-  isNot?: UserSecretWhereInput | null;
-};
-
-export type BoolFilter = {
-  equals?: boolean;
-  not?: boolean | NestedBoolFilter;
-};
-
 export type IntFilter = {
   equals?: number;
   in?: Enumerable<number>;
@@ -16232,27 +15418,6 @@ export type IntFilter = {
   gt?: number;
   gte?: number;
   not?: number | NestedIntFilter;
-};
-
-export type DateTimeNullableFilter = {
-  equals?: Date | string | null;
-  in?: Enumerable<Date | string> | null;
-  notIn?: Enumerable<Date | string> | null;
-  lt?: Date | string | null;
-  lte?: Date | string | null;
-  gt?: Date | string | null;
-  gte?: Date | string | null;
-  not?: Date | string | NestedDateTimeNullableFilter | null;
-};
-
-export type UserRelationFilter = {
-  is?: UserWhereInput | null;
-  isNot?: UserWhereInput | null;
-};
-
-export type JsonNullableFilter = {
-  equals?: InputJsonValue | null;
-  not?: InputJsonValue | null;
 };
 
 export type CharacterAscensionListRelationFilter = {
@@ -16288,17 +15453,6 @@ export type EnumWeaponTypeNullableFilter = {
 export type CharacterRelationFilter = {
   is?: CharacterWhereInput | null;
   isNot?: CharacterWhereInput | null;
-};
-
-export type IntNullableFilter = {
-  equals?: number | null;
-  in?: Enumerable<number> | null;
-  notIn?: Enumerable<number> | null;
-  lt?: number | null;
-  lte?: number | null;
-  gt?: number | null;
-  gte?: number | null;
-  not?: number | NestedIntNullableFilter | null;
 };
 
 export type CharacterAscensionMaterialRelationFilter = {
@@ -16348,6 +15502,17 @@ export type DomainListRelationFilter = {
   every?: DomainWhereInput;
   some?: DomainWhereInput;
   none?: DomainWhereInput;
+};
+
+export type IntNullableFilter = {
+  equals?: number | null;
+  in?: Enumerable<number> | null;
+  notIn?: Enumerable<number> | null;
+  lt?: number | null;
+  lte?: number | null;
+  gt?: number | null;
+  gte?: number | null;
+  not?: number | NestedIntNullableFilter | null;
 };
 
 export type EnumWeaponSecondaryStatTypeNullableFilter = {
@@ -16506,60 +15671,6 @@ export type ArtifactSetRelationFilter = {
   isNot?: ArtifactSetWhereInput | null;
 };
 
-export type UserSecretCreateOneWithoutUserInput = {
-  create?: UserSecretCreateWithoutUserInput;
-  connect?: UserSecretWhereUniqueInput;
-};
-
-export type StringFieldUpdateOperationsInput = {
-  set?: string;
-};
-
-export type DateTimeFieldUpdateOperationsInput = {
-  set?: Date | string;
-};
-
-export type NullableStringFieldUpdateOperationsInput = {
-  set?: string | null;
-};
-
-export type EnumRoleFieldUpdateOperationsInput = {
-  set?: Role;
-};
-
-export type UserSecretUpdateOneWithoutUserInput = {
-  create?: UserSecretCreateWithoutUserInput;
-  connect?: UserSecretWhereUniqueInput;
-  disconnect?: boolean;
-  delete?: boolean;
-  update?: UserSecretUpdateWithoutUserDataInput;
-  upsert?: UserSecretUpsertWithoutUserInput;
-};
-
-export type UserCreateOneWithoutUserSecretInput = {
-  create?: UserCreateWithoutUserSecretInput;
-  connect?: UserWhereUniqueInput;
-};
-
-export type BoolFieldUpdateOperationsInput = {
-  set?: boolean;
-};
-
-export type IntFieldUpdateOperationsInput = {
-  set?: number;
-};
-
-export type NullableDateTimeFieldUpdateOperationsInput = {
-  set?: Date | string | null;
-};
-
-export type UserUpdateOneRequiredWithoutUserSecretInput = {
-  create?: UserCreateWithoutUserSecretInput;
-  connect?: UserWhereUniqueInput;
-  update?: UserUpdateWithoutUserSecretDataInput;
-  upsert?: UserUpsertWithoutUserSecretInput;
-};
-
 export type CharacterAscensionCreateManyWithoutCharacterInput = {
   create?: Enumerable<CharacterAscensionCreateWithoutCharacterInput>;
   connect?: Enumerable<CharacterAscensionWhereUniqueInput>;
@@ -16580,8 +15691,24 @@ export type TalentCreateManyWithoutCharacterInput = {
   connect?: Enumerable<TalentWhereUniqueInput>;
 };
 
+export type StringFieldUpdateOperationsInput = {
+  set?: string;
+};
+
+export type DateTimeFieldUpdateOperationsInput = {
+  set?: Date | string;
+};
+
 export type NullableJsonFieldUpdateOperationsInput = {
   set?: InputJsonValue | null;
+};
+
+export type NullableStringFieldUpdateOperationsInput = {
+  set?: string | null;
+};
+
+export type IntFieldUpdateOperationsInput = {
+  set?: number;
 };
 
 export type NullableEnumWeaponTypeFieldUpdateOperationsInput = {
@@ -17425,6 +16552,11 @@ export type NestedDateTimeFilter = {
   not?: NestedDateTimeFilter | null;
 };
 
+export type NestedJsonNullableFilter = {
+  equals?: InputJsonValue | null;
+  not?: NestedJsonNullableFilter | null;
+};
+
 export type NestedStringNullableFilter = {
   equals?: string | null;
   in?: Enumerable<string> | null;
@@ -17439,18 +16571,6 @@ export type NestedStringNullableFilter = {
   not?: NestedStringNullableFilter | null;
 };
 
-export type NestedEnumRoleFilter = {
-  equals?: Role;
-  in?: Enumerable<Role>;
-  notIn?: Enumerable<Role>;
-  not?: NestedEnumRoleFilter | null;
-};
-
-export type NestedBoolFilter = {
-  equals?: boolean;
-  not?: NestedBoolFilter | null;
-};
-
 export type NestedIntFilter = {
   equals?: number;
   in?: Enumerable<number>;
@@ -17460,22 +16580,6 @@ export type NestedIntFilter = {
   gt?: number;
   gte?: number;
   not?: NestedIntFilter | null;
-};
-
-export type NestedDateTimeNullableFilter = {
-  equals?: Date | string | null;
-  in?: Enumerable<Date | string> | null;
-  notIn?: Enumerable<Date | string> | null;
-  lt?: Date | string | null;
-  lte?: Date | string | null;
-  gt?: Date | string | null;
-  gte?: Date | string | null;
-  not?: NestedDateTimeNullableFilter | null;
-};
-
-export type NestedJsonNullableFilter = {
-  equals?: InputJsonValue | null;
-  not?: NestedJsonNullableFilter | null;
 };
 
 export type NestedEnumWeaponTypeNullableFilter = {
@@ -17552,78 +16656,8 @@ export type NestedEnumArtifactTypeFilter = {
   not?: NestedEnumArtifactTypeFilter | null;
 };
 
-export type UserSecretCreateWithoutUserInput = {
-  id?: string;
-  createdAt?: Date | string;
-  updatedAt?: Date | string;
-  activated?: boolean;
-  activationToken?: string | null;
-  passwordAttempts?: number;
-  password: string;
-  firstFailedPasswordAttempt?: Date | string | null;
-  resetPasswordToken?: string | null;
-  resetPasswordTokenGenerated?: Date | string | null;
-  resetPasswordAttempts?: number;
-  firstFailedResetPasswordAttempt?: Date | string | null;
-};
-
-export type UserSecretUpdateWithoutUserDataInput = {
-  id?: string | StringFieldUpdateOperationsInput;
-  createdAt?: Date | string | DateTimeFieldUpdateOperationsInput;
-  updatedAt?: Date | string | DateTimeFieldUpdateOperationsInput;
-  activated?: boolean | BoolFieldUpdateOperationsInput;
-  activationToken?: string | NullableStringFieldUpdateOperationsInput | null;
-  passwordAttempts?: number | IntFieldUpdateOperationsInput;
-  password?: string | StringFieldUpdateOperationsInput;
-  firstFailedPasswordAttempt?:
-    | Date
-    | string
-    | NullableDateTimeFieldUpdateOperationsInput
-    | null;
-  resetPasswordToken?: string | NullableStringFieldUpdateOperationsInput | null;
-  resetPasswordTokenGenerated?:
-    | Date
-    | string
-    | NullableDateTimeFieldUpdateOperationsInput
-    | null;
-  resetPasswordAttempts?: number | IntFieldUpdateOperationsInput;
-  firstFailedResetPasswordAttempt?:
-    | Date
-    | string
-    | NullableDateTimeFieldUpdateOperationsInput
-    | null;
-};
-
-export type UserSecretUpsertWithoutUserInput = {
-  update: UserSecretUpdateWithoutUserDataInput;
-  create: UserSecretCreateWithoutUserInput;
-};
-
-export type UserCreateWithoutUserSecretInput = {
-  id?: string;
-  createdAt?: Date | string;
-  updatedAt?: Date | string;
-  email: string;
-  username?: string | null;
-  role?: Role;
-};
-
-export type UserUpdateWithoutUserSecretDataInput = {
-  id?: string | StringFieldUpdateOperationsInput;
-  createdAt?: Date | string | DateTimeFieldUpdateOperationsInput;
-  updatedAt?: Date | string | DateTimeFieldUpdateOperationsInput;
-  email?: string | StringFieldUpdateOperationsInput;
-  username?: string | NullableStringFieldUpdateOperationsInput | null;
-  role?: Role | EnumRoleFieldUpdateOperationsInput;
-};
-
-export type UserUpsertWithoutUserSecretInput = {
-  update: UserUpdateWithoutUserSecretDataInput;
-  create: UserCreateWithoutUserSecretInput;
-};
-
 export type CharacterAscensionCreateWithoutCharacterInput = {
-  id: number;
+  id?: string;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   level: number;
@@ -17634,7 +16668,7 @@ export type CharacterAscensionCreateWithoutCharacterInput = {
 };
 
 export type ElementCreateWithoutCharactersInput = {
-  id: number;
+  id?: string;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   name: string;
@@ -17646,7 +16680,7 @@ export type ElementCreateWithoutCharactersInput = {
 };
 
 export type CharacterProfileCreateWithoutCharacterInput = {
-  id: number;
+  id?: string;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   affiliation?: string | null;
@@ -17662,7 +16696,7 @@ export type CharacterProfileCreateWithoutCharacterInput = {
 };
 
 export type TalentCreateWithoutCharacterInput = {
-  id: number;
+  id?: string;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   description?: InputJsonValue | null;
@@ -17686,14 +16720,14 @@ export type CharacterAscensionScalarWhereInput = {
   AND?: Enumerable<CharacterAscensionScalarWhereInput>;
   OR?: Array<CharacterAscensionScalarWhereInput>;
   NOT?: Enumerable<CharacterAscensionScalarWhereInput>;
-  id?: number | IntFilter;
+  id?: string | StringFilter;
   createdAt?: Date | string | DateTimeFilter;
   updatedAt?: Date | string | DateTimeFilter;
   level?: number | IntFilter;
   maxLevel?: number | IntFilter;
   recipe?: JsonNullableFilter | null;
-  characterId?: number | IntNullableFilter | null;
-  characterAscensionMaterialId?: number | IntNullableFilter | null;
+  characterId?: string | StringNullableFilter | null;
+  characterAscensionMaterialId?: string | StringNullableFilter | null;
 };
 
 export type CharacterAscensionUpsertWithWhereUniqueWithoutCharacterInput = {
@@ -17716,14 +16750,14 @@ export type ElementScalarWhereInput = {
   AND?: Enumerable<ElementScalarWhereInput>;
   OR?: Array<ElementScalarWhereInput>;
   NOT?: Enumerable<ElementScalarWhereInput>;
-  id?: number | IntFilter;
+  id?: string | StringFilter;
   createdAt?: Date | string | DateTimeFilter;
   updatedAt?: Date | string | DateTimeFilter;
   name?: string | StringFilter;
   archon?: string | StringNullableFilter | null;
   statusEffect?: string | StringNullableFilter | null;
   theme?: string | StringNullableFilter | null;
-  regionId?: number | IntNullableFilter | null;
+  regionId?: string | StringNullableFilter | null;
 };
 
 export type ElementUpsertWithWhereUniqueWithoutCharactersInput = {
@@ -17733,7 +16767,7 @@ export type ElementUpsertWithWhereUniqueWithoutCharactersInput = {
 };
 
 export type CharacterProfileUpdateWithoutCharacterDataInput = {
-  id?: number | IntFieldUpdateOperationsInput;
+  id?: string | StringFieldUpdateOperationsInput;
   createdAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   updatedAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   affiliation?: string | NullableStringFieldUpdateOperationsInput | null;
@@ -17767,15 +16801,15 @@ export type TalentScalarWhereInput = {
   AND?: Enumerable<TalentScalarWhereInput>;
   OR?: Array<TalentScalarWhereInput>;
   NOT?: Enumerable<TalentScalarWhereInput>;
-  id?: number | IntFilter;
+  id?: string | StringFilter;
   createdAt?: Date | string | DateTimeFilter;
   updatedAt?: Date | string | DateTimeFilter;
   description?: JsonNullableFilter | null;
   details?: JsonNullableFilter | null;
   name?: string | StringNullableFilter | null;
   type?: string | StringNullableFilter | null;
-  characterId?: number | IntFilter;
-  talentLevelUpMaterialId?: number | IntNullableFilter | null;
+  characterId?: string | StringFilter;
+  talentLevelUpMaterialId?: string | StringNullableFilter | null;
 };
 
 export type TalentUpsertWithWhereUniqueWithoutCharacterInput = {
@@ -17785,7 +16819,7 @@ export type TalentUpsertWithWhereUniqueWithoutCharacterInput = {
 };
 
 export type CharacterCreateWithoutAscensionsInput = {
-  id: number;
+  id?: string;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   name: string;
@@ -17800,7 +16834,7 @@ export type CharacterCreateWithoutAscensionsInput = {
 };
 
 export type CharacterAscensionMaterialCreateWithoutCharacterAscensionsInput = {
-  id: number;
+  id?: string;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   name: string;
@@ -17812,7 +16846,7 @@ export type CharacterAscensionMaterialCreateWithoutCharacterAscensionsInput = {
 };
 
 export type CommonAscensionMaterialCreateWithoutCharacterAscensionsInput = {
-  id: number;
+  id?: string;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   name: string;
@@ -17824,7 +16858,7 @@ export type CommonAscensionMaterialCreateWithoutCharacterAscensionsInput = {
 };
 
 export type CharacterUpdateWithoutAscensionsDataInput = {
-  id?: number | IntFieldUpdateOperationsInput;
+  id?: string | StringFieldUpdateOperationsInput;
   createdAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   updatedAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   name?: string | StringFieldUpdateOperationsInput;
@@ -17844,7 +16878,7 @@ export type CharacterUpsertWithoutAscensionsInput = {
 };
 
 export type CharacterAscensionMaterialUpdateWithoutCharacterAscensionsDataInput = {
-  id?: number | IntFieldUpdateOperationsInput;
+  id?: string | StringFieldUpdateOperationsInput;
   createdAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   updatedAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   name?: string | StringFieldUpdateOperationsInput;
@@ -17876,7 +16910,7 @@ export type CommonAscensionMaterialScalarWhereInput = {
   AND?: Enumerable<CommonAscensionMaterialScalarWhereInput>;
   OR?: Array<CommonAscensionMaterialScalarWhereInput>;
   NOT?: Enumerable<CommonAscensionMaterialScalarWhereInput>;
-  id?: number | IntFilter;
+  id?: string | StringFilter;
   createdAt?: Date | string | DateTimeFilter;
   updatedAt?: Date | string | DateTimeFilter;
   name?: string | StringFilter;
@@ -17893,7 +16927,7 @@ export type CommonAscensionMaterialUpsertWithWhereUniqueWithoutCharacterAscensio
 };
 
 export type CharacterCreateWithoutProfileInput = {
-  id: number;
+  id?: string;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   name: string;
@@ -17908,7 +16942,7 @@ export type CharacterCreateWithoutProfileInput = {
 };
 
 export type RegionCreateWithoutCharacterProfileInput = {
-  id: number;
+  id?: string;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   name: string;
@@ -17917,7 +16951,7 @@ export type RegionCreateWithoutCharacterProfileInput = {
 };
 
 export type ConsumeableCreateWithoutCharacterSpecialtyInput = {
-  id: number;
+  id?: string;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   name: string;
@@ -17931,7 +16965,7 @@ export type ConsumeableCreateWithoutCharacterSpecialtyInput = {
 };
 
 export type ElementCreateWithoutCharacterProfilesInput = {
-  id: number;
+  id?: string;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   name: string;
@@ -17943,7 +16977,7 @@ export type ElementCreateWithoutCharacterProfilesInput = {
 };
 
 export type CharacterUpdateWithoutProfileDataInput = {
-  id?: number | IntFieldUpdateOperationsInput;
+  id?: string | StringFieldUpdateOperationsInput;
   createdAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   updatedAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   name?: string | StringFieldUpdateOperationsInput;
@@ -17963,7 +16997,7 @@ export type CharacterUpsertWithoutProfileInput = {
 };
 
 export type RegionUpdateWithoutCharacterProfileDataInput = {
-  id?: number | IntFieldUpdateOperationsInput;
+  id?: string | StringFieldUpdateOperationsInput;
   createdAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   updatedAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   name?: string | StringFieldUpdateOperationsInput;
@@ -17977,7 +17011,7 @@ export type RegionUpsertWithoutCharacterProfileInput = {
 };
 
 export type ConsumeableUpdateWithoutCharacterSpecialtyDataInput = {
-  id?: number | IntFieldUpdateOperationsInput;
+  id?: string | StringFieldUpdateOperationsInput;
   createdAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   updatedAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   name?: string | StringFieldUpdateOperationsInput;
@@ -17998,7 +17032,7 @@ export type ConsumeableUpsertWithoutCharacterSpecialtyInput = {
 };
 
 export type ElementUpdateWithoutCharacterProfilesDataInput = {
-  id?: number | IntFieldUpdateOperationsInput;
+  id?: string | StringFieldUpdateOperationsInput;
   createdAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   updatedAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   name?: string | StringFieldUpdateOperationsInput;
@@ -18015,7 +17049,7 @@ export type ElementUpsertWithoutCharacterProfilesInput = {
 };
 
 export type CharacterCreateWithoutTalentsInput = {
-  id: number;
+  id?: string;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   name: string;
@@ -18030,7 +17064,7 @@ export type CharacterCreateWithoutTalentsInput = {
 };
 
 export type TalentLevelUpMaterialCreateWithoutTalentsInput = {
-  id: number;
+  id?: string;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   name: string;
@@ -18043,7 +17077,7 @@ export type TalentLevelUpMaterialCreateWithoutTalentsInput = {
 };
 
 export type CharacterUpdateWithoutTalentsDataInput = {
-  id?: number | IntFieldUpdateOperationsInput;
+  id?: string | StringFieldUpdateOperationsInput;
   createdAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   updatedAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   name?: string | StringFieldUpdateOperationsInput;
@@ -18063,7 +17097,7 @@ export type CharacterUpsertWithoutTalentsInput = {
 };
 
 export type TalentLevelUpMaterialUpdateWithoutTalentsDataInput = {
-  id?: number | IntFieldUpdateOperationsInput;
+  id?: string | StringFieldUpdateOperationsInput;
   createdAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   updatedAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   name?: string | StringFieldUpdateOperationsInput;
@@ -18083,7 +17117,7 @@ export type TalentLevelUpMaterialUpsertWithoutTalentsInput = {
 };
 
 export type CharacterCreateWithoutElementsInput = {
-  id: number;
+  id?: string;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   name: string;
@@ -18098,7 +17132,7 @@ export type CharacterCreateWithoutElementsInput = {
 };
 
 export type CharacterProfileCreateWithoutVisionInput = {
-  id: number;
+  id?: string;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   affiliation?: string | null;
@@ -18114,7 +17148,7 @@ export type CharacterProfileCreateWithoutVisionInput = {
 };
 
 export type RegionCreateWithoutElementInput = {
-  id: number;
+  id?: string;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   name: string;
@@ -18136,7 +17170,7 @@ export type CharacterScalarWhereInput = {
   AND?: Enumerable<CharacterScalarWhereInput>;
   OR?: Array<CharacterScalarWhereInput>;
   NOT?: Enumerable<CharacterScalarWhereInput>;
-  id?: number | IntFilter;
+  id?: string | StringFilter;
   createdAt?: Date | string | DateTimeFilter;
   updatedAt?: Date | string | DateTimeFilter;
   name?: string | StringFilter;
@@ -18167,7 +17201,7 @@ export type CharacterProfileScalarWhereInput = {
   AND?: Enumerable<CharacterProfileScalarWhereInput>;
   OR?: Array<CharacterProfileScalarWhereInput>;
   NOT?: Enumerable<CharacterProfileScalarWhereInput>;
-  id?: number | IntFilter;
+  id?: string | StringFilter;
   createdAt?: Date | string | DateTimeFilter;
   updatedAt?: Date | string | DateTimeFilter;
   affiliation?: string | StringNullableFilter | null;
@@ -18177,9 +17211,9 @@ export type CharacterProfileScalarWhereInput = {
   story?: JsonNullableFilter | null;
   voiceActor?: JsonNullableFilter | null;
   voiceLines?: JsonNullableFilter | null;
-  characterId?: number | IntFilter;
-  regionId?: number | IntNullableFilter | null;
-  elementId?: number | IntNullableFilter | null;
+  characterId?: string | StringFilter;
+  regionId?: string | StringNullableFilter | null;
+  elementId?: string | StringNullableFilter | null;
 };
 
 export type CharacterProfileUpsertWithWhereUniqueWithoutVisionInput = {
@@ -18189,7 +17223,7 @@ export type CharacterProfileUpsertWithWhereUniqueWithoutVisionInput = {
 };
 
 export type RegionUpdateWithoutElementDataInput = {
-  id?: number | IntFieldUpdateOperationsInput;
+  id?: string | StringFieldUpdateOperationsInput;
   createdAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   updatedAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   name?: string | StringFieldUpdateOperationsInput;
@@ -18203,7 +17237,7 @@ export type RegionUpsertWithoutElementInput = {
 };
 
 export type CharacterProfileCreateWithoutRegionInput = {
-  id: number;
+  id?: string;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   affiliation?: string | null;
@@ -18219,7 +17253,7 @@ export type CharacterProfileCreateWithoutRegionInput = {
 };
 
 export type DomainCreateWithoutRegionInput = {
-  id: number;
+  id?: string;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   name: string;
@@ -18232,7 +17266,7 @@ export type DomainCreateWithoutRegionInput = {
 };
 
 export type ElementCreateWithoutRegionInput = {
-  id: number;
+  id?: string;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   name: string;
@@ -18268,14 +17302,14 @@ export type DomainScalarWhereInput = {
   AND?: Enumerable<DomainScalarWhereInput>;
   OR?: Array<DomainScalarWhereInput>;
   NOT?: Enumerable<DomainScalarWhereInput>;
-  id?: number | IntFilter;
+  id?: string | StringFilter;
   createdAt?: Date | string | DateTimeFilter;
   updatedAt?: Date | string | DateTimeFilter;
   name?: string | StringFilter;
   description?: string | StringNullableFilter | null;
   levels?: JsonNullableFilter | null;
   type?: string | StringNullableFilter | null;
-  regionId?: number | IntNullableFilter | null;
+  regionId?: string | StringNullableFilter | null;
 };
 
 export type DomainUpsertWithWhereUniqueWithoutRegionInput = {
@@ -18285,7 +17319,7 @@ export type DomainUpsertWithWhereUniqueWithoutRegionInput = {
 };
 
 export type ElementUpdateWithoutRegionDataInput = {
-  id?: number | IntFieldUpdateOperationsInput;
+  id?: string | StringFieldUpdateOperationsInput;
   createdAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   updatedAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   name?: string | StringFieldUpdateOperationsInput;
@@ -18302,7 +17336,7 @@ export type ElementUpsertWithoutRegionInput = {
 };
 
 export type WeaponAscensionCreateWithoutWeaponInput = {
-  id: number;
+  id?: string;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   level: number;
@@ -18313,7 +17347,7 @@ export type WeaponAscensionCreateWithoutWeaponInput = {
 };
 
 export type ForgeRecipeCreateWithoutWeaponInput = {
-  id: number;
+  id?: string;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   craftingTime?: number | null;
@@ -18336,14 +17370,14 @@ export type WeaponAscensionScalarWhereInput = {
   AND?: Enumerable<WeaponAscensionScalarWhereInput>;
   OR?: Array<WeaponAscensionScalarWhereInput>;
   NOT?: Enumerable<WeaponAscensionScalarWhereInput>;
-  id?: number | IntFilter;
+  id?: string | StringFilter;
   createdAt?: Date | string | DateTimeFilter;
   updatedAt?: Date | string | DateTimeFilter;
   level?: number | IntFilter;
   maxLevel?: number | IntFilter;
   recipe?: JsonNullableFilter | null;
-  weaponAscensionMaterialId?: number | IntNullableFilter | null;
-  weaponId?: number | IntNullableFilter | null;
+  weaponAscensionMaterialId?: string | StringNullableFilter | null;
+  weaponId?: string | StringNullableFilter | null;
 };
 
 export type WeaponAscensionUpsertWithWhereUniqueWithoutWeaponInput = {
@@ -18353,7 +17387,7 @@ export type WeaponAscensionUpsertWithWhereUniqueWithoutWeaponInput = {
 };
 
 export type ForgeRecipeUpdateWithoutWeaponDataInput = {
-  id?: number | IntFieldUpdateOperationsInput;
+  id?: string | StringFieldUpdateOperationsInput;
   createdAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   updatedAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   craftingTime?: number | NullableIntFieldUpdateOperationsInput | null;
@@ -18368,7 +17402,7 @@ export type ForgeRecipeUpsertWithoutWeaponInput = {
 };
 
 export type CommonAscensionMaterialCreateWithoutWeaponAscensionsInput = {
-  id: number;
+  id?: string;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   name: string;
@@ -18380,7 +17414,7 @@ export type CommonAscensionMaterialCreateWithoutWeaponAscensionsInput = {
 };
 
 export type WeaponAscensionMaterialCreateWithoutWeaponAscensionsInput = {
-  id: number;
+  id?: string;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   name: string;
@@ -18393,7 +17427,7 @@ export type WeaponAscensionMaterialCreateWithoutWeaponAscensionsInput = {
 };
 
 export type WeaponCreateWithoutAscensionsInput = {
-  id: number;
+  id?: string;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   name: string;
@@ -18422,7 +17456,7 @@ export type CommonAscensionMaterialUpsertWithWhereUniqueWithoutWeaponAscensionsI
 };
 
 export type WeaponAscensionMaterialUpdateWithoutWeaponAscensionsDataInput = {
-  id?: number | IntFieldUpdateOperationsInput;
+  id?: string | StringFieldUpdateOperationsInput;
   createdAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   updatedAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   name?: string | StringFieldUpdateOperationsInput;
@@ -18442,7 +17476,7 @@ export type WeaponAscensionMaterialUpsertWithoutWeaponAscensionsInput = {
 };
 
 export type WeaponUpdateWithoutAscensionsDataInput = {
-  id?: number | IntFieldUpdateOperationsInput;
+  id?: string | StringFieldUpdateOperationsInput;
   createdAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   updatedAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   name?: string | StringFieldUpdateOperationsInput;
@@ -18468,7 +17502,7 @@ export type WeaponUpsertWithoutAscensionsInput = {
 };
 
 export type CharacterAscensionCreateWithoutCommonAscensionMaterialsInput = {
-  id: number;
+  id?: string;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   level: number;
@@ -18479,7 +17513,7 @@ export type CharacterAscensionCreateWithoutCommonAscensionMaterialsInput = {
 };
 
 export type WeaponAscensionCreateWithoutCommonAscensionMaterialsInput = {
-  id: number;
+  id?: string;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   level: number;
@@ -18512,7 +17546,7 @@ export type WeaponAscensionUpsertWithWhereUniqueWithoutCommonAscensionMaterialsI
 };
 
 export type DomainCreateWithoutWeaponAscensionMaterialsInput = {
-  id: number;
+  id?: string;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   name: string;
@@ -18525,7 +17559,7 @@ export type DomainCreateWithoutWeaponAscensionMaterialsInput = {
 };
 
 export type WeaponAscensionCreateWithoutWeaponAscensionMaterialInput = {
-  id: number;
+  id?: string;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   level: number;
@@ -18536,7 +17570,7 @@ export type WeaponAscensionCreateWithoutWeaponAscensionMaterialInput = {
 };
 
 export type DomainUpdateWithoutWeaponAscensionMaterialsDataInput = {
-  id?: number | IntFieldUpdateOperationsInput;
+  id?: string | StringFieldUpdateOperationsInput;
   createdAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   updatedAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   name?: string | StringFieldUpdateOperationsInput;
@@ -18565,7 +17599,7 @@ export type WeaponAscensionUpsertWithWhereUniqueWithoutWeaponAscensionMaterialIn
 };
 
 export type ForgeRecipeCreateWithoutWeaponEnhancementMaterialInput = {
-  id: number;
+  id?: string;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   craftingTime?: number | null;
@@ -18575,7 +17609,7 @@ export type ForgeRecipeCreateWithoutWeaponEnhancementMaterialInput = {
 };
 
 export type ForgeRecipeCreateWithoutWeaponEnhancementMaterialsInput = {
-  id: number;
+  id?: string;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   craftingTime?: number | null;
@@ -18585,7 +17619,7 @@ export type ForgeRecipeCreateWithoutWeaponEnhancementMaterialsInput = {
 };
 
 export type ForgeRecipeUpdateWithoutWeaponEnhancementMaterialDataInput = {
-  id?: number | IntFieldUpdateOperationsInput;
+  id?: string | StringFieldUpdateOperationsInput;
   createdAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   updatedAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   craftingTime?: number | NullableIntFieldUpdateOperationsInput | null;
@@ -18600,7 +17634,7 @@ export type ForgeRecipeUpsertWithoutWeaponEnhancementMaterialInput = {
 };
 
 export type ForgeRecipeUpdateWithoutWeaponEnhancementMaterialsDataInput = {
-  id?: number | IntFieldUpdateOperationsInput;
+  id?: string | StringFieldUpdateOperationsInput;
   createdAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   updatedAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   craftingTime?: number | NullableIntFieldUpdateOperationsInput | null;
@@ -18615,7 +17649,7 @@ export type ForgeRecipeUpsertWithoutWeaponEnhancementMaterialsInput = {
 };
 
 export type CharacterAscensionCreateWithoutCharacterAscensionMaterialInput = {
-  id: number;
+  id?: string;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   level: number;
@@ -18637,7 +17671,7 @@ export type CharacterAscensionUpsertWithWhereUniqueWithoutCharacterAscensionMate
 };
 
 export type DomainCreateWithoutTalentLevelUpMaterialsInput = {
-  id: number;
+  id?: string;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   name: string;
@@ -18650,7 +17684,7 @@ export type DomainCreateWithoutTalentLevelUpMaterialsInput = {
 };
 
 export type TalentCreateWithoutTalentLevelUpMaterialInput = {
-  id: number;
+  id?: string;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   description?: InputJsonValue | null;
@@ -18661,7 +17695,7 @@ export type TalentCreateWithoutTalentLevelUpMaterialInput = {
 };
 
 export type DomainUpdateWithoutTalentLevelUpMaterialsDataInput = {
-  id?: number | IntFieldUpdateOperationsInput;
+  id?: string | StringFieldUpdateOperationsInput;
   createdAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   updatedAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   name?: string | StringFieldUpdateOperationsInput;
@@ -18690,7 +17724,7 @@ export type TalentUpsertWithWhereUniqueWithoutTalentLevelUpMaterialInput = {
 };
 
 export type ConsumeableRecipeCreateWithoutCraftingMaterialsInput = {
-  id: number;
+  id?: string;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   recipe?: InputJsonValue | null;
@@ -18712,11 +17746,11 @@ export type ConsumeableRecipeScalarWhereInput = {
   AND?: Enumerable<ConsumeableRecipeScalarWhereInput>;
   OR?: Array<ConsumeableRecipeScalarWhereInput>;
   NOT?: Enumerable<ConsumeableRecipeScalarWhereInput>;
-  id?: number | IntFilter;
+  id?: string | StringFilter;
   createdAt?: Date | string | DateTimeFilter;
   updatedAt?: Date | string | DateTimeFilter;
   recipe?: JsonNullableFilter | null;
-  consumeableId?: number | IntNullableFilter | null;
+  consumeableId?: string | StringNullableFilter | null;
 };
 
 export type ConsumeableRecipeUpsertWithWhereUniqueWithoutCraftingMaterialsInput = {
@@ -18726,7 +17760,7 @@ export type ConsumeableRecipeUpsertWithWhereUniqueWithoutCraftingMaterialsInput 
 };
 
 export type ProcessRecipeCreateWithoutMaterialInput = {
-  id: number;
+  id?: string;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   processingTime?: number | null;
@@ -18734,7 +17768,7 @@ export type ProcessRecipeCreateWithoutMaterialInput = {
 };
 
 export type ConsumeableRecipeCreateWithoutCookingMaterialsInput = {
-  id: number;
+  id?: string;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   recipe?: InputJsonValue | null;
@@ -18743,7 +17777,7 @@ export type ConsumeableRecipeCreateWithoutCookingMaterialsInput = {
 };
 
 export type ProcessRecipeUpdateWithoutMaterialDataInput = {
-  id?: number | IntFieldUpdateOperationsInput;
+  id?: string | StringFieldUpdateOperationsInput;
   createdAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   updatedAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   processingTime?: number | NullableIntFieldUpdateOperationsInput | null;
@@ -18767,7 +17801,7 @@ export type ConsumeableRecipeUpsertWithWhereUniqueWithoutCookingMaterialsInput =
 };
 
 export type ArtifactCreateWithoutDomainInput = {
-  id: number;
+  id?: string;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   name: string;
@@ -18781,7 +17815,7 @@ export type ArtifactCreateWithoutDomainInput = {
 };
 
 export type RegionCreateWithoutDomainsInput = {
-  id: number;
+  id?: string;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   name: string;
@@ -18790,7 +17824,7 @@ export type RegionCreateWithoutDomainsInput = {
 };
 
 export type TalentLevelUpMaterialCreateWithoutDomainInput = {
-  id: number;
+  id?: string;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   name: string;
@@ -18803,7 +17837,7 @@ export type TalentLevelUpMaterialCreateWithoutDomainInput = {
 };
 
 export type WeaponAscensionMaterialCreateWithoutDomainInput = {
-  id: number;
+  id?: string;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   name: string;
@@ -18829,7 +17863,7 @@ export type ArtifactScalarWhereInput = {
   AND?: Enumerable<ArtifactScalarWhereInput>;
   OR?: Array<ArtifactScalarWhereInput>;
   NOT?: Enumerable<ArtifactScalarWhereInput>;
-  id?: number | IntFilter;
+  id?: string | StringFilter;
   createdAt?: Date | string | DateTimeFilter;
   updatedAt?: Date | string | DateTimeFilter;
   name?: string | StringFilter;
@@ -18839,8 +17873,8 @@ export type ArtifactScalarWhereInput = {
   possibleSubStats?: JsonNullableFilter | null;
   source?: JsonNullableFilter | null;
   type?: ArtifactType | EnumArtifactTypeFilter;
-  artifactSetId?: number | IntNullableFilter | null;
-  domainId?: number | IntNullableFilter | null;
+  artifactSetId?: string | StringNullableFilter | null;
+  domainId?: string | StringNullableFilter | null;
 };
 
 export type ArtifactUpsertWithWhereUniqueWithoutDomainInput = {
@@ -18850,7 +17884,7 @@ export type ArtifactUpsertWithWhereUniqueWithoutDomainInput = {
 };
 
 export type RegionUpdateWithoutDomainsDataInput = {
-  id?: number | IntFieldUpdateOperationsInput;
+  id?: string | StringFieldUpdateOperationsInput;
   createdAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   updatedAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   name?: string | StringFieldUpdateOperationsInput;
@@ -18877,7 +17911,7 @@ export type TalentLevelUpMaterialScalarWhereInput = {
   AND?: Enumerable<TalentLevelUpMaterialScalarWhereInput>;
   OR?: Array<TalentLevelUpMaterialScalarWhereInput>;
   NOT?: Enumerable<TalentLevelUpMaterialScalarWhereInput>;
-  id?: number | IntFilter;
+  id?: string | StringFilter;
   createdAt?: Date | string | DateTimeFilter;
   updatedAt?: Date | string | DateTimeFilter;
   name?: string | StringFilter;
@@ -18886,7 +17920,7 @@ export type TalentLevelUpMaterialScalarWhereInput = {
   image?: string | StringNullableFilter | null;
   rarity?: number | IntFilter;
   group?: TalentLevelUpMaterialGroup | EnumTalentLevelUpMaterialGroupFilter;
-  domainId?: number | IntNullableFilter | null;
+  domainId?: string | StringNullableFilter | null;
 };
 
 export type TalentLevelUpMaterialUpsertWithWhereUniqueWithoutDomainInput = {
@@ -18909,7 +17943,7 @@ export type WeaponAscensionMaterialScalarWhereInput = {
   AND?: Enumerable<WeaponAscensionMaterialScalarWhereInput>;
   OR?: Array<WeaponAscensionMaterialScalarWhereInput>;
   NOT?: Enumerable<WeaponAscensionMaterialScalarWhereInput>;
-  id?: number | IntFilter;
+  id?: string | StringFilter;
   createdAt?: Date | string | DateTimeFilter;
   updatedAt?: Date | string | DateTimeFilter;
   name?: string | StringFilter;
@@ -18918,7 +17952,7 @@ export type WeaponAscensionMaterialScalarWhereInput = {
   image?: string | StringNullableFilter | null;
   rarity?: number | IntFilter;
   group?: WeaponAscensionMaterialGroup | EnumWeaponAscensionMaterialGroupFilter;
-  domainId?: number | IntNullableFilter | null;
+  domainId?: string | StringNullableFilter | null;
 };
 
 export type WeaponAscensionMaterialUpsertWithWhereUniqueWithoutDomainInput = {
@@ -18928,7 +17962,7 @@ export type WeaponAscensionMaterialUpsertWithWhereUniqueWithoutDomainInput = {
 };
 
 export type CharacterProfileCreateWithoutSpecialtyDishInput = {
-  id: number;
+  id?: string;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   affiliation?: string | null;
@@ -18944,7 +17978,7 @@ export type CharacterProfileCreateWithoutSpecialtyDishInput = {
 };
 
 export type ConsumeableRecipeCreateWithoutConsumeableInput = {
-  id: number;
+  id?: string;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   recipe?: InputJsonValue | null;
@@ -18953,7 +17987,7 @@ export type ConsumeableRecipeCreateWithoutConsumeableInput = {
 };
 
 export type CharacterProfileUpdateWithoutSpecialtyDishDataInput = {
-  id?: number | IntFieldUpdateOperationsInput;
+  id?: string | StringFieldUpdateOperationsInput;
   createdAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   updatedAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   affiliation?: string | NullableStringFieldUpdateOperationsInput | null;
@@ -18974,7 +18008,7 @@ export type CharacterProfileUpsertWithoutSpecialtyDishInput = {
 };
 
 export type ConsumeableRecipeUpdateWithoutConsumeableDataInput = {
-  id?: number | IntFieldUpdateOperationsInput;
+  id?: string | StringFieldUpdateOperationsInput;
   createdAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   updatedAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   recipe?: InputJsonValue | null;
@@ -18988,7 +18022,7 @@ export type ConsumeableRecipeUpsertWithoutConsumeableInput = {
 };
 
 export type ConsumeableCreateWithoutRecipeInput = {
-  id: number;
+  id?: string;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   name: string;
@@ -19002,7 +18036,7 @@ export type ConsumeableCreateWithoutRecipeInput = {
 };
 
 export type CraftingMaterialCreateWithoutRecipesInput = {
-  id: number;
+  id?: string;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   name: string;
@@ -19013,7 +18047,7 @@ export type CraftingMaterialCreateWithoutRecipesInput = {
 };
 
 export type CookingMaterialCreateWithoutRecipesInput = {
-  id: number;
+  id?: string;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   name: string;
@@ -19025,7 +18059,7 @@ export type CookingMaterialCreateWithoutRecipesInput = {
 };
 
 export type ConsumeableUpdateWithoutRecipeDataInput = {
-  id?: number | IntFieldUpdateOperationsInput;
+  id?: string | StringFieldUpdateOperationsInput;
   createdAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   updatedAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   name?: string | StringFieldUpdateOperationsInput;
@@ -19059,7 +18093,7 @@ export type CraftingMaterialScalarWhereInput = {
   AND?: Enumerable<CraftingMaterialScalarWhereInput>;
   OR?: Array<CraftingMaterialScalarWhereInput>;
   NOT?: Enumerable<CraftingMaterialScalarWhereInput>;
-  id?: number | IntFilter;
+  id?: string | StringFilter;
   createdAt?: Date | string | DateTimeFilter;
   updatedAt?: Date | string | DateTimeFilter;
   name?: string | StringFilter;
@@ -19089,7 +18123,7 @@ export type CookingMaterialScalarWhereInput = {
   AND?: Enumerable<CookingMaterialScalarWhereInput>;
   OR?: Array<CookingMaterialScalarWhereInput>;
   NOT?: Enumerable<CookingMaterialScalarWhereInput>;
-  id?: number | IntFilter;
+  id?: string | StringFilter;
   createdAt?: Date | string | DateTimeFilter;
   updatedAt?: Date | string | DateTimeFilter;
   name?: string | StringFilter;
@@ -19106,7 +18140,7 @@ export type CookingMaterialUpsertWithWhereUniqueWithoutRecipesInput = {
 };
 
 export type CookingMaterialCreateWithoutProcessingRecipeInput = {
-  id: number;
+  id?: string;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   name: string;
@@ -19118,7 +18152,7 @@ export type CookingMaterialCreateWithoutProcessingRecipeInput = {
 };
 
 export type CookingMaterialUpdateWithoutProcessingRecipeDataInput = {
-  id?: number | IntFieldUpdateOperationsInput;
+  id?: string | StringFieldUpdateOperationsInput;
   createdAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   updatedAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   name?: string | StringFieldUpdateOperationsInput;
@@ -19135,7 +18169,7 @@ export type CookingMaterialUpsertWithoutProcessingRecipeInput = {
 };
 
 export type WeaponEnhancementMaterialCreateWithoutRecipeUseInput = {
-  id: number;
+  id?: string;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   name: string;
@@ -19147,7 +18181,7 @@ export type WeaponEnhancementMaterialCreateWithoutRecipeUseInput = {
 };
 
 export type WeaponEnhancementMaterialCreateWithoutRecipeCreateInput = {
-  id: number;
+  id?: string;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   name: string;
@@ -19159,7 +18193,7 @@ export type WeaponEnhancementMaterialCreateWithoutRecipeCreateInput = {
 };
 
 export type WeaponCreateWithoutForgeRecipeInput = {
-  id: number;
+  id?: string;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   name: string;
@@ -19190,7 +18224,7 @@ export type WeaponEnhancementMaterialScalarWhereInput = {
   AND?: Enumerable<WeaponEnhancementMaterialScalarWhereInput>;
   OR?: Array<WeaponEnhancementMaterialScalarWhereInput>;
   NOT?: Enumerable<WeaponEnhancementMaterialScalarWhereInput>;
-  id?: number | IntFilter;
+  id?: string | StringFilter;
   createdAt?: Date | string | DateTimeFilter;
   updatedAt?: Date | string | DateTimeFilter;
   name?: string | StringFilter;
@@ -19198,7 +18232,7 @@ export type WeaponEnhancementMaterialScalarWhereInput = {
   image?: string | StringNullableFilter | null;
   rarity?: number | IntFilter;
   source?: JsonNullableFilter | null;
-  recipeUseId?: number | IntNullableFilter | null;
+  recipeUseId?: string | StringNullableFilter | null;
 };
 
 export type WeaponEnhancementMaterialUpsertWithWhereUniqueWithoutRecipeUseInput = {
@@ -19208,7 +18242,7 @@ export type WeaponEnhancementMaterialUpsertWithWhereUniqueWithoutRecipeUseInput 
 };
 
 export type WeaponEnhancementMaterialUpdateWithoutRecipeCreateDataInput = {
-  id?: number | IntFieldUpdateOperationsInput;
+  id?: string | StringFieldUpdateOperationsInput;
   createdAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   updatedAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   name?: string | StringFieldUpdateOperationsInput;
@@ -19225,7 +18259,7 @@ export type WeaponEnhancementMaterialUpsertWithoutRecipeCreateInput = {
 };
 
 export type WeaponUpdateWithoutForgeRecipeDataInput = {
-  id?: number | IntFieldUpdateOperationsInput;
+  id?: string | StringFieldUpdateOperationsInput;
   createdAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   updatedAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   name?: string | StringFieldUpdateOperationsInput;
@@ -19251,7 +18285,7 @@ export type WeaponUpsertWithoutForgeRecipeInput = {
 };
 
 export type ArtifactCreateWithoutSetInput = {
-  id: number;
+  id?: string;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   name: string;
@@ -19276,7 +18310,7 @@ export type ArtifactUpsertWithWhereUniqueWithoutSetInput = {
 };
 
 export type ArtifactSetCreateWithoutArtifactsInput = {
-  id: number;
+  id?: string;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   name: string;
@@ -19288,7 +18322,7 @@ export type ArtifactSetCreateWithoutArtifactsInput = {
 };
 
 export type DomainCreateWithoutArtifactsInput = {
-  id: number;
+  id?: string;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   name: string;
@@ -19301,7 +18335,7 @@ export type DomainCreateWithoutArtifactsInput = {
 };
 
 export type ArtifactSetUpdateWithoutArtifactsDataInput = {
-  id?: number | IntFieldUpdateOperationsInput;
+  id?: string | StringFieldUpdateOperationsInput;
   createdAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   updatedAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   name?: string | StringFieldUpdateOperationsInput;
@@ -19318,7 +18352,7 @@ export type ArtifactSetUpsertWithoutArtifactsInput = {
 };
 
 export type DomainUpdateWithoutArtifactsDataInput = {
-  id?: number | IntFieldUpdateOperationsInput;
+  id?: string | StringFieldUpdateOperationsInput;
   createdAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   updatedAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   name?: string | StringFieldUpdateOperationsInput;
@@ -19336,7 +18370,7 @@ export type DomainUpsertWithoutArtifactsInput = {
 };
 
 export type CharacterAscensionUpdateWithoutCharacterDataInput = {
-  id?: number | IntFieldUpdateOperationsInput;
+  id?: string | StringFieldUpdateOperationsInput;
   createdAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   updatedAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   level?: number | IntFieldUpdateOperationsInput;
@@ -19347,7 +18381,7 @@ export type CharacterAscensionUpdateWithoutCharacterDataInput = {
 };
 
 export type CharacterAscensionUpdateManyDataInput = {
-  id?: number | IntFieldUpdateOperationsInput;
+  id?: string | StringFieldUpdateOperationsInput;
   createdAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   updatedAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   level?: number | IntFieldUpdateOperationsInput;
@@ -19356,7 +18390,7 @@ export type CharacterAscensionUpdateManyDataInput = {
 };
 
 export type ElementUpdateWithoutCharactersDataInput = {
-  id?: number | IntFieldUpdateOperationsInput;
+  id?: string | StringFieldUpdateOperationsInput;
   createdAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   updatedAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   name?: string | StringFieldUpdateOperationsInput;
@@ -19368,7 +18402,7 @@ export type ElementUpdateWithoutCharactersDataInput = {
 };
 
 export type ElementUpdateManyDataInput = {
-  id?: number | IntFieldUpdateOperationsInput;
+  id?: string | StringFieldUpdateOperationsInput;
   createdAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   updatedAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   name?: string | StringFieldUpdateOperationsInput;
@@ -19378,7 +18412,7 @@ export type ElementUpdateManyDataInput = {
 };
 
 export type TalentUpdateWithoutCharacterDataInput = {
-  id?: number | IntFieldUpdateOperationsInput;
+  id?: string | StringFieldUpdateOperationsInput;
   createdAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   updatedAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   description?: InputJsonValue | null;
@@ -19389,7 +18423,7 @@ export type TalentUpdateWithoutCharacterDataInput = {
 };
 
 export type TalentUpdateManyDataInput = {
-  id?: number | IntFieldUpdateOperationsInput;
+  id?: string | StringFieldUpdateOperationsInput;
   createdAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   updatedAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   description?: InputJsonValue | null;
@@ -19399,7 +18433,7 @@ export type TalentUpdateManyDataInput = {
 };
 
 export type CommonAscensionMaterialUpdateWithoutCharacterAscensionsDataInput = {
-  id?: number | IntFieldUpdateOperationsInput;
+  id?: string | StringFieldUpdateOperationsInput;
   createdAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   updatedAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   name?: string | StringFieldUpdateOperationsInput;
@@ -19413,7 +18447,7 @@ export type CommonAscensionMaterialUpdateWithoutCharacterAscensionsDataInput = {
 };
 
 export type CommonAscensionMaterialUpdateManyDataInput = {
-  id?: number | IntFieldUpdateOperationsInput;
+  id?: string | StringFieldUpdateOperationsInput;
   createdAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   updatedAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   name?: string | StringFieldUpdateOperationsInput;
@@ -19426,7 +18460,7 @@ export type CommonAscensionMaterialUpdateManyDataInput = {
 };
 
 export type CharacterUpdateWithoutElementsDataInput = {
-  id?: number | IntFieldUpdateOperationsInput;
+  id?: string | StringFieldUpdateOperationsInput;
   createdAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   updatedAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   name?: string | StringFieldUpdateOperationsInput;
@@ -19441,7 +18475,7 @@ export type CharacterUpdateWithoutElementsDataInput = {
 };
 
 export type CharacterUpdateManyDataInput = {
-  id?: number | IntFieldUpdateOperationsInput;
+  id?: string | StringFieldUpdateOperationsInput;
   createdAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   updatedAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   name?: string | StringFieldUpdateOperationsInput;
@@ -19453,7 +18487,7 @@ export type CharacterUpdateManyDataInput = {
 };
 
 export type CharacterProfileUpdateWithoutVisionDataInput = {
-  id?: number | IntFieldUpdateOperationsInput;
+  id?: string | StringFieldUpdateOperationsInput;
   createdAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   updatedAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   affiliation?: string | NullableStringFieldUpdateOperationsInput | null;
@@ -19469,7 +18503,7 @@ export type CharacterProfileUpdateWithoutVisionDataInput = {
 };
 
 export type CharacterProfileUpdateManyDataInput = {
-  id?: number | IntFieldUpdateOperationsInput;
+  id?: string | StringFieldUpdateOperationsInput;
   createdAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   updatedAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   affiliation?: string | NullableStringFieldUpdateOperationsInput | null;
@@ -19482,7 +18516,7 @@ export type CharacterProfileUpdateManyDataInput = {
 };
 
 export type CharacterProfileUpdateWithoutRegionDataInput = {
-  id?: number | IntFieldUpdateOperationsInput;
+  id?: string | StringFieldUpdateOperationsInput;
   createdAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   updatedAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   affiliation?: string | NullableStringFieldUpdateOperationsInput | null;
@@ -19498,7 +18532,7 @@ export type CharacterProfileUpdateWithoutRegionDataInput = {
 };
 
 export type DomainUpdateWithoutRegionDataInput = {
-  id?: number | IntFieldUpdateOperationsInput;
+  id?: string | StringFieldUpdateOperationsInput;
   createdAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   updatedAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   name?: string | StringFieldUpdateOperationsInput;
@@ -19511,7 +18545,7 @@ export type DomainUpdateWithoutRegionDataInput = {
 };
 
 export type DomainUpdateManyDataInput = {
-  id?: number | IntFieldUpdateOperationsInput;
+  id?: string | StringFieldUpdateOperationsInput;
   createdAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   updatedAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   name?: string | StringFieldUpdateOperationsInput;
@@ -19521,7 +18555,7 @@ export type DomainUpdateManyDataInput = {
 };
 
 export type WeaponAscensionUpdateWithoutWeaponDataInput = {
-  id?: number | IntFieldUpdateOperationsInput;
+  id?: string | StringFieldUpdateOperationsInput;
   createdAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   updatedAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   level?: number | IntFieldUpdateOperationsInput;
@@ -19532,7 +18566,7 @@ export type WeaponAscensionUpdateWithoutWeaponDataInput = {
 };
 
 export type WeaponAscensionUpdateManyDataInput = {
-  id?: number | IntFieldUpdateOperationsInput;
+  id?: string | StringFieldUpdateOperationsInput;
   createdAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   updatedAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   level?: number | IntFieldUpdateOperationsInput;
@@ -19541,7 +18575,7 @@ export type WeaponAscensionUpdateManyDataInput = {
 };
 
 export type CommonAscensionMaterialUpdateWithoutWeaponAscensionsDataInput = {
-  id?: number | IntFieldUpdateOperationsInput;
+  id?: string | StringFieldUpdateOperationsInput;
   createdAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   updatedAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   name?: string | StringFieldUpdateOperationsInput;
@@ -19555,7 +18589,7 @@ export type CommonAscensionMaterialUpdateWithoutWeaponAscensionsDataInput = {
 };
 
 export type CharacterAscensionUpdateWithoutCommonAscensionMaterialsDataInput = {
-  id?: number | IntFieldUpdateOperationsInput;
+  id?: string | StringFieldUpdateOperationsInput;
   createdAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   updatedAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   level?: number | IntFieldUpdateOperationsInput;
@@ -19566,7 +18600,7 @@ export type CharacterAscensionUpdateWithoutCommonAscensionMaterialsDataInput = {
 };
 
 export type WeaponAscensionUpdateWithoutCommonAscensionMaterialsDataInput = {
-  id?: number | IntFieldUpdateOperationsInput;
+  id?: string | StringFieldUpdateOperationsInput;
   createdAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   updatedAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   level?: number | IntFieldUpdateOperationsInput;
@@ -19577,7 +18611,7 @@ export type WeaponAscensionUpdateWithoutCommonAscensionMaterialsDataInput = {
 };
 
 export type WeaponAscensionUpdateWithoutWeaponAscensionMaterialDataInput = {
-  id?: number | IntFieldUpdateOperationsInput;
+  id?: string | StringFieldUpdateOperationsInput;
   createdAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   updatedAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   level?: number | IntFieldUpdateOperationsInput;
@@ -19588,7 +18622,7 @@ export type WeaponAscensionUpdateWithoutWeaponAscensionMaterialDataInput = {
 };
 
 export type CharacterAscensionUpdateWithoutCharacterAscensionMaterialDataInput = {
-  id?: number | IntFieldUpdateOperationsInput;
+  id?: string | StringFieldUpdateOperationsInput;
   createdAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   updatedAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   level?: number | IntFieldUpdateOperationsInput;
@@ -19599,7 +18633,7 @@ export type CharacterAscensionUpdateWithoutCharacterAscensionMaterialDataInput =
 };
 
 export type TalentUpdateWithoutTalentLevelUpMaterialDataInput = {
-  id?: number | IntFieldUpdateOperationsInput;
+  id?: string | StringFieldUpdateOperationsInput;
   createdAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   updatedAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   description?: InputJsonValue | null;
@@ -19610,7 +18644,7 @@ export type TalentUpdateWithoutTalentLevelUpMaterialDataInput = {
 };
 
 export type ConsumeableRecipeUpdateWithoutCraftingMaterialsDataInput = {
-  id?: number | IntFieldUpdateOperationsInput;
+  id?: string | StringFieldUpdateOperationsInput;
   createdAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   updatedAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   recipe?: InputJsonValue | null;
@@ -19619,14 +18653,14 @@ export type ConsumeableRecipeUpdateWithoutCraftingMaterialsDataInput = {
 };
 
 export type ConsumeableRecipeUpdateManyDataInput = {
-  id?: number | IntFieldUpdateOperationsInput;
+  id?: string | StringFieldUpdateOperationsInput;
   createdAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   updatedAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   recipe?: InputJsonValue | null;
 };
 
 export type ConsumeableRecipeUpdateWithoutCookingMaterialsDataInput = {
-  id?: number | IntFieldUpdateOperationsInput;
+  id?: string | StringFieldUpdateOperationsInput;
   createdAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   updatedAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   recipe?: InputJsonValue | null;
@@ -19635,7 +18669,7 @@ export type ConsumeableRecipeUpdateWithoutCookingMaterialsDataInput = {
 };
 
 export type ArtifactUpdateWithoutDomainDataInput = {
-  id?: number | IntFieldUpdateOperationsInput;
+  id?: string | StringFieldUpdateOperationsInput;
   createdAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   updatedAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   name?: string | StringFieldUpdateOperationsInput;
@@ -19649,7 +18683,7 @@ export type ArtifactUpdateWithoutDomainDataInput = {
 };
 
 export type ArtifactUpdateManyDataInput = {
-  id?: number | IntFieldUpdateOperationsInput;
+  id?: string | StringFieldUpdateOperationsInput;
   createdAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   updatedAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   name?: string | StringFieldUpdateOperationsInput;
@@ -19662,7 +18696,7 @@ export type ArtifactUpdateManyDataInput = {
 };
 
 export type TalentLevelUpMaterialUpdateWithoutDomainDataInput = {
-  id?: number | IntFieldUpdateOperationsInput;
+  id?: string | StringFieldUpdateOperationsInput;
   createdAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   updatedAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   name?: string | StringFieldUpdateOperationsInput;
@@ -19677,7 +18711,7 @@ export type TalentLevelUpMaterialUpdateWithoutDomainDataInput = {
 };
 
 export type TalentLevelUpMaterialUpdateManyDataInput = {
-  id?: number | IntFieldUpdateOperationsInput;
+  id?: string | StringFieldUpdateOperationsInput;
   createdAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   updatedAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   name?: string | StringFieldUpdateOperationsInput;
@@ -19691,7 +18725,7 @@ export type TalentLevelUpMaterialUpdateManyDataInput = {
 };
 
 export type WeaponAscensionMaterialUpdateWithoutDomainDataInput = {
-  id?: number | IntFieldUpdateOperationsInput;
+  id?: string | StringFieldUpdateOperationsInput;
   createdAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   updatedAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   name?: string | StringFieldUpdateOperationsInput;
@@ -19706,7 +18740,7 @@ export type WeaponAscensionMaterialUpdateWithoutDomainDataInput = {
 };
 
 export type WeaponAscensionMaterialUpdateManyDataInput = {
-  id?: number | IntFieldUpdateOperationsInput;
+  id?: string | StringFieldUpdateOperationsInput;
   createdAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   updatedAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   name?: string | StringFieldUpdateOperationsInput;
@@ -19720,7 +18754,7 @@ export type WeaponAscensionMaterialUpdateManyDataInput = {
 };
 
 export type CraftingMaterialUpdateWithoutRecipesDataInput = {
-  id?: number | IntFieldUpdateOperationsInput;
+  id?: string | StringFieldUpdateOperationsInput;
   createdAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   updatedAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   name?: string | StringFieldUpdateOperationsInput;
@@ -19731,7 +18765,7 @@ export type CraftingMaterialUpdateWithoutRecipesDataInput = {
 };
 
 export type CraftingMaterialUpdateManyDataInput = {
-  id?: number | IntFieldUpdateOperationsInput;
+  id?: string | StringFieldUpdateOperationsInput;
   createdAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   updatedAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   name?: string | StringFieldUpdateOperationsInput;
@@ -19742,7 +18776,7 @@ export type CraftingMaterialUpdateManyDataInput = {
 };
 
 export type CookingMaterialUpdateWithoutRecipesDataInput = {
-  id?: number | IntFieldUpdateOperationsInput;
+  id?: string | StringFieldUpdateOperationsInput;
   createdAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   updatedAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   name?: string | StringFieldUpdateOperationsInput;
@@ -19754,7 +18788,7 @@ export type CookingMaterialUpdateWithoutRecipesDataInput = {
 };
 
 export type CookingMaterialUpdateManyDataInput = {
-  id?: number | IntFieldUpdateOperationsInput;
+  id?: string | StringFieldUpdateOperationsInput;
   createdAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   updatedAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   name?: string | StringFieldUpdateOperationsInput;
@@ -19765,7 +18799,7 @@ export type CookingMaterialUpdateManyDataInput = {
 };
 
 export type WeaponEnhancementMaterialUpdateWithoutRecipeUseDataInput = {
-  id?: number | IntFieldUpdateOperationsInput;
+  id?: string | StringFieldUpdateOperationsInput;
   createdAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   updatedAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   name?: string | StringFieldUpdateOperationsInput;
@@ -19777,7 +18811,7 @@ export type WeaponEnhancementMaterialUpdateWithoutRecipeUseDataInput = {
 };
 
 export type WeaponEnhancementMaterialUpdateManyDataInput = {
-  id?: number | IntFieldUpdateOperationsInput;
+  id?: string | StringFieldUpdateOperationsInput;
   createdAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   updatedAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   name?: string | StringFieldUpdateOperationsInput;
@@ -19788,7 +18822,7 @@ export type WeaponEnhancementMaterialUpdateManyDataInput = {
 };
 
 export type ArtifactUpdateWithoutSetDataInput = {
-  id?: number | IntFieldUpdateOperationsInput;
+  id?: string | StringFieldUpdateOperationsInput;
   createdAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   updatedAt?: Date | string | DateTimeFieldUpdateOperationsInput;
   name?: string | StringFieldUpdateOperationsInput;

@@ -6,6 +6,12 @@
       {
         "allowSingleExtends": true
       }
+    ],
+    "node/no-extraneous-import": [
+      "error",
+      {
+        "allowModules": ["express"]
+      }
     ]
   }
 }

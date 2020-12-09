@@ -1,25 +1,6 @@
-import type {
-  CharacterCreateInput,
-  CharacterProfileCreateInput,
-  ElementCreateInput,
-  EnumWeaponTypeFieldUpdateOperationsInput,
-  TalentCreateInput,
-} from '../../types/schema_0.3.1/schema';
+import type { CharactersOutput } from './types';
 import list from './list';
 import profile from './profile';
-
-interface CharacterOutput extends Omit<CharacterCreateInput, 'id'> {}
-interface CharacterProfileOutput
-  extends Omit<CharacterProfileCreateInput, 'id' | 'character'> {}
-interface TalentOutput extends Omit<TalentCreateInput, 'id' | 'character'> {}
-interface ElementOutput extends Omit<ElementCreateInput, 'id'> {}
-
-interface CharactersOutput {
-  character: CharacterOutput;
-  characterProfile?: CharacterProfileOutput;
-  talents?: TalentOutput[];
-  elements?: ElementOutput[];
-}
 
 const scrape = async (): Promise<CharactersOutput[]> => {
   const tables = await list();
@@ -38,7 +19,7 @@ const scrape = async (): Promise<CharactersOutput[]> => {
         rarity: char.rarity,
         constellations: profile && profile.constellations,
         overview: profile && profile.introduction,
-        weapon: char.weapon as EnumWeaponTypeFieldUpdateOperationsInput['set'],
+        weapon: char.weapon as CharactersOutput['character']['weapon'], // Required for enum typing
       },
       characterProfile: {
         affiliation: profile?.affiliation,

@@ -426,7 +426,7 @@ declare function unpack({ document, path, data }: UnpackOptions): any;
 //                 Kristian Brünn <https://github.com/kristianmitk>
 // Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
 
-declare let debug: debug.Debug & { debug: debug.Debug; default: debug.Debug };
+declare var debug: debug.Debug & { debug: debug.Debug; default: debug.Debug };
 
 export as namespace debug;
 
@@ -467,8 +467,8 @@ declare namespace debug {
 
 declare function Debug(namespace: string): debug.Debugger;
 declare namespace Debug {
-  let enable: (namespace: string) => void;
-  let enabled: (namespace: string) => boolean;
+  var enable: (namespace: string) => void;
+  var enabled: (namespace: string) => boolean;
 }
 
 declare type LogLevel = 'info' | 'trace' | 'debug' | 'warn' | 'error' | 'query';
