@@ -1,31 +1,7 @@
-import { fetch } from '../../helpers/fetch';
 import asyncPool from 'tiny-async-pool';
 
-interface CharacterProfilesData {
-  name: string;
-  image?: string;
-  introduction: string;
-  personality: string;
-  birthday: string;
-  constellation: string;
-  affiliation: string;
-  dish: string;
-  voiceEN: string;
-  voiceCN: string;
-  voiceJP: string;
-  voiceKR: string;
-  talents: {
-    type: string;
-    name: string;
-    icon?: string;
-    info: string;
-  }[];
-  constellations: {
-    level: number;
-    name: string;
-    effect: string;
-  }[];
-}
+import type { CharacterProfilesData } from './types';
+import { fetch } from '../../helpers/fetch';
 
 const profile = async (links: string[]): Promise<CharacterProfilesData[]> =>
   asyncPool(10, links, async link => {

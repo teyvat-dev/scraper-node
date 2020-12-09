@@ -1,16 +1,6 @@
+import type { CharacterTableData } from './types';
 import { wikiBaseURI } from '../../constants';
 import { fetch } from '../../helpers/fetch';
-
-interface CharacterTableData {
-  rarity: number;
-  image?: string;
-  name: string;
-  element: string;
-  weapon: string;
-  sex: string;
-  nation: string;
-  link?: string;
-}
 
 const list = async (): Promise<CharacterTableData[]> => {
   const $ = await fetch(`${wikiBaseURI}/wiki/Characters/List#`);
