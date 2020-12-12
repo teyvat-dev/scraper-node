@@ -3,14 +3,46 @@ import asyncPool from 'tiny-async-pool';
 import type { CharacterProfilesData } from './types';
 import { fetch } from '../../helpers/fetch';
 
+const removeSplit = (
+  original: string,
+  remove: string[],
+  denominator: string
+) => {
+  const temp = original.split(denominator);
+
+  for (const removalString of remove) {
+    const removeSplit = temp.findIndex(split => split.includes(removalString));
+    if (removeSplit !== -1) {
+      temp.splice(removeSplit, 1);
+    }
+  }
+  return temp.join(denominator);
+};
+
+const removeFinalSplit = (original: string, denominator: string) => {
+  const temp = original.split(denominator);
+
+  temp.pop();
+
+  return temp.join(denominator);
+};
+
 const profile = async (links: string[]): Promise<CharacterProfilesData[]> =>
   asyncPool(10, links, async link => {
     const $ = await fetch(link);
 
     const name = $('h1#firstHeading').text();
     const image = $('div#pi-tab-0 img.pi-image-thumbnail').attr('src');
-    const introduction = $('h3 span#Introduction').parent().next().text();
-    const personality = $('h3 span#Personality').parent().next().text();
+    const introduction = removeSplit(
+      $('h3 span#Introduction').parent().next().text(),
+      ['Official Website', 'In-game'],
+      '.'
+    );
+    const personality = removeSplit(
+      $('h3 span#Personality').parent().next().text(),
+      ['Official Website', 'In-game'],
+      '.'
+    );
 
     const bio = $('div.pi-section-content[data-ref="0"]');
     const birthday = bio.find('div.pi-item[data-source="birthday"] div').text();
@@ -60,7 +92,14 @@ const profile = async (links: string[]): Promise<CharacterProfilesData[]> =>
           .replace(/[0-9]/g, '');
         const name = $(talent).find('td:nth-of-type(2)').text();
         const icon = $(talent).find('td:nth-of-type(3) a img').attr('data-src');
-        const info = $(talent).find('td:nth-of-type(4)').text();
+        const info = removeFinalSplit(
+          $(talent).find('td:nth-of-type(4)').text(),
+          '.'
+        );
+
+        if (!type) {
+          return { type: '', name: '', icon: '', info: '' };
+        }
 
         return {
           type,
@@ -85,12 +124,22 @@ const profile = async (links: string[]): Promise<CharacterProfilesData[]> =>
         const level = Number(
           $(constellation).find('th:nth-of-type(1)').text().split('\n').join('')
         );
-        const name = $(constellation).find('td:nth-of-type(1)').text();
-        const effect = $(constellation).find('td:nth-of-type(2)').text();
+        const name = $(constellation)
+          .find('td:nth-of-type(1)')
+          .text()
+          .replace('\n', '');
+        const icon = $(constellation)
+          .find('td:nth-of-type(2) a')
+          .attr('data-src');
+        const effect = removeFinalSplit(
+          $(constellation).find('td:nth-of-type(3)').text(),
+          '.'
+        );
 
         return {
           level,
           name,
+          icon,
           effect,
         };
       })

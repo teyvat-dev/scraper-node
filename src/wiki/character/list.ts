@@ -16,7 +16,9 @@ const list = async (): Promise<CharacterTableData[]> => {
         rarity: Number($(char).find('td:nth-child(1)').text()),
         image: $(char).find('td:nth-child(2) a').attr('href'),
         name: $(char).find('td:nth-child(3) a').text(),
-        element: $(char).find('td:nth-child(4) a:last-of-type').text(),
+        element:
+          $(char).find('td:nth-child(4) a:last-of-type').text() ||
+          $(char).find('td:nth-child(4) p').text().replace('\n', ''),
         weapon: $(char).find('td:nth-child(5) a:last-of-type').text(),
         sex: $(char).find('td:nth-child(6)').text(),
         nation: $(char).find('td:nth-child(7) a:first-of-type').text(),

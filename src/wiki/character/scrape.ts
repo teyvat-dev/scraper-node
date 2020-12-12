@@ -1,6 +1,7 @@
 import type { CharactersOutput } from './types';
 import list from './list';
 import profile from './profile';
+import story from './story';
 
 const scrape = async (): Promise<CharactersOutput[]> => {
   const tables = await list();
@@ -9,9 +10,17 @@ const scrape = async (): Promise<CharactersOutput[]> => {
     tables.map(char => char.link || '').filter(link => link !== '')
   );
 
+  const stories = await story(
+    tables
+      .map(char => char.link || '')
+      .filter(link => link !== '')
+      .map(link => `${link}/Story`)
+  );
+
   // Merge into singular array to upload (using types)
   const characters: CharactersOutput[] = tables.map(char => {
     const profile = profiles.find(item => item.name === char.name);
+    const story = stories.find(item => item.name === char.name);
 
     return {
       character: {
@@ -25,6 +34,7 @@ const scrape = async (): Promise<CharactersOutput[]> => {
         affiliation: profile?.affiliation,
         birthday: profile?.birthday,
         constellation: profile?.constellation,
+        story: story?.story,
         // specialtyDish: profile && profile.specialtyDish
         overview: profile?.personality,
         voiceActor: {
@@ -39,7 +49,11 @@ const scrape = async (): Promise<CharactersOutput[]> => {
         description: talent.info,
         type: talent.type,
       })),
-      elements: [{ name: char.element }],
+      elements:
+        char.element === 'Adaptive'
+          ? [{ name: 'Anemo' }, { name: 'Geo' }]
+          : [{ name: char.element }],
+      region: char.nation,
     };
   });
 
