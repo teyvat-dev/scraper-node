@@ -1,23 +1,12 @@
-import type {
-  CharacterCreateInput,
-  CharacterProfileCreateInput,
-  ElementCreateInput,
-  TalentCreateInput,
-} from '../../types/schema_0.4.0/schema';
-
-// Parts of the output JSON (Always omit id and required connections as this is done in the parser)
-interface CharacterOutput extends Omit<CharacterCreateInput, 'id'> {}
-interface CharacterProfileOutput
-  extends Omit<CharacterProfileCreateInput, 'id' | 'character'> {}
-interface TalentOutput extends Omit<TalentCreateInput, 'id' | 'character'> {}
-interface ElementOutput extends Omit<ElementCreateInput, 'id'> {}
+import type { Create } from '@teyvatdev/types';
 
 // The output JSON
 export interface CharactersOutput {
-  character: CharacterOutput;
-  characterProfile?: CharacterProfileOutput;
-  talents?: TalentOutput[];
-  elements?: ElementOutput[];
+  character: Create.Character;
+  characterProfile?: Omit<Create.CharacterProfile, 'character' | 'region'>;
+  talents?: Omit<Create.Talent, 'character'>[];
+  elements?: Create.Element[];
+  region?: string;
 }
 
 // Temporary Scraper Data Interfaces
