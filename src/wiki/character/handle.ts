@@ -4,6 +4,7 @@ import md5 from 'crypto-md5';
 
 import scrape from './scrape';
 import { __DEV__ } from '../../constants';
+import checkIsTainted from '../../helpers/checkIsTainted';
 
 const handle = async (res: Response, storage: Storage) => {
   const characters = await scrape();
@@ -24,9 +25,9 @@ const handle = async (res: Response, storage: Storage) => {
 
       const file = bucket.file(`wiki_characters/${character.character.name}`);
 
-      const metadata = await file.getMetadata();
+      const isTainted = await checkIsTainted(file, data);
 
-      if (metadata[0].md5Hash === md5(data, 'base64')) {
+      if (!isTainted) {
         return;
       }
 
