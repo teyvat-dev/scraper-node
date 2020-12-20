@@ -1,9 +1,12 @@
 import type { RegionOutput } from './types';
+import list from './list';
 
 const scrape = async (): Promise<RegionOutput[]> => {
   // TODO Scraper source goes here
   // Generally you want to parse the list
   // const list = await list();
+  await list();
+
 
   // Then parse the content per each page
   //   const regionsData = await element(
