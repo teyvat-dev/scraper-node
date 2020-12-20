@@ -1,0 +1,44 @@
+name: Deploy Wiki Regions
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'src/index.ts'
+      - 'scr/constants.ts'
+      - 'src/helpers/**'
+      - 'src/types/**'
+      - 'src/wiki/region/**'
+jobs:
+  deploy-wiki-regions:
+    name: Build and Deploy Wiki Regions Scraper
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Set up Cloud SDK
+        uses: google-github-actions/setup-gcloud@master
+        with:
+          service_account_key: ${{ secrets.GCP_SA_KEY }}
+          export_default_credentials: true
+      - name: Use Node.js 12.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+      - uses: actions/cache@v2
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+      - name: Install deps
+        run: yarn --frozen-lockfile --ignore-scripts
+      - name: Build Function
+        run: yarn build
+        env:
+          FUNCTION_TARGET: wiki_regions
+      - name: Deploy Function
+        uses: google-github-actions/deploy-cloud-functions@main
+        with:
+          name: wiki_regions
+          runtime: nodejs12
+          source_dir: build/src

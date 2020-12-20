@@ -1,6 +1,5 @@
 import type { Response } from 'express';
 import type { Storage } from '@google-cloud/storage';
-import md5 from 'crypto-md5';
 
 import scrape from './scrape';
 import { __DEV__ } from '../../constants';
