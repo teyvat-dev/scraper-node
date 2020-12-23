@@ -36,6 +36,7 @@ const handle = async (res: Response, storage: Storage) => {
       });
 
       fileStream.on('error', err => {
+        console.error(err);
         return res.status(500).send({ error: err });
       });
 

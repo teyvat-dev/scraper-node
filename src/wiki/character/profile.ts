@@ -76,7 +76,15 @@ const profile = async (links: string[]): Promise<CharacterProfilesData[]> =>
       .find('tbody tr')
       .toArray()
       .map(talent => {
-        if ($(talent).find('td:nth-of-type(2)').text() === 'None') {
+        // Skip if is description
+        if ($(talent).find('td').attr('colspan') === '3') {
+          return { type: '', name: '', icon: '', info: '' };
+        }
+
+        if (
+          $(talent).find('td:nth-of-type(2)').text().replace('\n', '') ===
+          'None'
+        ) {
           return { type: '', name: '', icon: '', info: '' };
         }
 
@@ -85,17 +93,17 @@ const profile = async (links: string[]): Promise<CharacterProfilesData[]> =>
         }
 
         const type = $(talent)
-          .find('td:nth-of-type(1)')
+          .find('td:nth-of-type(3)')
           .text()
           .split('-')[0]
           .replace(/\s/g, '')
           .replace(/[0-9]/g, '');
-        const name = $(talent).find('td:nth-of-type(2)').text();
-        const icon = $(talent).find('td:nth-of-type(3) a img').attr('data-src');
-        const info = removeFinalSplit(
-          $(talent).find('td:nth-of-type(4)').text(),
-          '.'
-        );
+        const name = $(talent)
+          .find('td:nth-of-type(2)')
+          .text()
+          .replace('\n', '');
+        const icon = $(talent).find('td:nth-of-type(1) a img').attr('data-src');
+        const info = removeFinalSplit($(talent).next().find('td').text(), '.');
 
         if (!type) {
           return { type: '', name: '', icon: '', info: '' };
@@ -125,11 +133,11 @@ const profile = async (links: string[]): Promise<CharacterProfilesData[]> =>
           $(constellation).find('th:nth-of-type(1)').text().split('\n').join('')
         );
         const name = $(constellation)
-          .find('td:nth-of-type(1)')
+          .find('td:nth-of-type(2)')
           .text()
           .replace('\n', '');
         const icon = $(constellation)
-          .find('td:nth-of-type(2) a')
+          .find('td:nth-of-type(1) a')
           .attr('data-src');
         const effect = removeFinalSplit(
           $(constellation).find('td:nth-of-type(3)').text(),
