@@ -141,10 +141,10 @@
   dependencies:
     defer-to-connect "^1.0.1"
 
-"@teyvatdev/types@0.4.3":
-  version "0.4.3"
-  resolved "https://registry.yarnpkg.com/@teyvatdev/types/-/types-0.4.3.tgz#3700e274ba4abd91cd0b6a04c20348c00b8a0001"
-  integrity sha512-ycxiEktyovJWo123lN6H/NLhvEz0NyuKJOoQEgVY8/8Z3qhJYh2EG8EsHwG0MOMreigY09VJipLTqqVrODrhMA==
+"@teyvatdev/types@0.4.5":
+  version "0.4.5"
+  resolved "https://registry.yarnpkg.com/@teyvatdev/types/-/types-0.4.5.tgz#956a034ffb7f25c830a66afa2aba1df5f4405912"
+  integrity sha512-TGXlVJlG5HqjwuiA7UlUZ5G6jcCKRUu9kQiKDcC0HkBoYoumG74+nqEKYaHpINTyhnNfzYuRTde7zCT9wKb63w==
 
 "@tootallnate/once@1":
   version "1.1.2"

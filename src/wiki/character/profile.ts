@@ -1,7 +1,9 @@
+import type { Storage } from '@google-cloud/storage';
 import asyncPool from 'tiny-async-pool';
 
 import type { CharacterProfilesData } from './types';
 import { fetch } from '../../helpers/fetch';
+import copyImage from '../../helpers/copyImage';
 
 const removeSplit = (
   original: string,
@@ -27,12 +29,35 @@ const removeFinalSplit = (original: string, denominator: string) => {
   return temp.join(denominator);
 };
 
-const profile = async (links: string[]): Promise<CharacterProfilesData[]> =>
+const profile = async (
+  links: string[],
+  storage: Storage
+): Promise<CharacterProfilesData[]> =>
   asyncPool(10, links, async link => {
     const $ = await fetch(link);
 
     const name = $('h1#firstHeading').text();
-    const image = $('div#pi-tab-0 img.pi-image-thumbnail').attr('src');
+    const cardImage = await copyImage(
+      storage,
+      `characters/${name}/card`,
+      $('div#pi-tab-0 img.pi-image-thumbnail')
+        .attr('src')
+        ?.split('/revision/latest/')[0]
+    );
+    const portraitImage = await copyImage(
+      storage,
+      `characters/${name}/portrait`,
+      $('div#pi-tab-1 img.pi-image-thumbnail')
+        .attr('src')
+        ?.split('/revision/latest/')[0]
+    );
+    const inGameImage = await copyImage(
+      storage,
+      `characters/${name}/inGame`,
+      $('div#pi-tab-2 img.pi-image-thumbnail')
+        .attr('src')
+        ?.split('/revision/latest/')[0]
+    );
     const introduction = removeSplit(
       $('h3 span#Introduction').parent().next().text(),
       ['Official Website', 'In-game'],
@@ -159,7 +184,9 @@ const profile = async (links: string[]): Promise<CharacterProfilesData[]> =>
 
     return {
       name,
-      image,
+      cardImage,
+      portraitImage,
+      inGameImage,
       introduction,
       personality,
       birthday,

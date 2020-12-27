@@ -23,7 +23,9 @@ export interface CharacterTableData {
 
 export interface CharacterProfilesData {
   name: string;
-  image?: string;
+  cardImage?: string;
+  portraitImage?: string;
+  inGameImage?: string;
   introduction: string;
   personality: string;
   birthday: string;
