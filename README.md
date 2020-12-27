@@ -13,7 +13,7 @@ With Genshin Impact updating consistency there is a need for automation, these s
 ### Requirements
 
 - [Node](https://nodejs.org/en/) >= 12.x
-- [Yarn](https://yarnpkg.com/) or [NPM]
+- [Yarn](https://yarnpkg.com/) or NPM
 - [direnv](https://formulae.brew.sh/formula/direnv) for easy env loading
 
 ### Resources

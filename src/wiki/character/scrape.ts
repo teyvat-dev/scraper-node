@@ -1,13 +1,15 @@
 import type { CharactersOutput } from './types';
+import type { Storage } from '@google-cloud/storage';
 import list from './list';
 import profile from './profile';
 import story from './story';
 
-const scrape = async (): Promise<CharactersOutput[]> => {
-  const tables = await list();
+const scrape = async (storage: Storage): Promise<CharactersOutput[]> => {
+  const tables = await list(storage);
 
   const profiles = await profile(
-    tables.map(char => char.link || '').filter(link => link !== '')
+    tables.map(char => char.link || '').filter(link => link !== ''),
+    storage
   );
 
   const stories = await story(
@@ -25,6 +27,7 @@ const scrape = async (): Promise<CharactersOutput[]> => {
     return {
       character: {
         name: char.name,
+        icon: char.image && `http://${char.image}`,
         rarity: char.rarity,
         constellations: profile && profile.constellations,
         overview: profile && profile.introduction,
@@ -34,6 +37,12 @@ const scrape = async (): Promise<CharactersOutput[]> => {
         affiliation: profile?.affiliation,
         birthday: profile?.birthday,
         constellation: profile?.constellation,
+        images: {
+          cardImage: profile?.cardImage && `http://${profile.cardImage}`,
+          portraitImage:
+            profile?.portraitImage && `http://${profile.portraitImage}`,
+          inGameImage: profile?.inGameImage && `http://${profile.inGameImage}`,
+        },
         story: story?.story,
         // specialtyDish: profile && profile.specialtyDish
         overview: profile?.personality,
