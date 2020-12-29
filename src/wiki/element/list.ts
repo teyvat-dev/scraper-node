@@ -46,7 +46,7 @@ const list = async (): Promise<ElementTableData[]> => {
                 formulas = [];
                 descriptions = [];
 
-            } else if($elmData.has('span').length) { // looping through reactions
+            } else if($elmData.has('span').length) { // looping through reaction formulas
                 $elmData.find('span a')
                     .each((k, aName) => {
                         const $aName = $(aName).attr('title')!;
@@ -54,7 +54,7 @@ const list = async (): Promise<ElementTableData[]> => {
                     });
 
             } else {
-                if($elmData.has("b").length) { // reaction description
+                if($elmData.has("b").length) { // reaction descriptions
                     descriptions.push(text);
                 }
             } 
