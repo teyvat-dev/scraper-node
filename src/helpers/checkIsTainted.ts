@@ -1,7 +1,7 @@
 import type { File } from '@google-cloud/storage';
 import md5 from 'crypto-md5';
 
-const checkIsTainted = async (file: File, data: String) => {
+const checkIsTainted = async (file: File, data: String | Buffer) => {
   try {
     const metadata = await file.getMetadata();
 

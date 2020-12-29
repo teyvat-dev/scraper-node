@@ -1,0 +1,29 @@
+name: Cron Jobs
+
+on:
+  schedule:
+    - cron: '0 0 * * *'
+
+jobs:
+  scrape-wiki-characters:
+    name: Scrape Wiki Characters
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Cloud SDK
+        uses: google-github-actions/setup-gcloud@master
+        with:
+          service_account_key: ${{ secrets.GCP_SA_KEY_INVOKER }}
+          export_default_credentials: true
+      - name: Curl Wiki Characters
+        run: 'curl https://us-central1-teyvat-dev-28112020.cloudfunctions.net/wiki_characters -H "Authorization: bearer $(gcloud auth print-identity-token)"'
+  scrape-wiki-regions:
+    name: Scrape Wiki Regions
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Cloud SDK
+        uses: google-github-actions/setup-gcloud@master
+        with:
+          service_account_key: ${{ secrets.GCP_SA_KEY_INVOKER }}
+          export_default_credentials: true
+      - name: Curl Wiki Regions
+        run: 'curl https://us-central1-teyvat-dev-28112020.cloudfunctions.net/wiki_regions -H "Authorization: bearer $(gcloud auth print-identity-token)"'

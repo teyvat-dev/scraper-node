@@ -42,3 +42,4 @@ jobs:
           name: wiki_regions
           runtime: nodejs12
           source_dir: build/src
+          env_vars: SCRAPER_BUCKET=teyvatdev-scrapedata,RESOURCES_BUCKET=resources.teyvat.dev
