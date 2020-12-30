@@ -27,7 +27,7 @@ const scrape = async (storage: Storage): Promise<CharactersOutput[]> => {
     return {
       character: {
         name: char.name,
-        icon: char.image && `http://${char.image}`,
+        icon: char.image && `https://${char.image}`,
         rarity: char.rarity,
         constellations: profile && profile.constellations,
         overview: profile && profile.introduction,
@@ -38,10 +38,10 @@ const scrape = async (storage: Storage): Promise<CharactersOutput[]> => {
         birthday: profile?.birthday,
         constellation: profile?.constellation,
         images: {
-          cardImage: profile?.cardImage && `http://${profile.cardImage}`,
+          cardImage: profile?.cardImage && `https://${profile.cardImage}`,
           portraitImage:
-            profile?.portraitImage && `http://${profile.portraitImage}`,
-          inGameImage: profile?.inGameImage && `http://${profile.inGameImage}`,
+            profile?.portraitImage && `https//${profile.portraitImage}`,
+          inGameImage: profile?.inGameImage && `https://${profile.inGameImage}`,
         },
         story: story?.story,
         // specialtyDish: profile && profile.specialtyDish
