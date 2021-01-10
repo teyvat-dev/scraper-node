@@ -23,7 +23,7 @@ const list = async (): Promise<ElementTableData[]> => {
 
       // Create element object for every row
       const element: ElementTableData = {
-        element: ' ',
+        name: ' ',
         statusEffect: ' ',
         reactionFormulas: [],
         reactionDescriptions: [],
@@ -38,7 +38,7 @@ const list = async (): Promise<ElementTableData[]> => {
         // this also resets for new elements
         if (j === 0 && text !== '+' && !elementNames.includes(text)) {
           elementNames.push(text);
-          element.element = text;
+          element.name = text;
           element.statusEffect = $row.find('td:nth-child(2)').text().trim();
           formulas = [];
           descriptions = [];
@@ -63,7 +63,7 @@ const list = async (): Promise<ElementTableData[]> => {
 
   const filteredElements: ElementTableData[] = [];
   elements.filter(data => {
-    if (data.element !== ' ') {
+    if (data.name !== ' ') {
       filteredElements.push(data);
     }
   });

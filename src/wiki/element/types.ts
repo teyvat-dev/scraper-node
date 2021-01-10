@@ -6,7 +6,7 @@ export type ElementOutput = Create.Element;
 // TODO: Add new types here
 
 export interface ElementTableData {
-  element: string;
+  name: string;
   statusEffect: string;
   reactionFormulas: string[];
   reactionDescriptions: string[];
