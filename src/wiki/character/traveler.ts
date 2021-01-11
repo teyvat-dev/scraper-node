@@ -94,7 +94,6 @@ const traveler = async (
       .text();
 
     const elementTabs = $('h3 span#Ascensions').parent().prev().toArray();
-    console.log(elementTabs);
 
     const talents: {
       type: string;
