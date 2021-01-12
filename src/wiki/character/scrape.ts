@@ -49,7 +49,7 @@ const scrape = async (storage: Storage): Promise<CharactersOutput[]> => {
         images: {
           cardImage: profile?.cardImage && `https://${profile.cardImage}`,
           portraitImage:
-            profile?.portraitImage && `https//${profile.portraitImage}`,
+            profile?.portraitImage && `https://${profile.portraitImage}`,
           inGameImage: profile?.inGameImage && `https://${profile.inGameImage}`,
         },
         story: story?.story,
@@ -97,7 +97,7 @@ const scrape = async (storage: Storage): Promise<CharactersOutput[]> => {
           `https://${travelerProfiles[0].cardImage}`,
         portraitImage:
           travelerProfiles[0]?.portraitImage &&
-          `https//${travelerProfiles[0].portraitImage}`,
+          `https://${travelerProfiles[0].portraitImage}`,
         inGameImage:
           travelerProfiles[0]?.inGameImage &&
           `https://${travelerProfiles[0].inGameImage}`,
@@ -140,7 +140,7 @@ const scrape = async (storage: Storage): Promise<CharactersOutput[]> => {
           `https://${travelerProfiles[1].cardImage}`,
         portraitImage:
           travelerProfiles[1]?.portraitImage &&
-          `https//${travelerProfiles[1].portraitImage}`,
+          `https://${travelerProfiles[1].portraitImage}`,
         inGameImage:
           travelerProfiles[1]?.inGameImage &&
           `https://${travelerProfiles[1].inGameImage}`,
