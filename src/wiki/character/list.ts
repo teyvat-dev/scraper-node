@@ -7,9 +7,11 @@ import { fetch } from '../../helpers/fetch';
 import copyImage from '../../helpers/copyImage';
 
 const list = async (storage: Storage): Promise<CharacterTableData[]> => {
-  const $ = await fetch(`${wikiBaseURI}/wiki/Characters/Playable`);
+  const $ = await fetch(`${wikiBaseURI}/wiki/Characters`);
 
-  const charTableDataRaw = $('.article-table tbody tr')
+  const charTableDataRaw = $('.article-table')
+    .first()
+    .find('tbody tr')
     .toArray()
     .filter(char => $(char).find('td:nth-child(2) a').text());
 
