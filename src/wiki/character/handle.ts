@@ -6,7 +6,7 @@ import { __DEV__ } from '../../constants';
 import upload from '../../helpers/upload';
 
 const handle = async (res: Response, storage: Storage) => {
-  const characters = await scrape(storage);
+  const characters = await scrape();
 
   if (__DEV__) {
     return res.send(characters);

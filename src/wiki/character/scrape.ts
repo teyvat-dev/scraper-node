@@ -1,18 +1,17 @@
 import type { CharactersOutput } from './types';
-import type { Storage } from '@google-cloud/storage';
 import list from './list';
 import profile from './profile';
 import story from './story';
 import traveler from './traveler';
 import { wikiBaseURI } from '../../constants';
 
-const scrape = async (storage: Storage): Promise<CharactersOutput[]> => {
-  const tables = await list(storage);
+const scrape = async (): Promise<CharactersOutput[]> => {
+  const tables = await list();
 
   // Handle traveler
   const travelerIndex = tables.findIndex(char => char.name === 'Traveler');
   const travelerInfo = tables[travelerIndex];
-  const travelerProfiles = await traveler(`${wikiBaseURI}/Traveler`, storage);
+  const travelerProfiles = await traveler(`${wikiBaseURI}/Traveler`);
 
   const stories = await story(
     tables
@@ -24,8 +23,7 @@ const scrape = async (storage: Storage): Promise<CharactersOutput[]> => {
   tables.splice(travelerIndex, 1);
 
   const profiles = await profile(
-    tables.map(char => char.link || '').filter(link => link !== ''),
-    storage
+    tables.map(char => char.link || '').filter(link => link !== '')
   );
 
   // Merge into singular array to upload (using types)
@@ -36,7 +34,7 @@ const scrape = async (storage: Storage): Promise<CharactersOutput[]> => {
     return {
       character: {
         name: char.name,
-        icon: char.image && `https://${char.image}`,
+        icon: char.image,
         rarity: char.rarity,
         constellations: profile && profile.constellations,
         overview: profile && profile.introduction,
@@ -47,10 +45,9 @@ const scrape = async (storage: Storage): Promise<CharactersOutput[]> => {
         birthday: profile?.birthday,
         constellation: profile?.constellation,
         images: {
-          cardImage: profile?.cardImage && `https://${profile.cardImage}`,
-          portraitImage:
-            profile?.portraitImage && `https://${profile.portraitImage}`,
-          inGameImage: profile?.inGameImage && `https://${profile.inGameImage}`,
+          cardImage: profile?.cardImage,
+          portraitImage: profile?.portraitImage,
+          inGameImage: profile?.inGameImage,
         },
         story: story?.story,
         // specialtyDish: profile && profile.specialtyDish
@@ -81,7 +78,7 @@ const scrape = async (storage: Storage): Promise<CharactersOutput[]> => {
   characters.push({
     character: {
       name: 'Aether',
-      icon: travelerInfo.image && `https://${travelerInfo.image}`,
+      icon: travelerInfo.image,
       rarity: travelerInfo.rarity,
       constellations: travelerProfiles[0]?.constellations,
       overview: travelerProfiles[0]?.introduction,
@@ -92,15 +89,9 @@ const scrape = async (storage: Storage): Promise<CharactersOutput[]> => {
       birthday: travelerProfiles[0]?.birthday,
       constellation: travelerProfiles[0]?.constellation,
       images: {
-        cardImage:
-          travelerProfiles[0]?.cardImage &&
-          `https://${travelerProfiles[0].cardImage}`,
-        portraitImage:
-          travelerProfiles[0]?.portraitImage &&
-          `https://${travelerProfiles[0].portraitImage}`,
-        inGameImage:
-          travelerProfiles[0]?.inGameImage &&
-          `https://${travelerProfiles[0].inGameImage}`,
+        cardImage: travelerProfiles[0]?.cardImage,
+        portraitImage: travelerProfiles[0]?.portraitImage,
+        inGameImage: travelerProfiles[0]?.inGameImage,
       },
       story: travelerStory?.story,
       // specialtyDish: profile && profile.specialtyDish
@@ -124,7 +115,7 @@ const scrape = async (storage: Storage): Promise<CharactersOutput[]> => {
   characters.push({
     character: {
       name: 'Lumine',
-      icon: travelerInfo.image && `https://${travelerInfo.image}`,
+      icon: travelerInfo.image,
       rarity: travelerInfo.rarity,
       constellations: travelerProfiles[1]?.constellations,
       overview: travelerProfiles[1]?.introduction,
@@ -135,15 +126,9 @@ const scrape = async (storage: Storage): Promise<CharactersOutput[]> => {
       birthday: travelerProfiles[1]?.birthday,
       constellation: travelerProfiles[1]?.constellation,
       images: {
-        cardImage:
-          travelerProfiles[1]?.cardImage &&
-          `https://${travelerProfiles[1].cardImage}`,
-        portraitImage:
-          travelerProfiles[1]?.portraitImage &&
-          `https://${travelerProfiles[1].portraitImage}`,
-        inGameImage:
-          travelerProfiles[1]?.inGameImage &&
-          `https://${travelerProfiles[1].inGameImage}`,
+        cardImage: travelerProfiles[1]?.cardImage,
+        portraitImage: travelerProfiles[1]?.portraitImage,
+        inGameImage: travelerProfiles[1]?.inGameImage,
       },
       story: travelerStory?.story,
       // specialtyDish: profile && profile.specialtyDish

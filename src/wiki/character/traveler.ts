@@ -1,8 +1,5 @@
-import type { Storage } from '@google-cloud/storage';
-
 import type { CharacterProfilesData } from './types';
 import { fetch } from '../../helpers/fetch';
-import copyImage from '../../helpers/copyImage';
 
 const removeSplit = (
   original: string,
@@ -28,36 +25,29 @@ const removeFinalSplit = (original: string, denominator: string) => {
   return temp.join(denominator);
 };
 
-const traveler = async (
-  link: string,
-  storage: Storage
-): Promise<CharacterProfilesData[]> => {
+const traveler = async (link: string): Promise<CharacterProfilesData[]> => {
   const $ = await fetch(link);
 
   const travelers = [];
 
   for (const name of ['Aether', 'Lumine']) {
-    const cardImage = await copyImage(
-      storage,
-      `characters/${name}/card`,
-      $(`div#pi-tab-${name === 'Aether' ? 0 : 1} img.pi-image-thumbnail`)
-        .attr('src')
-        ?.split('/revision/latest/')[0]
-    );
-    const portraitImage = await copyImage(
-      storage,
-      `characters/${name}/portrait`,
-      $(`div#pi-tab-${name === 'Aether' ? 2 : 3} img.pi-image-thumbnail`)
-        .attr('src')
-        ?.split('/revision/latest/')[0]
-    );
-    const inGameImage = await copyImage(
-      storage,
-      `characters/${name}/inGame`,
-      $(`div#pi-tab-${name === 'Aether' ? 4 : 5} img.pi-image-thumbnail`)
-        .attr('src')
-        ?.split('/revision/latest/')[0]
-    );
+    const cardImage = $(
+      `div#pi-tab-${name === 'Aether' ? 0 : 1} img.pi-image-thumbnail`
+    )
+      .attr('src')
+      ?.split('/revision/latest/')[0];
+
+    const portraitImage = $(
+      `div#pi-tab-${name === 'Aether' ? 2 : 3} img.pi-image-thumbnail`
+    )
+      .attr('src')
+      ?.split('/revision/latest/')[0];
+
+    const inGameImage = $(
+      `div#pi-tab-${name === 'Aether' ? 4 : 5} img.pi-image-thumbnail`
+    )
+      .attr('src')
+      ?.split('/revision/latest/')[0];
     const introduction = removeSplit(
       $('h3 span#Introduction').parent().next().text(),
       ['Official Website', 'In-game'],
