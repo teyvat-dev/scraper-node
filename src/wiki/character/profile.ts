@@ -129,7 +129,7 @@ const profile = async (links: string[]): Promise<CharacterProfilesData[]> =>
 
     // Level Mats
     // levelMaterialTable := e.DOM.Find("table.wikitable:nth-of-type(2)")
-    const constellationsTable = $('table.wikitable:nth-of-type(3)');
+    const constellationsTable = $('table.wikitable:nth-of-type(4)');
     const constellations = constellationsTable
       .find('tbody tr')
       .toArray()

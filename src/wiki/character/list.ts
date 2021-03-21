@@ -3,7 +3,6 @@ import asyncPool from 'tiny-async-pool';
 import type { CharacterTableData } from './types';
 import { wikiBaseURI } from '../../constants';
 import { fetch } from '../../helpers/fetch';
-import { Element, WeaponType } from '@teyvatdev/types/dist/types/client';
 
 const list = async (): Promise<CharacterTableData[]> => {
   const $ = await fetch(`${wikiBaseURI}/wiki/Characters`);
@@ -38,19 +37,7 @@ const list = async (): Promise<CharacterTableData[]> => {
     };
   });
 
-  const hutao = {
-    name: 'Hu Tao',
-    rarity: 5,
-    image:
-      'https://static.wikia.nocookie.net/gensin-impact/images/a/a4/Character_Hu_Tao_Thumb.png',
-    element: 'Pyro',
-    weapon: 'Polearm' as WeaponType,
-    sex: 'female',
-    nation: 'Liyue',
-    link: `https://genshin-impact.fandom.com/wiki/Hu_Tao`,
-  };
-
-  return [...list, hutao];
+  return list;
 };
 
 export default list;
