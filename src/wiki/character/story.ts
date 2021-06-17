@@ -29,7 +29,9 @@ const story = async (
       .find('h3')
       .toArray()
       .map((element, i) => {
-        const title = $(element).text();
+        var title = $(element).text();
+        title.replace('.', '\\.');
+        title.replace('-', '\\-');
         const story = content
           .find(`h3:nth-of-type(${i + 1})`)
           .nextUntil(':header')
