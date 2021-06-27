@@ -37,6 +37,24 @@ const list = async (): Promise<CharacterTableData[]> => {
     };
   });
 
+  // Patch: Add kazuha
+  const kazuha = {
+    rarity: 5,
+    image:
+      'https://static.wikia.nocookie.net/gensin-impact/images/d/d5/Character_Kazuha_Thumb.png',
+    name: 'Kaedehara Kazuha',
+    element: 'Anemo',
+    weapon: 'Sword',
+    sex: 'Male',
+    nation: 'Inazuma',
+    link: `${wikiBaseURI}/wiki/Kazuha`,
+  };
+
+  // If kazuha is not in the list append it
+  if (list.findIndex(item => item.link.includes('Kazuha')) === -1) {
+    return [...list, kazuha];
+  }
+
   return list;
 };
 

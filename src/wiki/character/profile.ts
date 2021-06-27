@@ -175,6 +175,27 @@ const profile = async (links: string[]): Promise<CharacterProfilesData[]> =>
       })
       .filter(constellation => constellation.level !== 0);
 
+    if (link.includes('Kazuha')) {
+      console.log({
+        name,
+        cardImage,
+        portraitImage,
+        inGameImage,
+        introduction,
+        personality,
+        birthday,
+        constellation,
+        affiliation,
+        dish,
+        voiceEN,
+        voiceCN,
+        voiceJP,
+        voiceKR,
+        talents,
+        constellations,
+      });
+    }
+
     // Ascensions // TODO
     // ascensionsTable := e.DOM.Find("table.wikitable:nth-of-type(4)")
     // Stats (dont grab this from wiki) maybe?

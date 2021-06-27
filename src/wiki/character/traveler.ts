@@ -83,7 +83,11 @@ const traveler = async (link: string): Promise<CharacterProfilesData[]> => {
       .find('div.pi-item[data-source="voiceKR"] div')
       .text();
 
-    const elementTabs = $('h3 span#Ascensions').parent().prev().toArray();
+    const elementTabs = $('h3 span#Ascensions')
+      .parent()
+      .prev()
+      .children()
+      .toArray();
 
     const talents: {
       type: string;
@@ -100,43 +104,58 @@ const traveler = async (link: string): Promise<CharacterProfilesData[]> => {
     }[] = [];
 
     for (const tab of elementTabs) {
-      if ($(tab).attr('title') === 'Unaligned') continue;
-      const talentTable = $(tab).find('table.wikitable:nth-of-type(1)');
-      const tempTalents = talentTable
+      const alignment = $(tab).attr('title');
+      if (alignment === 'Unaligned') continue;
+      if (alignment === undefined) continue;
+
+      const talentHeading = $(tab).find(`h3 span#${alignment}_Talents`);
+      const talentTable = $(talentHeading).parent().next();
+      // TODO: Talents have their own page that can be scraped for skill attributes!
+      // https://genshin-impact.fandom.com/wiki/Sharpshooter
+
+      const talentPairs = $(talentTable)
         .find('tbody tr')
         .toArray()
-        .map(talent => {
-          // Skip if is description
-          if ($(talent).find('td').attr('colspan') === '3') {
-            return { type: '', name: '', icon: '', info: '' };
+        .map((talent, index) => {
+          // Skip if even element
+          if (index % 2 === 0) {
+            return null;
+          }
+          // Skip if is header
+          if ($(talent).find('th').length > 0) {
+            return null;
           }
 
+          return [talent, $(talent).next()];
+        })
+        .filter(talentPair => talentPair !== null);
+
+      const tempTalents = talentPairs
+        .map(talentPair => {
+          // Failsafe
           if (
-            $(talent).find('td:nth-of-type(2)').text().replace('\n', '') ===
-            'None'
+            talentPair === null ||
+            talentPair[0] === null ||
+            talentPair[1] === null
           ) {
             return { type: '', name: '', icon: '', info: '' };
           }
 
-          if ($(talent).find('td:nth-of-type(1)').toArray().length === 0) {
-            return { type: '', name: '', icon: '', info: '' };
-          }
-
-          const type = $(talent)
+          const icon = $(talentPair[0])
+            .find('td:nth-of-type(1) a img')
+            .attr('data-src');
+          const name = $(talentPair[0])
+            .find('td:nth-of-type(2)')
+            .text()
+            .replace('\n', '');
+          const type = $(talentPair[0])
             .find('td:nth-of-type(3)')
             .text()
             .split('-')[0]
             .replace(/\s/g, '')
             .replace(/[0-9]/g, '');
-          const name = $(talent)
-            .find('td:nth-of-type(2)')
-            .text()
-            .replace('\n', '');
-          const icon = $(talent)
-            .find('td:nth-of-type(1) a img')
-            .attr('data-src');
           const info = removeFinalSplit(
-            $(talent).next().find('td').text(),
+            $(talentPair[1]).find('td').text(),
             '.'
           );
 
@@ -157,33 +176,33 @@ const traveler = async (link: string): Promise<CharacterProfilesData[]> => {
 
       // Level Mats
       // levelMaterialTable := e.DOM.Find("table.wikitable:nth-of-type(2)")
-      const constellationsTable = $(tab).find('table.wikitable:last-of-type');
+      const constellationHeading = $(`h3 span#${alignment}_Constellation`);
+      const constellationsTable = $(constellationHeading).parent().next();
+
       const tempConstellations = constellationsTable
         .find('tbody tr')
         .toArray()
         .map(constellation => {
-          if (
-            $(constellation).find('td:nth-of-type(1)').toArray().length === 0
-          ) {
-            return { level: 0, name: '', effect: '', icon: '' };
+          if ($(constellation).find('th').length > 0) {
+            return { level: 0, name: '', effect: '' };
           }
 
           const level = Number(
             $(constellation)
-              .find('th:nth-of-type(1)')
+              .find('td:nth-of-type(1)')
               .text()
               .split('\n')
               .join('')
           );
           const name = $(constellation)
-            .find('td:nth-of-type(2)')
+            .find('td:nth-of-type(3)')
             .text()
             .replace('\n', '');
           const icon = $(constellation)
-            .find('td:nth-of-type(1) a')
+            .find('td:nth-of-type(2) a img')
             .attr('data-src');
           const effect = removeFinalSplit(
-            $(constellation).find('td:nth-of-type(3)').text(),
+            $(constellation).find('td:nth-of-type(4)').text(),
             '.'
           );
 
