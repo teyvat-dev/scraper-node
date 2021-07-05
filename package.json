@@ -1,6 +1,6 @@
 {
   "name": "teyvatdev-scraper-node",
-  "version": "0.5.3",
+  "version": "0.5.5",
   "main": "index.js",
   "license": "MIT",
   "scripts": {

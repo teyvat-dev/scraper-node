@@ -31,14 +31,21 @@ const profile = async (links: string[]): Promise<CharacterProfilesData[]> =>
   asyncPool(10, links, async link => {
     const $ = await fetch(link);
 
-    const name = $('h1#firstHeading').text();
-    const cardImage = $('div#pi-tab-0 img.pi-image-thumbnail')
+    const name = $('h1.page-header__title').text().trim();
+    const piImageCollection = $(
+      'div.pi-image-collection .wds-tab__content'
+    ).toArray();
+
+    const cardImage = $(piImageCollection[0])
+      .find('img.pi-image-thumbnail')
       .attr('src')
       ?.split('/revision/latest/')[0];
-    const portraitImage = $('div#pi-tab-1 img.pi-image-thumbnail')
+    const portraitImage = $(piImageCollection[1])
+      .find('img.pi-image-thumbnail')
       .attr('src')
       ?.split('/revision/latest/')[0];
-    const inGameImage = $('div#pi-tab-2 img.pi-image-thumbnail')
+    const inGameImage = $(piImageCollection[2])
+      .find('img.pi-image-thumbnail')
       .attr('src')
       ?.split('/revision/latest/')[0];
 
@@ -53,29 +60,19 @@ const profile = async (links: string[]): Promise<CharacterProfilesData[]> =>
       '.'
     );
 
-    const bio = $('div.pi-section-content[data-ref="0"]');
-    const birthday = bio.find('div.pi-item[data-source="birthday"] div').text();
-    const constellation = bio
-      .find('div.pi-item[data-source="constellation"] div')
-      .text();
-    const affiliation = bio
-      .find('div.pi-item[data-source="affiliation"] div')
-      .text();
-    const dish = bio.find('div.pi-item[data-source="dish"] div').text();
+    // const bio = $('div.pi-section-content[data-ref="0"]');
+    const birthday = $('div.pi-item[data-source="birthday"] div').text();
+    const constellation = $(
+      'div.pi-item[data-source="constellation"] div'
+    ).text();
+    const affiliation = $('div.pi-item[data-source="affiliation"] div').text();
+    const dish = $('div.pi-item[data-source="dish"] div').text();
 
-    const voiceActors = $('div.pi-section-content[data-ref="1"]');
-    const voiceEN = voiceActors
-      .find('div.pi-item[data-source="voiceEN"] div')
-      .text();
-    const voiceCN = voiceActors
-      .find('div.pi-item[data-source="voiceCN"] div')
-      .text();
-    const voiceJP = voiceActors
-      .find('div.pi-item[data-source="voiceJP"] div')
-      .text();
-    const voiceKR = voiceActors
-      .find('div.pi-item[data-source="voiceKR"] div')
-      .text();
+    // const voiceActors = $('div.pi-section-content[data-ref="1"]');
+    const voiceEN = $('div.pi-item[data-source="voiceEN"] div').text();
+    const voiceCN = $('div.pi-item[data-source="voiceCN"] div').text();
+    const voiceJP = $('div.pi-item[data-source="voiceJP"] div').text();
+    const voiceKR = $('div.pi-item[data-source="voiceKR"] div').text();
 
     const talentHeading = $('h3 span#Talents');
     const talentTable = $(talentHeading).parent().next();

@@ -31,23 +31,25 @@ const traveler = async (link: string): Promise<CharacterProfilesData[]> => {
   const travelers = [];
 
   for (const name of ['Aether', 'Lumine']) {
-    const cardImage = $(
-      `div#pi-tab-${name === 'Aether' ? 0 : 1} img.pi-image-thumbnail`
-    )
+    const piImageCollection = $(
+      'div.pi-image-collection .wds-tab__content'
+    ).toArray();
+
+    const cardImage = $(piImageCollection[name === 'Aether' ? 0 : 1])
+      .find('img.pi-image-thumbnail')
       .attr('src')
       ?.split('/revision/latest/')[0];
 
-    const portraitImage = $(
-      `div#pi-tab-${name === 'Aether' ? 2 : 3} img.pi-image-thumbnail`
-    )
+    const portraitImage = $(piImageCollection[name === 'Aether' ? 2 : 3])
+      .find('img.pi-image-thumbnail')
       .attr('src')
       ?.split('/revision/latest/')[0];
 
-    const inGameImage = $(
-      `div#pi-tab-${name === 'Aether' ? 4 : 5} img.pi-image-thumbnail`
-    )
+    const inGameImage = $(piImageCollection[name === 'Aether' ? 4 : 5])
+      .find('img.pi-image-thumbnail')
       .attr('src')
       ?.split('/revision/latest/')[0];
+
     const introduction = removeSplit(
       $('h3 span#Introduction').parent().next().text(),
       ['Official Website', 'In-game'],
@@ -59,34 +61,24 @@ const traveler = async (link: string): Promise<CharacterProfilesData[]> => {
       '.'
     );
 
-    const bio = $('div.pi-section-content[data-ref="0"]');
-    const birthday = bio.find('div.pi-item[data-source="birthday"] div').text();
-    const constellation = bio
-      .find('div.pi-item[data-source="constellation"] div')
-      .text();
-    const affiliation = bio
-      .find('div.pi-item[data-source="affiliation"] div')
-      .text();
-    const dish = bio.find('div.pi-item[data-source="dish"] div').text();
+    // const bio = $('div.pi-section-content[data-ref="0"]');
+    const birthday = $('div.pi-item[data-source="birthday"] div').text();
+    const constellation = $(
+      'div.pi-item[data-source="constellation"] div'
+    ).text();
+    const affiliation = $('div.pi-item[data-source="affiliation"] div').text();
+    const dish = $('div.pi-item[data-source="dish"] div').text();
 
-    const voiceActors = $('div.pi-section-content[data-ref="1"]');
-    const voiceEN = voiceActors
-      .find('div.pi-item[data-source="voiceEN"] div')
-      .text();
-    const voiceCN = voiceActors
-      .find('div.pi-item[data-source="voiceCN"] div')
-      .text();
-    const voiceJP = voiceActors
-      .find('div.pi-item[data-source="voiceJP"] div')
-      .text();
-    const voiceKR = voiceActors
-      .find('div.pi-item[data-source="voiceKR"] div')
-      .text();
+    // const voiceActors = $('div.pi-section-content[data-ref="1"]');
+    const voiceEN = $('div.pi-item[data-source="voiceEN"] div').text();
+    const voiceCN = $('div.pi-item[data-source="voiceCN"] div').text();
+    const voiceJP = $('div.pi-item[data-source="voiceJP"] div').text();
+    const voiceKR = $('div.pi-item[data-source="voiceKR"] div').text();
 
     const elementTabs = $('h3 span#Ascensions')
       .parent()
       .prev()
-      .children()
+      .find('.wds-tab__content')
       .toArray();
 
     const talents: {
@@ -104,11 +96,11 @@ const traveler = async (link: string): Promise<CharacterProfilesData[]> => {
     }[] = [];
 
     for (const tab of elementTabs) {
-      const alignment = $(tab).attr('title');
+      const alignment = $(tab).find('span.mw-headline').text()?.split(' ')[0];
       if (alignment === 'Unaligned') continue;
       if (alignment === undefined) continue;
 
-      const talentHeading = $(tab).find(`h3 span#${alignment}_Talents`);
+      const talentHeading = $(tab).find('span.mw-headline').first();
       const talentTable = $(talentHeading).parent().next();
       // TODO: Talents have their own page that can be scraped for skill attributes!
       // https://genshin-impact.fandom.com/wiki/Sharpshooter
