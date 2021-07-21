@@ -37,6 +37,24 @@ const list = async (): Promise<CharacterTableData[]> => {
     };
   });
 
+  // Patch: Add Ayaka
+  const ayaka = {
+    rarity: 5,
+    image:
+      'https://static.wikia.nocookie.net/gensin-impact/images/f/f4/Character_Ayaka_Thumb.png',
+    name: 'Kamisato Ayaka',
+    element: 'Cryo',
+    weapon: 'Sword',
+    sex: 'Female',
+    nation: 'Inazuma',
+    link: `${wikiBaseURI}/wiki/Kamisato_Ayaka`,
+  };
+
+  // If ayaka is not in the list append her
+  if (list.findIndex(item => item.link.includes('Kamisato_Ayaka')) === -1) {
+    return [...list, ayaka];
+  }
+
   return list;
 };
 
