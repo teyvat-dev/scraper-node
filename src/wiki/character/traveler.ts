@@ -81,21 +81,21 @@ const traveler = async (link: string): Promise<CharacterProfilesData[]> => {
       .find('.wds-tab__content')
       .toArray();
 
-    const talents: {
-      type: string;
-      name: string;
-      icon?: string;
-      info: string;
-    }[] = [];
-
-    const constellations: {
-      level: number;
-      name: string;
-      icon?: string;
-      effect: string;
-    }[] = [];
-
     for (const tab of elementTabs) {
+      const talents: {
+        type: string;
+        name: string;
+        icon?: string;
+        info: string;
+      }[] = [];
+
+      const constellations: {
+        level: number;
+        name: string;
+        icon?: string;
+        effect: string;
+      }[] = [];
+
       const alignment = $(tab).find('span.mw-headline').text()?.split(' ')[0];
       if (alignment === 'Unaligned') continue;
       if (alignment === undefined) continue;
@@ -212,26 +212,27 @@ const traveler = async (link: string): Promise<CharacterProfilesData[]> => {
       // Ascensions // TODO
       // ascensionsTable := e.DOM.Find("table.wikitable:nth-of-type(4)")
       // Stats (dont grab this from wiki) maybe?
-    }
 
-    travelers.push({
-      name,
-      cardImage,
-      portraitImage,
-      inGameImage,
-      introduction,
-      personality,
-      birthday,
-      constellation,
-      affiliation,
-      dish,
-      voiceEN,
-      voiceCN,
-      voiceJP,
-      voiceKR,
-      talents,
-      constellations,
-    });
+      travelers.push({
+        name: `${name} ${alignment}`,
+        element: alignment,
+        cardImage,
+        portraitImage,
+        inGameImage,
+        introduction,
+        personality,
+        birthday,
+        constellation,
+        affiliation,
+        dish,
+        voiceEN,
+        voiceCN,
+        voiceJP,
+        voiceKR,
+        talents,
+        constellations,
+      });
+    }
   }
 
   return travelers;

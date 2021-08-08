@@ -39,6 +39,9 @@ const scrape = async (): Promise<CharactersOutput[]> => {
         constellations: profile && profile.constellations,
         overview: profile && profile.introduction,
         weapon: char.weapon as CharactersOutput['character']['weapon'], // Required for enum typing
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        element: char.element,
       },
       characterProfile: {
         affiliation: profile?.affiliation,
@@ -64,10 +67,6 @@ const scrape = async (): Promise<CharactersOutput[]> => {
         description: talent.info,
         type: talent.type,
       })),
-      elements:
-        char.element === 'Adaptive'
-          ? [{ name: 'Anemo' }, { name: 'Geo' }]
-          : [{ name: char.element }],
       region: char.nation,
     };
   });
@@ -75,79 +74,63 @@ const scrape = async (): Promise<CharactersOutput[]> => {
   // Again handle traveller differently
   const travelerStory = stories.find(story => story.name === 'Traveler');
 
-  characters.push({
-    character: {
-      name: 'Aether',
-      icon: travelerInfo.image,
-      rarity: travelerInfo.rarity,
-      constellations: travelerProfiles[0]?.constellations,
-      overview: travelerProfiles[0]?.introduction,
-      weapon: travelerInfo.weapon as CharactersOutput['character']['weapon'], // Required for enum typing
-    },
-    characterProfile: {
-      affiliation: travelerProfiles[0]?.affiliation,
-      birthday: travelerProfiles[0]?.birthday,
-      constellation: travelerProfiles[0]?.constellation,
-      images: {
-        cardImage: travelerProfiles[0]?.cardImage,
-        portraitImage: travelerProfiles[0]?.portraitImage,
-        inGameImage: travelerProfiles[0]?.inGameImage,
+  // Add characters
+  for (const profile of travelerProfiles) {
+    let region;
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-expect-error
+    if (profile.element === 'Anemo') {
+      region = 'Mondstadt';
+    }
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-expect-error
+    if (profile.element === 'Geo') {
+      region = 'Liyue';
+    }
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-expect-error
+    if (profile.element === 'Electro') {
+      region = 'Inazuma';
+    }
+    characters.push({
+      character: {
+        name: profile.name,
+        icon: travelerInfo.image,
+        rarity: travelerInfo.rarity,
+        constellations: profile && profile.constellations,
+        overview: profile && profile.introduction,
+        weapon: travelerInfo.weapon as CharactersOutput['character']['weapon'], // Required for enum typing
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        element: profile.element,
       },
-      story: travelerStory?.story,
-      // specialtyDish: profile && profile.specialtyDish
-      overview: travelerProfiles[0]?.personality,
-      voiceActor: {
-        en: travelerProfiles[0]?.voiceEN,
-        cn: travelerProfiles[0]?.voiceCN,
-        jp: travelerProfiles[0]?.voiceJP,
-        kr: travelerProfiles[0]?.voiceKR,
+      characterProfile: {
+        affiliation: profile?.affiliation,
+        birthday: profile?.birthday,
+        constellation: profile?.constellation,
+        images: {
+          cardImage: profile?.cardImage,
+          portraitImage: profile?.portraitImage,
+          inGameImage: profile?.inGameImage,
+        },
+        story: travelerStory?.story,
+        // specialtyDish: profile && profile.specialtyDish
+        overview: profile?.personality,
+        voiceActor: {
+          en: profile?.voiceEN,
+          cn: profile?.voiceCN,
+          jp: profile?.voiceJP,
+          kr: profile?.voiceKR,
+        },
       },
-    },
-    talents: travelerProfiles[0]?.talents.map(talent => ({
-      name: talent.name,
-      description: talent.info,
-      type: talent.type,
-    })),
-    elements: [{ name: 'Anemo' }, { name: 'Geo' }],
-    region: travelerInfo.nation,
-  });
-
-  characters.push({
-    character: {
-      name: 'Lumine',
-      icon: travelerInfo.image,
-      rarity: travelerInfo.rarity,
-      constellations: travelerProfiles[1]?.constellations,
-      overview: travelerProfiles[1]?.introduction,
-      weapon: travelerInfo.weapon as CharactersOutput['character']['weapon'], // Required for enum typing
-    },
-    characterProfile: {
-      affiliation: travelerProfiles[1]?.affiliation,
-      birthday: travelerProfiles[1]?.birthday,
-      constellation: travelerProfiles[1]?.constellation,
-      images: {
-        cardImage: travelerProfiles[1]?.cardImage,
-        portraitImage: travelerProfiles[1]?.portraitImage,
-        inGameImage: travelerProfiles[1]?.inGameImage,
-      },
-      story: travelerStory?.story,
-      // specialtyDish: profile && profile.specialtyDish
-      overview: travelerProfiles[1]?.personality,
-      voiceActor: {
-        en: travelerProfiles[1]?.voiceEN,
-        cn: travelerProfiles[1]?.voiceCN,
-        jp: travelerProfiles[1]?.voiceJP,
-        kr: travelerProfiles[1]?.voiceKR,
-      },
-    },
-    talents: travelerProfiles[1]?.talents.map(talent => ({
-      name: talent.name,
-      description: talent.info,
-      type: talent.type,
-    })),
-    elements: [{ name: 'Anemo' }, { name: 'Geo' }],
-    region: travelerInfo.nation,
-  });
+      talents: profile?.talents.map(talent => ({
+        name: talent.name,
+        description: talent.info,
+        type: talent.type,
+      })),
+      region,
+    });
+  }
 
   return characters;
 };
