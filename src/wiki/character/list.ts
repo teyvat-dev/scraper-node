@@ -13,7 +13,7 @@ const list = async (): Promise<CharacterTableData[]> => {
     .toArray()
     .filter(char => $(char).find('td:nth-child(2) a').text());
 
-  const list = await asyncPool(10, charTableDataRaw, async char => {
+  let list = await asyncPool(10, charTableDataRaw, async char => {
     const name = $(char).find('td:nth-child(2) a').text();
     let link = $(char).find('td:nth-child(2) a').attr('href');
     link = link ? `${wikiBaseURI}${link}` : '';
@@ -37,22 +37,38 @@ const list = async (): Promise<CharacterTableData[]> => {
     };
   });
 
-  // Patch: Add Ayaka
-  const ayaka = {
+  // Patch: Add Yoimiya
+  const yoimiya = {
     rarity: 5,
     image:
-      'https://static.wikia.nocookie.net/gensin-impact/images/f/f4/Character_Ayaka_Thumb.png',
-    name: 'Kamisato Ayaka',
-    element: 'Cryo',
-    weapon: 'Sword',
+      'https://static.wikia.nocookie.net/gensin-impact/images/0/05/Character_Yoimiya_Thumb.png',
+    name: 'Yoimiya',
+    element: 'Pyro',
+    weapon: 'Bow',
     sex: 'Female',
     nation: 'Inazuma',
-    link: `${wikiBaseURI}/wiki/Kamisato_Ayaka`,
+    link: `${wikiBaseURI}/wiki/Yoimiya`,
   };
 
-  // If ayaka is not in the list append her
-  if (list.findIndex(item => item.link.includes('Kamisato_Ayaka')) === -1) {
-    return [...list, ayaka];
+  // Patch: Add Sayu
+  const sayu = {
+    rarity: 4,
+    image:
+      'https://static.wikia.nocookie.net/gensin-impact/images/e/ec/Character_Sayu_Thumb.png',
+    name: 'Sayu',
+    element: 'Anemo',
+    weapon: 'Claymore',
+    sex: 'Female',
+    nation: 'Inazuma',
+    link: `${wikiBaseURI}/wiki/Sayu`,
+  };
+
+  if (list.findIndex(item => item.link.includes('Yoimiya')) === -1) {
+    list = [...list, yoimiya];
+  }
+
+  if (list.findIndex(item => item.link.includes('Sayu')) === -1) {
+    list = [...list, sayu];
   }
 
   return list;
